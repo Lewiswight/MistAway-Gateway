@@ -8,8 +8,8 @@ import sys, os
 
 print "Launching Dia framework ...\r\n"
 
-if not os.path.isdir('C:/Users/Lewis/Dropbox/Dia releases/Dia versions/Dia_2.1.0/'):
+if not os.path.isdir('/Users/lewiswight/MistAway-Gateway/Dia_2.1.0/'):
     execfile(os.path.join(os.path.abspath('.'), 'dia.py'))
 else:
-    execfile('C:/Users/Lewis/Dropbox/Dia releases/Dia versions/Dia_2.1.0/dia.py')
+    execfile('/Users/lewiswight/MistAway-Gateway/Dia_2.1.0/dia.py')
 

@@ -157,7 +157,7 @@ class XBeeSerialTerminal(XBeeSerial):
             self.sys_type = 3
         else:
             self.sys_type = 1
-        print "system type is:" 
+        print "system type is going to be:" 
         print self.sys_type
         self.myName = name
         self.__name = name

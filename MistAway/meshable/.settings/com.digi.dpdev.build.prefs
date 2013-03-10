@@ -1,6 +1,6 @@
-#Sat Mar 09 20:34:20 CST 2013
-Dia_path=/Users/lewiswight/Dropbox/Dia releases/Dia versions/Dia_2.1.0
-IP=172.16.4.61
+#Sat Mar 09 21:23:40 CST 2013
+Dia_path=/Users/lewiswight/MistAway-Gateway/Dia_2.1.0
+IP=172.16.4.63
 autocontained_project=false
 compile_sources=true
 configuration_file=HouseLynx1.yml

@@ -3,7 +3,7 @@
 
 <pydev_project>
 <pydev_property name="org.python.pydev.PYTHON_PROJECT_VERSION">python 2.7</pydev_property>
-<pydev_property name="org.python.pydev.PYTHON_PROJECT_INTERPRETER">/Library/Frameworks/Python.framework/Versions/2.4/bin/python2.4</pydev_property>
+<pydev_property name="org.python.pydev.PYTHON_PROJECT_INTERPRETER">/Library/Frameworks/Python.framework/Versions/2.7/bin/python2.7</pydev_property>
 <pydev_pathproperty name="org.python.pydev.PROJECT_SOURCE_PATH">
 <path>/meshable/custom_devices</path>
 <path>/meshable/custom_presentations</path>
@@ -30,8 +30,8 @@
 <path>/Applications/DigiPython/Dia/Dia_2.0.11/tools</path>
 <path>/Applications/DigiPython/Dia/Dia_2.0.11/src</path>
 <path>/Applications/DigiPython/Dia/Dia_2.0.11/lib</path>
-<path>/Users/lewiswight/Dropbox/Dia releases/Dia versions/Dia_2.1.0/tools</path>
-<path>/Users/lewiswight/Dropbox/Dia releases/Dia versions/Dia_2.1.0/src</path>
-<path>/Users/lewiswight/Dropbox/Dia releases/Dia versions/Dia_2.1.0/lib</path>
+<path>/Users/lewiswight/MistAway-Gateway/Dia_2.1.0/tools</path>
+<path>/Users/lewiswight/MistAway-Gateway/Dia_2.1.0/src</path>
+<path>/Users/lewiswight/MistAway-Gateway/Dia_2.1.0/lib</path>
 </pydev_pathproperty>
 </pydev_project>
