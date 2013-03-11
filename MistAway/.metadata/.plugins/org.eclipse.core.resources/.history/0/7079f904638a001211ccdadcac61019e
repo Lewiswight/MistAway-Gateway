@@ -435,13 +435,13 @@ class Uploader(PresentationBase, threading.Thread):
                     channel = cdb.channel_get(channel_name) 
                     sample = channel.get()
 
-                    if  sample.unit != "1":  
-                        new_sample_count += 1
-                        compact_xml = SettingsBase.get_setting(self, "compact_xml")    
-                        if compact_xml:
-                            xml.write(self.__make_compact_xml(channel_name, sample))
-                        else:
-                            xml.write(self.__make_xml(channel_name, sample))
+                   
+                    new_sample_count += 1
+                    compact_xml = SettingsBase.get_setting(self, "compact_xml")    
+                    if compact_xml:
+                        xml.write(self.__make_compact_xml(channel_name, sample))
+                    else:
+                        xml.write(self.__make_xml(channel_name, sample))
                 
                 except Exception, e:
                     # Failed to retrieve the data

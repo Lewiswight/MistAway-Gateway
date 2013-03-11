@@ -346,14 +346,14 @@ class XBeeSerialTerminal(XBeeSerial):
             			 
 			
 			ChannelSourceDeviceProperty(name="LF", type=str,
-                initial=Sample(timestamp=0, unit="1", value=""),
+                initial=Sample(timestamp=0, unit="", value=""),
                 perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
                          
             #Last Fill, this will be that last time the LVL goes up, not down.
             
             
 			ChannelSourceDeviceProperty(name="LM", type=str,
-                initial=Sample(timestamp=0, unit="1", value=""),
+                initial=Sample(timestamp=0, unit="", value=""),
                 perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
 						
 			#Last Mist, will be set every time SS=Mist
