@@ -435,7 +435,7 @@ class Uploader(PresentationBase, threading.Thread):
                     channel = cdb.channel_get(channel_name) 
                     sample = channel.get()
 
-                    if  sample.unit != "1":  
+                    if sample.timestamp >= 1315351499.0 and sample.unit != "1": 
                         new_sample_count += 1
                         compact_xml = SettingsBase.get_setting(self, "compact_xml")    
                         if compact_xml:

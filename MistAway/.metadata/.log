@@ -3121,3 +3121,1123 @@ java.lang.NumberFormatException: For input string: "0 (lewis wight's conflicted 
 	at com.python.pydev.analysis.builder.AbstractAnalysisBuilderRunnable.run(AbstractAnalysisBuilderRunnable.java:156)
 	at org.python.pydev.core.concurrency.RunnableAsJobsPoolThread$1.run(RunnableAsJobsPoolThread.java:103)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.python.pydev.core 4 4 2013-03-11 10:51:19.902
+!MESSAGE For input string: "0 (lewis wight's conflicted copy 2012-12-23)"
+!STACK 0
+java.lang.NumberFormatException: For input string: "0 (lewis wight's conflicted copy 2012-12-23)"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:48)
+	at java.lang.Integer.parseInt(Integer.java:458)
+	at java.lang.Integer.<init>(Integer.java:660)
+	at org.python.pydev.core.DeltaSaver$1.compare(DeltaSaver.java:223)
+	at org.python.pydev.core.DeltaSaver$1.compare(DeltaSaver.java:1)
+	at java.util.Arrays.mergeSort(Arrays.java:1270)
+	at java.util.Arrays.mergeSort(Arrays.java:1281)
+	at java.util.Arrays.sort(Arrays.java:1210)
+	at java.util.Collections.sort(Collections.java:157)
+	at org.python.pydev.core.DeltaSaver.findDeltas(DeltaSaver.java:218)
+	at org.python.pydev.core.DeltaSaver.loadDeltas(DeltaSaver.java:190)
+	at org.python.pydev.core.DeltaSaver.<init>(DeltaSaver.java:169)
+	at com.python.pydev.analysis.additionalinfo.AbstractAdditionalInfoWithBuild.createDeltaSaver(AbstractAdditionalInfoWithBuild.java:99)
+	at com.python.pydev.analysis.additionalinfo.AbstractAdditionalInfoWithBuild.init(AbstractAdditionalInfoWithBuild.java:38)
+	at com.python.pydev.analysis.additionalinfo.AdditionalProjectInterpreterInfo.<init>(AdditionalProjectInterpreterInfo.java:78)
+	at com.python.pydev.analysis.additionalinfo.AdditionalProjectInterpreterInfo.getAdditionalInfoForProject(AdditionalProjectInterpreterInfo.java:205)
+	at com.python.pydev.analysis.builder.AnalysisBuilderRunnable.doAnalysis(AnalysisBuilderRunnable.java:158)
+	at com.python.pydev.analysis.builder.AbstractAnalysisBuilderRunnable.run(AbstractAnalysisBuilderRunnable.java:156)
+	at org.python.pydev.core.concurrency.RunnableAsJobsPoolThread$1.run(RunnableAsJobsPoolThread.java:103)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.python.pydev.core 4 4 2013-03-11 10:57:57.576
+!MESSAGE For input string: "0 (lewis wight's conflicted copy 2012-12-23)"
+!STACK 0
+java.lang.NumberFormatException: For input string: "0 (lewis wight's conflicted copy 2012-12-23)"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:48)
+	at java.lang.Integer.parseInt(Integer.java:458)
+	at java.lang.Integer.<init>(Integer.java:660)
+	at org.python.pydev.core.DeltaSaver$1.compare(DeltaSaver.java:223)
+	at org.python.pydev.core.DeltaSaver$1.compare(DeltaSaver.java:1)
+	at java.util.Arrays.mergeSort(Arrays.java:1270)
+	at java.util.Arrays.mergeSort(Arrays.java:1281)
+	at java.util.Arrays.sort(Arrays.java:1210)
+	at java.util.Collections.sort(Collections.java:157)
+	at org.python.pydev.core.DeltaSaver.findDeltas(DeltaSaver.java:218)
+	at org.python.pydev.core.DeltaSaver.loadDeltas(DeltaSaver.java:190)
+	at org.python.pydev.core.DeltaSaver.<init>(DeltaSaver.java:169)
+	at com.python.pydev.analysis.additionalinfo.AbstractAdditionalInfoWithBuild.createDeltaSaver(AbstractAdditionalInfoWithBuild.java:99)
+	at com.python.pydev.analysis.additionalinfo.AbstractAdditionalInfoWithBuild.init(AbstractAdditionalInfoWithBuild.java:38)
+	at com.python.pydev.analysis.additionalinfo.AdditionalProjectInterpreterInfo.<init>(AdditionalProjectInterpreterInfo.java:78)
+	at com.python.pydev.analysis.additionalinfo.AdditionalProjectInterpreterInfo.getAdditionalInfoForProject(AdditionalProjectInterpreterInfo.java:205)
+	at com.python.pydev.analysis.builder.AnalysisBuilderVisitor.visitingWillStart(AnalysisBuilderVisitor.java:238)
+	at org.python.pydev.builder.PyDevBuilder.notifyVisitingWillStart(PyDevBuilder.java:207)
+	at org.python.pydev.builder.PyDevBuilder.performFullBuild(PyDevBuilder.java:152)
+	at org.python.pydev.builder.PyDevBuilder.build(PyDevBuilder.java:86)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:728)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:199)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:239)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:292)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:295)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:351)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:374)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:513)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:432)
+	at org.eclipse.ui.actions.BuildAction$1.runInWorkspace(BuildAction.java:305)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.python.pydev.core 4 4 2013-03-11 14:04:39.400
+!MESSAGE For input string: "0 (lewis wight's conflicted copy 2012-12-23)"
+!STACK 0
+java.lang.NumberFormatException: For input string: "0 (lewis wight's conflicted copy 2012-12-23)"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:48)
+	at java.lang.Integer.parseInt(Integer.java:458)
+	at java.lang.Integer.<init>(Integer.java:660)
+	at org.python.pydev.core.DeltaSaver$1.compare(DeltaSaver.java:223)
+	at org.python.pydev.core.DeltaSaver$1.compare(DeltaSaver.java:1)
+	at java.util.Arrays.mergeSort(Arrays.java:1270)
+	at java.util.Arrays.mergeSort(Arrays.java:1281)
+	at java.util.Arrays.sort(Arrays.java:1210)
+	at java.util.Collections.sort(Collections.java:157)
+	at org.python.pydev.core.DeltaSaver.findDeltas(DeltaSaver.java:218)
+	at org.python.pydev.core.DeltaSaver.loadDeltas(DeltaSaver.java:190)
+	at org.python.pydev.core.DeltaSaver.<init>(DeltaSaver.java:169)
+	at com.python.pydev.analysis.additionalinfo.AbstractAdditionalInfoWithBuild.createDeltaSaver(AbstractAdditionalInfoWithBuild.java:99)
+	at com.python.pydev.analysis.additionalinfo.AbstractAdditionalInfoWithBuild.init(AbstractAdditionalInfoWithBuild.java:38)
+	at com.python.pydev.analysis.additionalinfo.AdditionalProjectInterpreterInfo.<init>(AdditionalProjectInterpreterInfo.java:78)
+	at com.python.pydev.analysis.additionalinfo.AdditionalProjectInterpreterInfo.getAdditionalInfoForProject(AdditionalProjectInterpreterInfo.java:205)
+	at com.python.pydev.analysis.builder.AnalysisBuilderRunnable.doAnalysis(AnalysisBuilderRunnable.java:158)
+	at com.python.pydev.analysis.builder.AbstractAnalysisBuilderRunnable.run(AbstractAnalysisBuilderRunnable.java:156)
+	at org.python.pydev.core.concurrency.RunnableAsJobsPoolThread$1.run(RunnableAsJobsPoolThread.java:103)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.python.pydev.core 4 4 2013-03-11 14:05:46.856
+!MESSAGE For input string: "0 (lewis wight's conflicted copy 2012-12-23)"
+!STACK 0
+java.lang.NumberFormatException: For input string: "0 (lewis wight's conflicted copy 2012-12-23)"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:48)
+	at java.lang.Integer.parseInt(Integer.java:458)
+	at java.lang.Integer.<init>(Integer.java:660)
+	at org.python.pydev.core.DeltaSaver$1.compare(DeltaSaver.java:223)
+	at org.python.pydev.core.DeltaSaver$1.compare(DeltaSaver.java:1)
+	at java.util.Arrays.mergeSort(Arrays.java:1270)
+	at java.util.Arrays.mergeSort(Arrays.java:1281)
+	at java.util.Arrays.sort(Arrays.java:1210)
+	at java.util.Collections.sort(Collections.java:157)
+	at org.python.pydev.core.DeltaSaver.findDeltas(DeltaSaver.java:218)
+	at org.python.pydev.core.DeltaSaver.loadDeltas(DeltaSaver.java:190)
+	at org.python.pydev.core.DeltaSaver.<init>(DeltaSaver.java:169)
+	at com.python.pydev.analysis.additionalinfo.AbstractAdditionalInfoWithBuild.createDeltaSaver(AbstractAdditionalInfoWithBuild.java:99)
+	at com.python.pydev.analysis.additionalinfo.AbstractAdditionalInfoWithBuild.init(AbstractAdditionalInfoWithBuild.java:38)
+	at com.python.pydev.analysis.additionalinfo.AdditionalProjectInterpreterInfo.<init>(AdditionalProjectInterpreterInfo.java:78)
+	at com.python.pydev.analysis.additionalinfo.AdditionalProjectInterpreterInfo.getAdditionalInfoForProject(AdditionalProjectInterpreterInfo.java:205)
+	at com.python.pydev.analysis.builder.AnalysisBuilderRunnable.doAnalysis(AnalysisBuilderRunnable.java:158)
+	at com.python.pydev.analysis.builder.AbstractAnalysisBuilderRunnable.run(AbstractAnalysisBuilderRunnable.java:156)
+	at org.python.pydev.core.concurrency.RunnableAsJobsPoolThread$1.run(RunnableAsJobsPoolThread.java:103)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SESSION 2013-03-11 14:10:04.919 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.6.0_43
+java.vendor=Apple Inc.
+BootLoader constants: OS=macosx, ARCH=x86, WS=cocoa, NL=en_US
+Framework arguments:  -showlocation -showperspective -showactivefile -keyring /Users/lewiswight/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86 -showlocation -showperspective -showactivefile -keyring /Users/lewiswight/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.jface 2 0 2013-03-11 14:10:10.709
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2013-03-11 14:10:10.709
+!MESSAGE A conflict occurred for ALT+COMMAND+R:
+Binding(ALT+COMMAND+R,
+	ParameterizedCommand(Command(org.python.pydev.debug.setnext,Set Next Statement,
+		,
+		Category(org.python.pydev.ui.category.run,PyDev - Run,Python run category,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+COMMAND+R,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.rename.element,Rename - Refactoring ,
+		Rename the selected element,
+		Category(org.eclipse.jdt.ui.category.refactoring,Refactor - Java,Java Refactoring Actions,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,cocoa,system)
+
+!ENTRY org.eclipse.core.net 1 0 2013-03-11 14:10:10.959
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.python.pydev.core 4 4 2013-03-11 14:10:48.892
+!MESSAGE For input string: "0 (lewis wight's conflicted copy 2012-12-23)"
+!STACK 0
+java.lang.NumberFormatException: For input string: "0 (lewis wight's conflicted copy 2012-12-23)"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:48)
+	at java.lang.Integer.parseInt(Integer.java:458)
+	at java.lang.Integer.<init>(Integer.java:660)
+	at org.python.pydev.core.DeltaSaver$1.compare(DeltaSaver.java:223)
+	at org.python.pydev.core.DeltaSaver$1.compare(DeltaSaver.java:1)
+	at java.util.Arrays.mergeSort(Arrays.java:1270)
+	at java.util.Arrays.sort(Arrays.java:1210)
+	at java.util.Collections.sort(Collections.java:157)
+	at org.python.pydev.core.DeltaSaver.findDeltas(DeltaSaver.java:218)
+	at org.python.pydev.core.DeltaSaver.loadDeltas(DeltaSaver.java:190)
+	at org.python.pydev.core.DeltaSaver.<init>(DeltaSaver.java:169)
+	at org.python.pydev.editor.codecompletion.revisited.ProjectModulesManager.setProject(ProjectModulesManager.java:72)
+	at org.python.pydev.editor.codecompletion.revisited.ASTManager.setProject(ASTManager.java:52)
+	at org.python.pydev.plugin.nature.PythonNature$RebuildPythonNatureModules.run(PythonNature.java:156)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.python.pydev.core 4 4 2013-03-11 14:10:48.956
+!MESSAGE Unable to resolve module for:L/meshable/custom_devices/MistAway_Controller_updated_Dia2.py
+!STACK 0
+java.lang.RuntimeException: Unable to resolve module for:L/meshable/custom_devices/MistAway_Controller_updated_Dia2.py
+	at org.python.pydev.builder.PyDevBuilderVisitor.getModuleName(PyDevBuilderVisitor.java:209)
+	at com.python.pydev.analysis.builder.AnalysisBuilderVisitor.doVisitChangedResource(AnalysisBuilderVisitor.java:158)
+	at com.python.pydev.analysis.builder.AnalysisParserObserver.analyze(AnalysisParserObserver.java:174)
+	at com.python.pydev.analysis.builder.AnalysisParserObserver.parserChanged(AnalysisParserObserver.java:139)
+	at org.python.pydev.parser.PyParser.fireParserChanged(PyParser.java:359)
+	at org.python.pydev.parser.PyParser.reparseDocument(PyParser.java:483)
+	at org.python.pydev.parser.ParserScheduler.reparseDocument(ParserScheduler.java:159)
+	at org.python.pydev.parser.ParsingThread.run(ParsingThread.java:51)
+
+!ENTRY org.python.pydev.core 4 4 2013-03-11 14:15:33.771
+!MESSAGE Unable to resolve module for:L/meshable/custom_devices/MistAway_Controller_updated_Dia2.py
+!STACK 0
+java.lang.RuntimeException: Unable to resolve module for:L/meshable/custom_devices/MistAway_Controller_updated_Dia2.py
+	at org.python.pydev.builder.PyDevBuilderVisitor.getModuleName(PyDevBuilderVisitor.java:209)
+	at com.python.pydev.analysis.builder.AnalysisBuilderVisitor.doVisitChangedResource(AnalysisBuilderVisitor.java:158)
+	at com.python.pydev.analysis.builder.AnalysisParserObserver.analyze(AnalysisParserObserver.java:174)
+	at com.python.pydev.analysis.builder.AnalysisParserObserver.parserChanged(AnalysisParserObserver.java:139)
+	at org.python.pydev.parser.PyParser.fireParserChanged(PyParser.java:359)
+	at org.python.pydev.parser.PyParser.reparseDocument(PyParser.java:483)
+	at org.python.pydev.parser.ParserScheduler.reparseDocument(ParserScheduler.java:159)
+	at org.python.pydev.parser.ParsingThread.run(ParsingThread.java:51)
+!SESSION 2013-03-11 14:29:03.903 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.6.0_43
+java.vendor=Apple Inc.
+BootLoader constants: OS=macosx, ARCH=x86, WS=cocoa, NL=en_US
+Framework arguments:  -showlocation -showperspective -showactivefile -keyring /Users/lewiswight/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86 -showlocation -showperspective -showactivefile -keyring /Users/lewiswight/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.jface 2 0 2013-03-11 14:29:09.516
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2013-03-11 14:29:09.516
+!MESSAGE A conflict occurred for ALT+COMMAND+R:
+Binding(ALT+COMMAND+R,
+	ParameterizedCommand(Command(org.python.pydev.debug.setnext,Set Next Statement,
+		,
+		Category(org.python.pydev.ui.category.run,PyDev - Run,Python run category,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+COMMAND+R,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.rename.element,Rename - Refactoring ,
+		Rename the selected element,
+		Category(org.eclipse.jdt.ui.category.refactoring,Refactor - Java,Java Refactoring Actions,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,cocoa,system)
+
+!ENTRY org.eclipse.core.net 1 0 2013-03-11 14:29:12.356
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.python.pydev.core 4 4 2013-03-11 14:29:38.225
+!MESSAGE For input string: "0 (lewis wight's conflicted copy 2012-12-23)"
+!STACK 0
+java.lang.NumberFormatException: For input string: "0 (lewis wight's conflicted copy 2012-12-23)"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:48)
+	at java.lang.Integer.parseInt(Integer.java:458)
+	at java.lang.Integer.<init>(Integer.java:660)
+	at org.python.pydev.core.DeltaSaver$1.compare(DeltaSaver.java:223)
+	at org.python.pydev.core.DeltaSaver$1.compare(DeltaSaver.java:1)
+	at java.util.Arrays.mergeSort(Arrays.java:1270)
+	at java.util.Arrays.sort(Arrays.java:1210)
+	at java.util.Collections.sort(Collections.java:157)
+	at org.python.pydev.core.DeltaSaver.findDeltas(DeltaSaver.java:218)
+	at org.python.pydev.core.DeltaSaver.loadDeltas(DeltaSaver.java:190)
+	at org.python.pydev.core.DeltaSaver.<init>(DeltaSaver.java:169)
+	at org.python.pydev.editor.codecompletion.revisited.ProjectModulesManager.setProject(ProjectModulesManager.java:72)
+	at org.python.pydev.editor.codecompletion.revisited.ASTManager.setProject(ASTManager.java:52)
+	at org.python.pydev.plugin.nature.PythonNature$RebuildPythonNatureModules.run(PythonNature.java:156)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.python.pydev.core 4 4 2013-03-11 14:29:38.286
+!MESSAGE Unable to resolve module for:L/meshable/custom_presentations/presentations/idigi_db/MistAwayUpload2.py
+!STACK 0
+java.lang.RuntimeException: Unable to resolve module for:L/meshable/custom_presentations/presentations/idigi_db/MistAwayUpload2.py
+	at org.python.pydev.builder.PyDevBuilderVisitor.getModuleName(PyDevBuilderVisitor.java:209)
+	at com.python.pydev.analysis.builder.AnalysisBuilderVisitor.doVisitChangedResource(AnalysisBuilderVisitor.java:158)
+	at com.python.pydev.analysis.builder.AnalysisParserObserver.analyze(AnalysisParserObserver.java:174)
+	at com.python.pydev.analysis.builder.AnalysisParserObserver.parserChanged(AnalysisParserObserver.java:139)
+	at org.python.pydev.parser.PyParser.fireParserChanged(PyParser.java:359)
+	at org.python.pydev.parser.PyParser.reparseDocument(PyParser.java:483)
+	at org.python.pydev.parser.ParserScheduler.reparseDocument(ParserScheduler.java:159)
+	at org.python.pydev.parser.ParsingThread.run(ParsingThread.java:51)
+
+!ENTRY org.python.pydev.core 4 4 2013-03-11 14:29:59.802
+!MESSAGE For input string: "0 (lewis wight's conflicted copy 2012-12-23)"
+!STACK 0
+java.lang.NumberFormatException: For input string: "0 (lewis wight's conflicted copy 2012-12-23)"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:48)
+	at java.lang.Integer.parseInt(Integer.java:458)
+	at java.lang.Integer.<init>(Integer.java:660)
+	at org.python.pydev.core.DeltaSaver$1.compare(DeltaSaver.java:223)
+	at org.python.pydev.core.DeltaSaver$1.compare(DeltaSaver.java:1)
+	at java.util.Arrays.mergeSort(Arrays.java:1270)
+	at java.util.Arrays.mergeSort(Arrays.java:1281)
+	at java.util.Arrays.sort(Arrays.java:1210)
+	at java.util.Collections.sort(Collections.java:157)
+	at org.python.pydev.core.DeltaSaver.findDeltas(DeltaSaver.java:218)
+	at org.python.pydev.core.DeltaSaver.loadDeltas(DeltaSaver.java:190)
+	at org.python.pydev.core.DeltaSaver.<init>(DeltaSaver.java:169)
+	at com.python.pydev.analysis.additionalinfo.AbstractAdditionalInfoWithBuild.createDeltaSaver(AbstractAdditionalInfoWithBuild.java:99)
+	at com.python.pydev.analysis.additionalinfo.AbstractAdditionalInfoWithBuild.init(AbstractAdditionalInfoWithBuild.java:38)
+	at com.python.pydev.analysis.additionalinfo.AdditionalProjectInterpreterInfo.<init>(AdditionalProjectInterpreterInfo.java:78)
+	at com.python.pydev.analysis.additionalinfo.AdditionalProjectInterpreterInfo.getAdditionalInfoForProject(AdditionalProjectInterpreterInfo.java:205)
+	at com.python.pydev.analysis.builder.AnalysisBuilderRunnable.doAnalysis(AnalysisBuilderRunnable.java:158)
+	at com.python.pydev.analysis.builder.AbstractAnalysisBuilderRunnable.run(AbstractAnalysisBuilderRunnable.java:156)
+	at org.python.pydev.core.concurrency.RunnableAsJobsPoolThread$1.run(RunnableAsJobsPoolThread.java:103)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.python.pydev.core 4 4 2013-03-11 14:37:10.598
+!MESSAGE Unable to resolve module for:L/meshable/custom_devices/MistAway_Controller_updated_Dia2.py
+!STACK 0
+java.lang.RuntimeException: Unable to resolve module for:L/meshable/custom_devices/MistAway_Controller_updated_Dia2.py
+	at org.python.pydev.builder.PyDevBuilderVisitor.getModuleName(PyDevBuilderVisitor.java:209)
+	at com.python.pydev.analysis.builder.AnalysisBuilderVisitor.doVisitChangedResource(AnalysisBuilderVisitor.java:158)
+	at com.python.pydev.analysis.builder.AnalysisParserObserver.analyze(AnalysisParserObserver.java:174)
+	at com.python.pydev.analysis.builder.AnalysisParserObserver.parserChanged(AnalysisParserObserver.java:139)
+	at org.python.pydev.parser.PyParser.fireParserChanged(PyParser.java:359)
+	at org.python.pydev.parser.PyParser.reparseDocument(PyParser.java:483)
+	at org.python.pydev.parser.ParserScheduler.reparseDocument(ParserScheduler.java:159)
+	at org.python.pydev.parser.ParsingThread.run(ParsingThread.java:51)
+!SESSION 2013-03-11 15:10:54.874 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.6.0_43
+java.vendor=Apple Inc.
+BootLoader constants: OS=macosx, ARCH=x86, WS=cocoa, NL=en_US
+Framework arguments:  -showlocation -showperspective -showactivefile -keyring /Users/lewiswight/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86 -showlocation -showperspective -showactivefile -keyring /Users/lewiswight/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.jface 2 0 2013-03-11 15:11:25.065
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2013-03-11 15:11:25.065
+!MESSAGE A conflict occurred for ALT+COMMAND+R:
+Binding(ALT+COMMAND+R,
+	ParameterizedCommand(Command(org.python.pydev.debug.setnext,Set Next Statement,
+		,
+		Category(org.python.pydev.ui.category.run,PyDev - Run,Python run category,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+COMMAND+R,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.rename.element,Rename - Refactoring ,
+		Rename the selected element,
+		Category(org.eclipse.jdt.ui.category.refactoring,Refactor - Java,Java Refactoring Actions,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,cocoa,system)
+
+!ENTRY org.eclipse.core.net 1 0 2013-03-11 15:11:25.306
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.python.pydev.core 4 4 2013-03-11 15:11:49.225
+!MESSAGE For input string: "0 (lewis wight's conflicted copy 2012-12-23)"
+!STACK 0
+java.lang.NumberFormatException: For input string: "0 (lewis wight's conflicted copy 2012-12-23)"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:48)
+	at java.lang.Integer.parseInt(Integer.java:458)
+	at java.lang.Integer.<init>(Integer.java:660)
+	at org.python.pydev.core.DeltaSaver$1.compare(DeltaSaver.java:223)
+	at org.python.pydev.core.DeltaSaver$1.compare(DeltaSaver.java:1)
+	at java.util.Arrays.mergeSort(Arrays.java:1270)
+	at java.util.Arrays.sort(Arrays.java:1210)
+	at java.util.Collections.sort(Collections.java:157)
+	at org.python.pydev.core.DeltaSaver.findDeltas(DeltaSaver.java:218)
+	at org.python.pydev.core.DeltaSaver.loadDeltas(DeltaSaver.java:190)
+	at org.python.pydev.core.DeltaSaver.<init>(DeltaSaver.java:169)
+	at org.python.pydev.editor.codecompletion.revisited.ProjectModulesManager.setProject(ProjectModulesManager.java:72)
+	at org.python.pydev.editor.codecompletion.revisited.ASTManager.setProject(ASTManager.java:52)
+	at org.python.pydev.plugin.nature.PythonNature$RebuildPythonNatureModules.run(PythonNature.java:156)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.python.pydev.core 4 4 2013-03-11 15:15:31.786
+!MESSAGE Unable to resolve module for:L/meshable/custom_devices/MistAway_Controller_updated_Dia2.py
+!STACK 0
+java.lang.RuntimeException: Unable to resolve module for:L/meshable/custom_devices/MistAway_Controller_updated_Dia2.py
+	at org.python.pydev.builder.PyDevBuilderVisitor.getModuleName(PyDevBuilderVisitor.java:209)
+	at com.python.pydev.analysis.builder.AnalysisBuilderVisitor.doVisitChangedResource(AnalysisBuilderVisitor.java:158)
+	at com.python.pydev.analysis.builder.AnalysisParserObserver.analyze(AnalysisParserObserver.java:174)
+	at com.python.pydev.analysis.builder.AnalysisParserObserver.parserChanged(AnalysisParserObserver.java:139)
+	at org.python.pydev.parser.PyParser.fireParserChanged(PyParser.java:359)
+	at org.python.pydev.parser.PyParser.reparseDocument(PyParser.java:483)
+	at org.python.pydev.parser.ParserScheduler.reparseDocument(ParserScheduler.java:159)
+	at org.python.pydev.parser.ParsingThread.run(ParsingThread.java:51)
+
+!ENTRY org.python.pydev.core 4 4 2013-03-11 15:15:53.034
+!MESSAGE For input string: "0 (lewis wight's conflicted copy 2012-12-23)"
+!STACK 0
+java.lang.NumberFormatException: For input string: "0 (lewis wight's conflicted copy 2012-12-23)"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:48)
+	at java.lang.Integer.parseInt(Integer.java:458)
+	at java.lang.Integer.<init>(Integer.java:660)
+	at org.python.pydev.core.DeltaSaver$1.compare(DeltaSaver.java:223)
+	at org.python.pydev.core.DeltaSaver$1.compare(DeltaSaver.java:1)
+	at java.util.Arrays.mergeSort(Arrays.java:1270)
+	at java.util.Arrays.sort(Arrays.java:1210)
+	at java.util.Collections.sort(Collections.java:157)
+	at org.python.pydev.core.DeltaSaver.findDeltas(DeltaSaver.java:218)
+	at org.python.pydev.core.DeltaSaver.loadDeltas(DeltaSaver.java:190)
+	at org.python.pydev.core.DeltaSaver.<init>(DeltaSaver.java:169)
+	at org.python.pydev.editor.codecompletion.revisited.ProjectModulesManager.setProject(ProjectModulesManager.java:72)
+	at org.python.pydev.editor.codecompletion.revisited.ASTManager.setProject(ASTManager.java:52)
+	at org.python.pydev.plugin.nature.PythonNature$RebuildPythonNatureModules.run(PythonNature.java:156)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.python.pydev.core 4 4 2013-03-11 15:20:57.902
+!MESSAGE For input string: "0 (lewis wight's conflicted copy 2012-12-23)"
+!STACK 0
+java.lang.NumberFormatException: For input string: "0 (lewis wight's conflicted copy 2012-12-23)"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:48)
+	at java.lang.Integer.parseInt(Integer.java:458)
+	at java.lang.Integer.<init>(Integer.java:660)
+	at org.python.pydev.core.DeltaSaver$1.compare(DeltaSaver.java:223)
+	at org.python.pydev.core.DeltaSaver$1.compare(DeltaSaver.java:1)
+	at java.util.Arrays.mergeSort(Arrays.java:1270)
+	at java.util.Arrays.mergeSort(Arrays.java:1281)
+	at java.util.Arrays.sort(Arrays.java:1210)
+	at java.util.Collections.sort(Collections.java:157)
+	at org.python.pydev.core.DeltaSaver.findDeltas(DeltaSaver.java:218)
+	at org.python.pydev.core.DeltaSaver.loadDeltas(DeltaSaver.java:190)
+	at org.python.pydev.core.DeltaSaver.<init>(DeltaSaver.java:169)
+	at com.python.pydev.analysis.additionalinfo.AbstractAdditionalInfoWithBuild.createDeltaSaver(AbstractAdditionalInfoWithBuild.java:99)
+	at com.python.pydev.analysis.additionalinfo.AbstractAdditionalInfoWithBuild.init(AbstractAdditionalInfoWithBuild.java:38)
+	at com.python.pydev.analysis.additionalinfo.AdditionalProjectInterpreterInfo.<init>(AdditionalProjectInterpreterInfo.java:78)
+	at com.python.pydev.analysis.additionalinfo.AdditionalProjectInterpreterInfo.getAdditionalInfoForProject(AdditionalProjectInterpreterInfo.java:205)
+	at com.python.pydev.analysis.builder.AnalysisBuilderVisitor.visitingWillStart(AnalysisBuilderVisitor.java:238)
+	at org.python.pydev.builder.PyDevBuilder.notifyVisitingWillStart(PyDevBuilder.java:207)
+	at org.python.pydev.builder.PyDevBuilder.performFullBuild(PyDevBuilder.java:152)
+	at org.python.pydev.builder.PyDevBuilder.build(PyDevBuilder.java:86)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:728)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:199)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:239)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:292)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:295)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:351)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:374)
+	at org.eclipse.core.internal.resources.Workspace.buildInternal(Workspace.java:513)
+	at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:422)
+	at org.eclipse.ui.actions.GlobalBuildAction$1.run(GlobalBuildAction.java:180)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.python.pydev.core 4 4 2013-03-11 15:29:35.348
+!MESSAGE The interpreter location found does not exist. Name:python:EndName:Version2.4Executable:C:\Python24\python.exe|C:\Python24\python24.zip|C:\Python24\DLLs|C:\Python24\lib|C:\Python24\lib\plat-win|C:\Python24\lib\lib-tk|C:\Python24|C:\Python24\lib\site-packages|C:\Python24\lib\site-packages\win32|C:\Python24\lib\site-packages\win32\lib|C:\Python24\lib\site-packages\Pythonwin@$|Image|OpenGL|__builtin__|__main__|_ast|_bisect|_bytesio|_codecs|_codecs_cn|_codecs_hk|_codecs_iso2022|_codecs_jp|_codecs_kr|_codecs_tw|_collections|_csv|_fileio|_functools|_heapq|_hotshot|_json|_locale|_lsprof|_md5|_multibytecodec|_random|_sha|_sha256|_sha512|_sre|_struct|_subprocess|_symtable|_warnings|_weakref|_winreg|array|audioop|binascii|cPickle|cStringIO|cmath|collections|datetime|email|errno|exceptions|future_builtins|gc|hashlib|imageop|imp|itertools|marshal|math|md5|mmap|msvcrt|nt|numpy|operator|os|os.path|parser|pytest|regex|rgbimg|scipy|sha|signal|socket|strop|struct|sys|thread|time|wx|wxPython|xxsubtype|zipimport|zlib
+!STACK 0
+java.lang.RuntimeException: The interpreter location found does not exist. Name:python:EndName:Version2.4Executable:C:\Python24\python.exe|C:\Python24\python24.zip|C:\Python24\DLLs|C:\Python24\lib|C:\Python24\lib\plat-win|C:\Python24\lib\lib-tk|C:\Python24|C:\Python24\lib\site-packages|C:\Python24\lib\site-packages\win32|C:\Python24\lib\site-packages\win32\lib|C:\Python24\lib\site-packages\Pythonwin@$|Image|OpenGL|__builtin__|__main__|_ast|_bisect|_bytesio|_codecs|_codecs_cn|_codecs_hk|_codecs_iso2022|_codecs_jp|_codecs_kr|_codecs_tw|_collections|_csv|_fileio|_functools|_heapq|_hotshot|_json|_locale|_lsprof|_md5|_multibytecodec|_random|_sha|_sha256|_sha512|_sre|_struct|_subprocess|_symtable|_warnings|_weakref|_winreg|array|audioop|binascii|cPickle|cStringIO|cmath|collections|datetime|email|errno|exceptions|future_builtins|gc|hashlib|imageop|imp|itertools|marshal|math|md5|mmap|msvcrt|nt|numpy|operator|os|os.path|parser|pytest|regex|rgbimg|scipy|sha|signal|socket|strop|struct|sys|thread|time|wx|wxPython|xxsubtype|zipimport|zlib
+	at org.python.pydev.editor.codecompletion.shell.PythonShell.createServerProcess(PythonShell.java:47)
+	at org.python.pydev.editor.codecompletion.shell.AbstractShell.startIt(AbstractShell.java:442)
+	at org.python.pydev.editor.codecompletion.shell.AbstractShell.getServerShell(AbstractShell.java:321)
+	at org.python.pydev.editor.codecompletion.shell.AbstractShell.getServerShell(AbstractShell.java:257)
+	at org.python.pydev.editor.codecompletion.revisited.modules.CompiledModule.<init>(CompiledModule.java:151)
+	at org.python.pydev.editor.codecompletion.revisited.modules.CompiledModule.<init>(CompiledModule.java:126)
+	at org.python.pydev.editor.codecompletion.revisited.SystemModulesManager.getBuiltinModule(SystemModulesManager.java:304)
+	at org.python.pydev.editor.codecompletion.revisited.SystemModulesManager.getBuiltinModule(SystemModulesManager.java:1)
+	at org.python.pydev.ui.interpreters.AbstractInterpreterManager.getBuiltinMod(AbstractInterpreterManager.java:127)
+	at org.python.pydev.ui.interpreters.AbstractInterpreterManager.getBuiltinCompletions(AbstractInterpreterManager.java:103)
+	at org.python.pydev.plugin.nature.SystemPythonNature.getBuiltinCompletions(SystemPythonNature.java:172)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getBuiltinComps(AbstractASTManager.java:965)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getBuiltinCompletions(AbstractASTManager.java:950)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getGlobalCompletions(AbstractASTManager.java:927)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.internalGenerateGetCompletionsForModule(AbstractASTManager.java:666)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:545)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:516)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:508)
+	at org.python.pydev.editor.codecompletion.revisited.modules.SourceModule.findGlobalTokDef(SourceModule.java:899)
+	at org.python.pydev.editor.codecompletion.revisited.modules.SourceModule.findDefinitionsFromModAndTok(SourceModule.java:848)
+	at org.python.pydev.editor.codecompletion.revisited.modules.SourceModule.findDefinition(SourceModule.java:831)
+	at org.python.pydev.editor.codecompletion.revisited.modules.SourceModule.findDefinition(SourceModule.java:1)
+	at org.python.pydev.editor.refactoring.PyRefactoringFindDefinition.findActualDefinition(PyRefactoringFindDefinition.java:176)
+	at org.python.pydev.editor.refactoring.PyRefactoringFindDefinition.findActualDefinition(PyRefactoringFindDefinition.java:78)
+	at com.python.pydev.refactoring.refactorer.RefactorerFindDefinition.findDefinition(RefactorerFindDefinition.java:61)
+	at com.python.pydev.refactoring.refactorer.Refactorer.findDefinition(Refactorer.java:72)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameEntryPoint.checkInitialConditions(PyRenameEntryPoint.java:182)
+	at com.python.pydev.refactoring.markoccurrences.MarkOccurrencesJob.checkAnnotations(MarkOccurrencesJob.java:222)
+	at com.python.pydev.refactoring.markoccurrences.MarkOccurrencesJob.run(MarkOccurrencesJob.java:129)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.python.pydev.core 4 4 2013-03-11 15:29:35.372
+!MESSAGE The module os could not be found nor created!
+!STACK 0
+java.lang.RuntimeException: The module os could not be found nor created!
+	at org.python.pydev.core.log.Log.log(Log.java:99)
+	at org.python.pydev.editor.codecompletion.revisited.ModulesManager.getModule(ModulesManager.java:771)
+	at org.python.pydev.editor.codecompletion.revisited.ModulesManager.getModule(ModulesManager.java:591)
+	at org.python.pydev.editor.codecompletion.revisited.SystemModulesManager.getRelativeModule(SystemModulesManager.java:142)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getModule(AbstractASTManager.java:454)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findModuleFromPath(AbstractASTManager.java:1457)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findOnImportedMods(AbstractASTManager.java:1301)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findOnImportedMods(AbstractASTManager.java:1207)
+	at com.python.pydev.analysis.visitors.ImportChecker.visitImportToken(ImportChecker.java:158)
+	at com.python.pydev.analysis.visitors.ImportChecker.visitImportToken(ImportChecker.java:139)
+	at com.python.pydev.analysis.visitors.Scope.addImportTokens(Scope.java:174)
+	at com.python.pydev.analysis.scopeanalysis.AbstractScopeAnalyzerVisitor.visitImport(AbstractScopeAnalyzerVisitor.java:493)
+	at org.python.pydev.parser.jython.ast.Import.accept(Import.java:73)
+	at org.python.pydev.parser.jython.ast.Module.traverse(Module.java:79)
+	at com.python.pydev.analysis.scopeanalysis.AbstractScopeAnalyzerVisitor.traverse(AbstractScopeAnalyzerVisitor.java:191)
+	at org.python.pydev.parser.jython.ast.VisitorBase.visitModule(VisitorBase.java:9)
+	at org.python.pydev.parser.jython.ast.Module.accept(Module.java:72)
+	at com.python.pydev.refactoring.wizards.rename.AbstractRenameRefactorProcess.getOccurrencesWithScopeAnalyzer(AbstractRenameRefactorProcess.java:260)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameAnyLocalProcess.findReferencesToRenameOnLocalScope(PyRenameAnyLocalProcess.java:39)
+	at com.python.pydev.refactoring.wizards.rename.AbstractRenameRefactorProcess.findReferencesToRename(AbstractRenameRefactorProcess.java:179)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameEntryPoint.checkFinalConditions(PyRenameEntryPoint.java:256)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameEntryPoint.checkFinalConditions(PyRenameEntryPoint.java:225)
+	at com.python.pydev.refactoring.markoccurrences.MarkOccurrencesJob.checkAnnotations(MarkOccurrencesJob.java:227)
+	at com.python.pydev.refactoring.markoccurrences.MarkOccurrencesJob.run(MarkOccurrencesJob.java:129)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.python.pydev.core 4 4 2013-03-11 15:29:35.385
+!MESSAGE The module re could not be found nor created!
+!STACK 0
+java.lang.RuntimeException: The module re could not be found nor created!
+	at org.python.pydev.core.log.Log.log(Log.java:99)
+	at org.python.pydev.editor.codecompletion.revisited.ModulesManager.getModule(ModulesManager.java:771)
+	at org.python.pydev.editor.codecompletion.revisited.ModulesManager.getModule(ModulesManager.java:591)
+	at org.python.pydev.editor.codecompletion.revisited.SystemModulesManager.getRelativeModule(SystemModulesManager.java:142)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getModule(AbstractASTManager.java:454)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findModuleFromPath(AbstractASTManager.java:1457)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findOnImportedMods(AbstractASTManager.java:1301)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findOnImportedMods(AbstractASTManager.java:1207)
+	at com.python.pydev.analysis.visitors.ImportChecker.visitImportToken(ImportChecker.java:158)
+	at com.python.pydev.analysis.visitors.ImportChecker.visitImportToken(ImportChecker.java:139)
+	at com.python.pydev.analysis.visitors.Scope.addImportTokens(Scope.java:174)
+	at com.python.pydev.analysis.scopeanalysis.AbstractScopeAnalyzerVisitor.visitImport(AbstractScopeAnalyzerVisitor.java:493)
+	at org.python.pydev.parser.jython.ast.Import.accept(Import.java:73)
+	at org.python.pydev.parser.jython.ast.Module.traverse(Module.java:79)
+	at com.python.pydev.analysis.scopeanalysis.AbstractScopeAnalyzerVisitor.traverse(AbstractScopeAnalyzerVisitor.java:191)
+	at org.python.pydev.parser.jython.ast.VisitorBase.visitModule(VisitorBase.java:9)
+	at org.python.pydev.parser.jython.ast.Module.accept(Module.java:72)
+	at com.python.pydev.refactoring.wizards.rename.AbstractRenameRefactorProcess.getOccurrencesWithScopeAnalyzer(AbstractRenameRefactorProcess.java:260)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameAnyLocalProcess.findReferencesToRenameOnLocalScope(PyRenameAnyLocalProcess.java:39)
+	at com.python.pydev.refactoring.wizards.rename.AbstractRenameRefactorProcess.findReferencesToRename(AbstractRenameRefactorProcess.java:179)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameEntryPoint.checkFinalConditions(PyRenameEntryPoint.java:256)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameEntryPoint.checkFinalConditions(PyRenameEntryPoint.java:225)
+	at com.python.pydev.refactoring.markoccurrences.MarkOccurrencesJob.checkAnnotations(MarkOccurrencesJob.java:227)
+	at com.python.pydev.refactoring.markoccurrences.MarkOccurrencesJob.run(MarkOccurrencesJob.java:129)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.jface.text 4 0 2013-03-11 15:40:53.959
+!MESSAGE Unexpected runtime error while computing a text hover
+!STACK 0
+java.lang.RuntimeException: java.lang.RuntimeException: The interpreter location found does not exist. Name:python:EndName:Version2.4Executable:C:\Python24\python.exe|C:\Python24\python24.zip|C:\Python24\DLLs|C:\Python24\lib|C:\Python24\lib\plat-win|C:\Python24\lib\lib-tk|C:\Python24|C:\Python24\lib\site-packages|C:\Python24\lib\site-packages\win32|C:\Python24\lib\site-packages\win32\lib|C:\Python24\lib\site-packages\Pythonwin@$|Image|OpenGL|__builtin__|__main__|_ast|_bisect|_bytesio|_codecs|_codecs_cn|_codecs_hk|_codecs_iso2022|_codecs_jp|_codecs_kr|_codecs_tw|_collections|_csv|_fileio|_functools|_heapq|_hotshot|_json|_locale|_lsprof|_md5|_multibytecodec|_random|_sha|_sha256|_sha512|_sre|_struct|_subprocess|_symtable|_warnings|_weakref|_winreg|array|audioop|binascii|cPickle|cStringIO|cmath|collections|datetime|email|errno|exceptions|future_builtins|gc|hashlib|imageop|imp|itertools|marshal|math|md5|mmap|msvcrt|nt|numpy|operator|os|os.path|parser|pytest|regex|rgbimg|scipy|sha|signal|socket|strop|struct|sys|thread|time|wx|wxPython|xxsubtype|zipimport|zlib
+	at org.python.pydev.editor.refactoring.PyRefactoringFindDefinition.findActualDefinition(PyRefactoringFindDefinition.java:85)
+	at org.python.pydev.editor.hover.PyTextHover.getDocstringHover(PyTextHover.java:206)
+	at org.python.pydev.editor.hover.PyTextHover.getHoverInfo(PyTextHover.java:147)
+	at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:168)
+Caused by: java.lang.RuntimeException: The interpreter location found does not exist. Name:python:EndName:Version2.4Executable:C:\Python24\python.exe|C:\Python24\python24.zip|C:\Python24\DLLs|C:\Python24\lib|C:\Python24\lib\plat-win|C:\Python24\lib\lib-tk|C:\Python24|C:\Python24\lib\site-packages|C:\Python24\lib\site-packages\win32|C:\Python24\lib\site-packages\win32\lib|C:\Python24\lib\site-packages\Pythonwin@$|Image|OpenGL|__builtin__|__main__|_ast|_bisect|_bytesio|_codecs|_codecs_cn|_codecs_hk|_codecs_iso2022|_codecs_jp|_codecs_kr|_codecs_tw|_collections|_csv|_fileio|_functools|_heapq|_hotshot|_json|_locale|_lsprof|_md5|_multibytecodec|_random|_sha|_sha256|_sha512|_sre|_struct|_subprocess|_symtable|_warnings|_weakref|_winreg|array|audioop|binascii|cPickle|cStringIO|cmath|collections|datetime|email|errno|exceptions|future_builtins|gc|hashlib|imageop|imp|itertools|marshal|math|md5|mmap|msvcrt|nt|numpy|operator|os|os.path|parser|pytest|regex|rgbimg|scipy|sha|signal|socket|strop|struct|sys|thread|time|wx|wxPython|xxsubtype|zipimport|zlib
+	at org.python.pydev.editor.codecompletion.shell.PythonShell.createServerProcess(PythonShell.java:47)
+	at org.python.pydev.editor.codecompletion.shell.AbstractShell.startIt(AbstractShell.java:442)
+	at org.python.pydev.editor.codecompletion.shell.AbstractShell.getServerShell(AbstractShell.java:321)
+	at org.python.pydev.editor.codecompletion.shell.AbstractShell.getServerShell(AbstractShell.java:257)
+	at org.python.pydev.editor.codecompletion.revisited.modules.CompiledModule.findDefinition(CompiledModule.java:421)
+	at org.python.pydev.editor.codecompletion.revisited.modules.CompiledModule.findDefinition(CompiledModule.java:1)
+	at org.python.pydev.editor.codecompletion.revisited.modules.SourceModule.findDefinition(SourceModule.java:813)
+	at org.python.pydev.editor.codecompletion.revisited.modules.SourceModule.findDefinition(SourceModule.java:1)
+	at org.python.pydev.editor.refactoring.PyRefactoringFindDefinition.findActualDefinition(PyRefactoringFindDefinition.java:176)
+	at org.python.pydev.editor.refactoring.PyRefactoringFindDefinition.findActualDefinition(PyRefactoringFindDefinition.java:78)
+	... 3 more
+
+!ENTRY org.python.pydev.core 4 4 2013-03-11 15:57:22.419
+!MESSAGE The interpreter location found does not exist. Name:python:EndName:Version2.4Executable:C:\Python24\python.exe|C:\Python24\python24.zip|C:\Python24\DLLs|C:\Python24\lib|C:\Python24\lib\plat-win|C:\Python24\lib\lib-tk|C:\Python24|C:\Python24\lib\site-packages|C:\Python24\lib\site-packages\win32|C:\Python24\lib\site-packages\win32\lib|C:\Python24\lib\site-packages\Pythonwin@$|Image|OpenGL|__builtin__|__main__|_ast|_bisect|_bytesio|_codecs|_codecs_cn|_codecs_hk|_codecs_iso2022|_codecs_jp|_codecs_kr|_codecs_tw|_collections|_csv|_fileio|_functools|_heapq|_hotshot|_json|_locale|_lsprof|_md5|_multibytecodec|_random|_sha|_sha256|_sha512|_sre|_struct|_subprocess|_symtable|_warnings|_weakref|_winreg|array|audioop|binascii|cPickle|cStringIO|cmath|collections|datetime|email|errno|exceptions|future_builtins|gc|hashlib|imageop|imp|itertools|marshal|math|md5|mmap|msvcrt|nt|numpy|operator|os|os.path|parser|pytest|regex|rgbimg|scipy|sha|signal|socket|strop|struct|sys|thread|time|wx|wxPython|xxsubtype|zipimport|zlib
+!STACK 0
+java.lang.RuntimeException: The interpreter location found does not exist. Name:python:EndName:Version2.4Executable:C:\Python24\python.exe|C:\Python24\python24.zip|C:\Python24\DLLs|C:\Python24\lib|C:\Python24\lib\plat-win|C:\Python24\lib\lib-tk|C:\Python24|C:\Python24\lib\site-packages|C:\Python24\lib\site-packages\win32|C:\Python24\lib\site-packages\win32\lib|C:\Python24\lib\site-packages\Pythonwin@$|Image|OpenGL|__builtin__|__main__|_ast|_bisect|_bytesio|_codecs|_codecs_cn|_codecs_hk|_codecs_iso2022|_codecs_jp|_codecs_kr|_codecs_tw|_collections|_csv|_fileio|_functools|_heapq|_hotshot|_json|_locale|_lsprof|_md5|_multibytecodec|_random|_sha|_sha256|_sha512|_sre|_struct|_subprocess|_symtable|_warnings|_weakref|_winreg|array|audioop|binascii|cPickle|cStringIO|cmath|collections|datetime|email|errno|exceptions|future_builtins|gc|hashlib|imageop|imp|itertools|marshal|math|md5|mmap|msvcrt|nt|numpy|operator|os|os.path|parser|pytest|regex|rgbimg|scipy|sha|signal|socket|strop|struct|sys|thread|time|wx|wxPython|xxsubtype|zipimport|zlib
+	at org.python.pydev.editor.codecompletion.shell.PythonShell.createServerProcess(PythonShell.java:47)
+	at org.python.pydev.editor.codecompletion.shell.AbstractShell.startIt(AbstractShell.java:442)
+	at org.python.pydev.editor.codecompletion.shell.AbstractShell.getServerShell(AbstractShell.java:321)
+	at org.python.pydev.editor.codecompletion.shell.AbstractShell.getServerShell(AbstractShell.java:257)
+	at org.python.pydev.editor.codecompletion.revisited.modules.CompiledModule.<init>(CompiledModule.java:151)
+	at org.python.pydev.editor.codecompletion.revisited.modules.CompiledModule.<init>(CompiledModule.java:126)
+	at org.python.pydev.editor.codecompletion.revisited.ModulesManager.getModule(ModulesManager.java:760)
+	at org.python.pydev.editor.codecompletion.revisited.ModulesManager.getModule(ModulesManager.java:591)
+	at org.python.pydev.editor.codecompletion.revisited.SystemModulesManager.getRelativeModule(SystemModulesManager.java:142)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getModule(AbstractASTManager.java:454)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findModuleFromPath(AbstractASTManager.java:1457)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findOnImportedMods(AbstractASTManager.java:1301)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findOnImportedMods(AbstractASTManager.java:1207)
+	at com.python.pydev.analysis.visitors.ImportChecker.visitImportToken(ImportChecker.java:158)
+	at com.python.pydev.analysis.visitors.ImportChecker.visitImportToken(ImportChecker.java:139)
+	at com.python.pydev.analysis.visitors.Scope.addImportTokens(Scope.java:174)
+	at com.python.pydev.analysis.scopeanalysis.AbstractScopeAnalyzerVisitor.visitImport(AbstractScopeAnalyzerVisitor.java:493)
+	at org.python.pydev.parser.jython.ast.Import.accept(Import.java:73)
+	at org.python.pydev.parser.jython.ast.Module.traverse(Module.java:79)
+	at com.python.pydev.analysis.scopeanalysis.AbstractScopeAnalyzerVisitor.traverse(AbstractScopeAnalyzerVisitor.java:191)
+	at org.python.pydev.parser.jython.ast.VisitorBase.visitModule(VisitorBase.java:9)
+	at org.python.pydev.parser.jython.ast.Module.accept(Module.java:72)
+	at com.python.pydev.refactoring.wizards.rename.AbstractRenameRefactorProcess.getOccurrencesWithScopeAnalyzer(AbstractRenameRefactorProcess.java:260)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameImportProcess.findReferencesToRenameOnLocalScope(PyRenameImportProcess.java:66)
+	at com.python.pydev.refactoring.wizards.rename.AbstractRenameRefactorProcess.findReferencesToRename(AbstractRenameRefactorProcess.java:179)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameEntryPoint.checkFinalConditions(PyRenameEntryPoint.java:256)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameEntryPoint.checkFinalConditions(PyRenameEntryPoint.java:225)
+	at com.python.pydev.refactoring.markoccurrences.MarkOccurrencesJob.checkAnnotations(MarkOccurrencesJob.java:227)
+	at com.python.pydev.refactoring.markoccurrences.MarkOccurrencesJob.run(MarkOccurrencesJob.java:129)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.python.pydev.core 4 4 2013-03-11 15:57:22.421
+!MESSAGE The module distutils.__init__ could not be found nor created!
+!STACK 0
+java.lang.RuntimeException: The module distutils.__init__ could not be found nor created!
+	at org.python.pydev.core.log.Log.log(Log.java:99)
+	at org.python.pydev.editor.codecompletion.revisited.ModulesManager.getModule(ModulesManager.java:771)
+	at org.python.pydev.editor.codecompletion.revisited.ModulesManager.getModule(ModulesManager.java:591)
+	at org.python.pydev.editor.codecompletion.revisited.SystemModulesManager.getModule(SystemModulesManager.java:349)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getModule(AbstractASTManager.java:456)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findModuleFromPath(AbstractASTManager.java:1457)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findOnImportedMods(AbstractASTManager.java:1337)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findOnImportedMods(AbstractASTManager.java:1207)
+	at com.python.pydev.analysis.visitors.ImportChecker.visitImportToken(ImportChecker.java:158)
+	at com.python.pydev.analysis.visitors.ImportChecker.visitImportToken(ImportChecker.java:139)
+	at com.python.pydev.analysis.visitors.Scope.addImportTokens(Scope.java:174)
+	at com.python.pydev.analysis.scopeanalysis.AbstractScopeAnalyzerVisitor.visitImport(AbstractScopeAnalyzerVisitor.java:493)
+	at org.python.pydev.parser.jython.ast.Import.accept(Import.java:73)
+	at org.python.pydev.parser.jython.ast.Module.traverse(Module.java:79)
+	at com.python.pydev.analysis.scopeanalysis.AbstractScopeAnalyzerVisitor.traverse(AbstractScopeAnalyzerVisitor.java:191)
+	at org.python.pydev.parser.jython.ast.VisitorBase.visitModule(VisitorBase.java:9)
+	at org.python.pydev.parser.jython.ast.Module.accept(Module.java:72)
+	at com.python.pydev.refactoring.wizards.rename.AbstractRenameRefactorProcess.getOccurrencesWithScopeAnalyzer(AbstractRenameRefactorProcess.java:260)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameImportProcess.findReferencesToRenameOnLocalScope(PyRenameImportProcess.java:66)
+	at com.python.pydev.refactoring.wizards.rename.AbstractRenameRefactorProcess.findReferencesToRename(AbstractRenameRefactorProcess.java:179)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameEntryPoint.checkFinalConditions(PyRenameEntryPoint.java:256)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameEntryPoint.checkFinalConditions(PyRenameEntryPoint.java:225)
+	at com.python.pydev.refactoring.markoccurrences.MarkOccurrencesJob.checkAnnotations(MarkOccurrencesJob.java:227)
+	at com.python.pydev.refactoring.markoccurrences.MarkOccurrencesJob.run(MarkOccurrencesJob.java:129)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.python.pydev.core 4 4 2013-03-11 15:57:22.427
+!MESSAGE The module distutils.sysconfig could not be found nor created!
+!STACK 0
+java.lang.RuntimeException: The module distutils.sysconfig could not be found nor created!
+	at org.python.pydev.core.log.Log.log(Log.java:99)
+	at org.python.pydev.editor.codecompletion.revisited.ModulesManager.getModule(ModulesManager.java:771)
+	at org.python.pydev.editor.codecompletion.revisited.ModulesManager.getModule(ModulesManager.java:591)
+	at org.python.pydev.editor.codecompletion.revisited.SystemModulesManager.getRelativeModule(SystemModulesManager.java:142)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getModule(AbstractASTManager.java:454)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findModuleFromPath(AbstractASTManager.java:1457)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findOnImportedMods(AbstractASTManager.java:1301)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findOnImportedMods(AbstractASTManager.java:1207)
+	at com.python.pydev.analysis.visitors.ImportChecker.visitImportToken(ImportChecker.java:158)
+	at com.python.pydev.analysis.visitors.ImportChecker.visitImportToken(ImportChecker.java:139)
+	at com.python.pydev.analysis.visitors.Scope.addImportTokens(Scope.java:174)
+	at com.python.pydev.analysis.scopeanalysis.AbstractScopeAnalyzerVisitor.visitImport(AbstractScopeAnalyzerVisitor.java:493)
+	at org.python.pydev.parser.jython.ast.Import.accept(Import.java:73)
+	at org.python.pydev.parser.jython.ast.Module.traverse(Module.java:79)
+	at com.python.pydev.analysis.scopeanalysis.AbstractScopeAnalyzerVisitor.traverse(AbstractScopeAnalyzerVisitor.java:191)
+	at org.python.pydev.parser.jython.ast.VisitorBase.visitModule(VisitorBase.java:9)
+	at org.python.pydev.parser.jython.ast.Module.accept(Module.java:72)
+	at com.python.pydev.refactoring.wizards.rename.AbstractRenameRefactorProcess.getOccurrencesWithScopeAnalyzer(AbstractRenameRefactorProcess.java:260)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameImportProcess.findReferencesToRenameOnLocalScope(PyRenameImportProcess.java:66)
+	at com.python.pydev.refactoring.wizards.rename.AbstractRenameRefactorProcess.findReferencesToRename(AbstractRenameRefactorProcess.java:179)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameEntryPoint.checkFinalConditions(PyRenameEntryPoint.java:256)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameEntryPoint.checkFinalConditions(PyRenameEntryPoint.java:225)
+	at com.python.pydev.refactoring.markoccurrences.MarkOccurrencesJob.checkAnnotations(MarkOccurrencesJob.java:227)
+	at com.python.pydev.refactoring.markoccurrences.MarkOccurrencesJob.run(MarkOccurrencesJob.java:129)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.python.pydev.core 4 4 2013-03-11 15:57:22.429
+!MESSAGE The module getopt could not be found nor created!
+!STACK 0
+java.lang.RuntimeException: The module getopt could not be found nor created!
+	at org.python.pydev.core.log.Log.log(Log.java:99)
+	at org.python.pydev.editor.codecompletion.revisited.ModulesManager.getModule(ModulesManager.java:771)
+	at org.python.pydev.editor.codecompletion.revisited.ModulesManager.getModule(ModulesManager.java:591)
+	at org.python.pydev.editor.codecompletion.revisited.SystemModulesManager.getRelativeModule(SystemModulesManager.java:142)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getModule(AbstractASTManager.java:454)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findModuleFromPath(AbstractASTManager.java:1457)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findOnImportedMods(AbstractASTManager.java:1301)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findOnImportedMods(AbstractASTManager.java:1207)
+	at com.python.pydev.analysis.visitors.ImportChecker.visitImportToken(ImportChecker.java:158)
+	at com.python.pydev.analysis.visitors.ImportChecker.visitImportToken(ImportChecker.java:139)
+	at com.python.pydev.analysis.visitors.Scope.addImportTokens(Scope.java:174)
+	at com.python.pydev.analysis.scopeanalysis.AbstractScopeAnalyzerVisitor.visitImport(AbstractScopeAnalyzerVisitor.java:493)
+	at org.python.pydev.parser.jython.ast.Import.accept(Import.java:73)
+	at org.python.pydev.parser.jython.ast.Module.traverse(Module.java:79)
+	at com.python.pydev.analysis.scopeanalysis.AbstractScopeAnalyzerVisitor.traverse(AbstractScopeAnalyzerVisitor.java:191)
+	at org.python.pydev.parser.jython.ast.VisitorBase.visitModule(VisitorBase.java:9)
+	at org.python.pydev.parser.jython.ast.Module.accept(Module.java:72)
+	at com.python.pydev.refactoring.wizards.rename.AbstractRenameRefactorProcess.getOccurrencesWithScopeAnalyzer(AbstractRenameRefactorProcess.java:260)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameImportProcess.findReferencesToRenameOnLocalScope(PyRenameImportProcess.java:66)
+	at com.python.pydev.refactoring.wizards.rename.AbstractRenameRefactorProcess.findReferencesToRename(AbstractRenameRefactorProcess.java:179)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameEntryPoint.checkFinalConditions(PyRenameEntryPoint.java:256)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameEntryPoint.checkFinalConditions(PyRenameEntryPoint.java:225)
+	at com.python.pydev.refactoring.markoccurrences.MarkOccurrencesJob.checkAnnotations(MarkOccurrencesJob.java:227)
+	at com.python.pydev.refactoring.markoccurrences.MarkOccurrencesJob.run(MarkOccurrencesJob.java:129)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.python.pydev.core 4 4 2013-03-11 15:57:22.430
+!MESSAGE The module copy could not be found nor created!
+!STACK 0
+java.lang.RuntimeException: The module copy could not be found nor created!
+	at org.python.pydev.core.log.Log.log(Log.java:99)
+	at org.python.pydev.editor.codecompletion.revisited.ModulesManager.getModule(ModulesManager.java:771)
+	at org.python.pydev.editor.codecompletion.revisited.ModulesManager.getModule(ModulesManager.java:591)
+	at org.python.pydev.editor.codecompletion.revisited.SystemModulesManager.getRelativeModule(SystemModulesManager.java:142)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getModule(AbstractASTManager.java:454)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findModuleFromPath(AbstractASTManager.java:1464)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findOnImportedMods(AbstractASTManager.java:1301)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findOnImportedMods(AbstractASTManager.java:1207)
+	at com.python.pydev.analysis.visitors.ImportChecker.visitImportToken(ImportChecker.java:158)
+	at com.python.pydev.analysis.visitors.ImportChecker.visitImportToken(ImportChecker.java:139)
+	at com.python.pydev.analysis.visitors.Scope.addImportTokens(Scope.java:174)
+	at com.python.pydev.analysis.scopeanalysis.AbstractScopeAnalyzerVisitor.visitImportFrom(AbstractScopeAnalyzerVisitor.java:516)
+	at com.python.pydev.analysis.scopeanalysis.ScopeAnalyzerVisitor.visitImportFrom(ScopeAnalyzerVisitor.java:111)
+	at org.python.pydev.parser.jython.ast.ImportFrom.accept(ImportFrom.java:89)
+	at org.python.pydev.parser.jython.ast.Module.traverse(Module.java:79)
+	at com.python.pydev.analysis.scopeanalysis.AbstractScopeAnalyzerVisitor.traverse(AbstractScopeAnalyzerVisitor.java:191)
+	at org.python.pydev.parser.jython.ast.VisitorBase.visitModule(VisitorBase.java:9)
+	at org.python.pydev.parser.jython.ast.Module.accept(Module.java:72)
+	at com.python.pydev.refactoring.wizards.rename.AbstractRenameRefactorProcess.getOccurrencesWithScopeAnalyzer(AbstractRenameRefactorProcess.java:260)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameImportProcess.findReferencesToRenameOnLocalScope(PyRenameImportProcess.java:66)
+	at com.python.pydev.refactoring.wizards.rename.AbstractRenameRefactorProcess.findReferencesToRename(AbstractRenameRefactorProcess.java:179)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameEntryPoint.checkFinalConditions(PyRenameEntryPoint.java:256)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameEntryPoint.checkFinalConditions(PyRenameEntryPoint.java:225)
+	at com.python.pydev.refactoring.markoccurrences.MarkOccurrencesJob.checkAnnotations(MarkOccurrencesJob.java:227)
+	at com.python.pydev.refactoring.markoccurrences.MarkOccurrencesJob.run(MarkOccurrencesJob.java:129)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.python.pydev.core 4 4 2013-03-11 15:57:22.431
+!MESSAGE The module pprint could not be found nor created!
+!STACK 0
+java.lang.RuntimeException: The module pprint could not be found nor created!
+	at org.python.pydev.core.log.Log.log(Log.java:99)
+	at org.python.pydev.editor.codecompletion.revisited.ModulesManager.getModule(ModulesManager.java:771)
+	at org.python.pydev.editor.codecompletion.revisited.ModulesManager.getModule(ModulesManager.java:591)
+	at org.python.pydev.editor.codecompletion.revisited.SystemModulesManager.getRelativeModule(SystemModulesManager.java:142)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getModule(AbstractASTManager.java:454)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findModuleFromPath(AbstractASTManager.java:1464)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findOnImportedMods(AbstractASTManager.java:1301)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findOnImportedMods(AbstractASTManager.java:1207)
+	at com.python.pydev.analysis.visitors.ImportChecker.visitImportToken(ImportChecker.java:158)
+	at com.python.pydev.analysis.visitors.ImportChecker.visitImportToken(ImportChecker.java:139)
+	at com.python.pydev.analysis.visitors.Scope.addImportTokens(Scope.java:174)
+	at com.python.pydev.analysis.scopeanalysis.AbstractScopeAnalyzerVisitor.visitImportFrom(AbstractScopeAnalyzerVisitor.java:516)
+	at com.python.pydev.analysis.scopeanalysis.ScopeAnalyzerVisitor.visitImportFrom(ScopeAnalyzerVisitor.java:111)
+	at org.python.pydev.parser.jython.ast.ImportFrom.accept(ImportFrom.java:89)
+	at org.python.pydev.parser.jython.ast.Module.traverse(Module.java:79)
+	at com.python.pydev.analysis.scopeanalysis.AbstractScopeAnalyzerVisitor.traverse(AbstractScopeAnalyzerVisitor.java:191)
+	at org.python.pydev.parser.jython.ast.VisitorBase.visitModule(VisitorBase.java:9)
+	at org.python.pydev.parser.jython.ast.Module.accept(Module.java:72)
+	at com.python.pydev.refactoring.wizards.rename.AbstractRenameRefactorProcess.getOccurrencesWithScopeAnalyzer(AbstractRenameRefactorProcess.java:260)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameImportProcess.findReferencesToRenameOnLocalScope(PyRenameImportProcess.java:66)
+	at com.python.pydev.refactoring.wizards.rename.AbstractRenameRefactorProcess.findReferencesToRename(AbstractRenameRefactorProcess.java:179)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameEntryPoint.checkFinalConditions(PyRenameEntryPoint.java:256)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameEntryPoint.checkFinalConditions(PyRenameEntryPoint.java:225)
+	at com.python.pydev.refactoring.markoccurrences.MarkOccurrencesJob.checkAnnotations(MarkOccurrencesJob.java:227)
+	at com.python.pydev.refactoring.markoccurrences.MarkOccurrencesJob.run(MarkOccurrencesJob.java:129)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.python.pydev.core 4 4 2013-03-11 16:00:37.730
+!MESSAGE The module shutil could not be found nor created!
+!STACK 0
+java.lang.RuntimeException: The module shutil could not be found nor created!
+	at org.python.pydev.core.log.Log.log(Log.java:99)
+	at org.python.pydev.editor.codecompletion.revisited.ModulesManager.getModule(ModulesManager.java:771)
+	at org.python.pydev.editor.codecompletion.revisited.ModulesManager.getModule(ModulesManager.java:591)
+	at org.python.pydev.editor.codecompletion.revisited.SystemModulesManager.getRelativeModule(SystemModulesManager.java:142)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getModule(AbstractASTManager.java:454)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findModuleFromPath(AbstractASTManager.java:1457)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findOnImportedMods(AbstractASTManager.java:1301)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findOnImportedMods(AbstractASTManager.java:1207)
+	at com.python.pydev.analysis.visitors.ImportChecker.visitImportToken(ImportChecker.java:158)
+	at com.python.pydev.analysis.visitors.ImportChecker.visitImportToken(ImportChecker.java:139)
+	at com.python.pydev.analysis.visitors.Scope.addImportTokens(Scope.java:174)
+	at com.python.pydev.analysis.scopeanalysis.AbstractScopeAnalyzerVisitor.visitImport(AbstractScopeAnalyzerVisitor.java:493)
+	at org.python.pydev.parser.jython.ast.Import.accept(Import.java:73)
+	at org.python.pydev.parser.jython.ast.Module.traverse(Module.java:79)
+	at com.python.pydev.analysis.scopeanalysis.AbstractScopeAnalyzerVisitor.traverse(AbstractScopeAnalyzerVisitor.java:191)
+	at org.python.pydev.parser.jython.ast.VisitorBase.visitModule(VisitorBase.java:9)
+	at org.python.pydev.parser.jython.ast.Module.accept(Module.java:72)
+	at com.python.pydev.refactoring.wizards.rename.AbstractRenameRefactorProcess.getOccurrencesWithScopeAnalyzer(AbstractRenameRefactorProcess.java:260)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameImportProcess.findReferencesToRenameOnLocalScope(PyRenameImportProcess.java:66)
+	at com.python.pydev.refactoring.wizards.rename.AbstractRenameRefactorProcess.findReferencesToRename(AbstractRenameRefactorProcess.java:179)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameEntryPoint.checkFinalConditions(PyRenameEntryPoint.java:256)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameEntryPoint.checkFinalConditions(PyRenameEntryPoint.java:225)
+	at com.python.pydev.refactoring.markoccurrences.MarkOccurrencesJob.checkAnnotations(MarkOccurrencesJob.java:227)
+	at com.python.pydev.refactoring.markoccurrences.MarkOccurrencesJob.run(MarkOccurrencesJob.java:129)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.python.pydev.core 4 4 2013-03-11 16:00:37.731
+!MESSAGE The module tempfile could not be found nor created!
+!STACK 0
+java.lang.RuntimeException: The module tempfile could not be found nor created!
+	at org.python.pydev.core.log.Log.log(Log.java:99)
+	at org.python.pydev.editor.codecompletion.revisited.ModulesManager.getModule(ModulesManager.java:771)
+	at org.python.pydev.editor.codecompletion.revisited.ModulesManager.getModule(ModulesManager.java:591)
+	at org.python.pydev.editor.codecompletion.revisited.SystemModulesManager.getRelativeModule(SystemModulesManager.java:142)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getModule(AbstractASTManager.java:454)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findModuleFromPath(AbstractASTManager.java:1457)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findOnImportedMods(AbstractASTManager.java:1301)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findOnImportedMods(AbstractASTManager.java:1207)
+	at com.python.pydev.analysis.visitors.ImportChecker.visitImportToken(ImportChecker.java:158)
+	at com.python.pydev.analysis.visitors.ImportChecker.visitImportToken(ImportChecker.java:139)
+	at com.python.pydev.analysis.visitors.Scope.addImportTokens(Scope.java:174)
+	at com.python.pydev.analysis.scopeanalysis.AbstractScopeAnalyzerVisitor.visitImport(AbstractScopeAnalyzerVisitor.java:493)
+	at org.python.pydev.parser.jython.ast.Import.accept(Import.java:73)
+	at org.python.pydev.parser.jython.ast.Module.traverse(Module.java:79)
+	at com.python.pydev.analysis.scopeanalysis.AbstractScopeAnalyzerVisitor.traverse(AbstractScopeAnalyzerVisitor.java:191)
+	at org.python.pydev.parser.jython.ast.VisitorBase.visitModule(VisitorBase.java:9)
+	at org.python.pydev.parser.jython.ast.Module.accept(Module.java:72)
+	at com.python.pydev.refactoring.wizards.rename.AbstractRenameRefactorProcess.getOccurrencesWithScopeAnalyzer(AbstractRenameRefactorProcess.java:260)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameImportProcess.findReferencesToRenameOnLocalScope(PyRenameImportProcess.java:66)
+	at com.python.pydev.refactoring.wizards.rename.AbstractRenameRefactorProcess.findReferencesToRename(AbstractRenameRefactorProcess.java:179)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameEntryPoint.checkFinalConditions(PyRenameEntryPoint.java:256)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameEntryPoint.checkFinalConditions(PyRenameEntryPoint.java:225)
+	at com.python.pydev.refactoring.markoccurrences.MarkOccurrencesJob.checkAnnotations(MarkOccurrencesJob.java:227)
+	at com.python.pydev.refactoring.markoccurrences.MarkOccurrencesJob.run(MarkOccurrencesJob.java:129)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.python.pydev.core 4 4 2013-03-11 16:00:37.737
+!MESSAGE The module py_compile could not be found nor created!
+!STACK 0
+java.lang.RuntimeException: The module py_compile could not be found nor created!
+	at org.python.pydev.core.log.Log.log(Log.java:99)
+	at org.python.pydev.editor.codecompletion.revisited.ModulesManager.getModule(ModulesManager.java:771)
+	at org.python.pydev.editor.codecompletion.revisited.ModulesManager.getModule(ModulesManager.java:591)
+	at org.python.pydev.editor.codecompletion.revisited.SystemModulesManager.getRelativeModule(SystemModulesManager.java:142)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getModule(AbstractASTManager.java:454)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findModuleFromPath(AbstractASTManager.java:1457)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findOnImportedMods(AbstractASTManager.java:1301)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findOnImportedMods(AbstractASTManager.java:1207)
+	at com.python.pydev.analysis.visitors.ImportChecker.visitImportToken(ImportChecker.java:158)
+	at com.python.pydev.analysis.visitors.ImportChecker.visitImportToken(ImportChecker.java:139)
+	at com.python.pydev.analysis.visitors.Scope.addImportTokens(Scope.java:174)
+	at com.python.pydev.analysis.scopeanalysis.AbstractScopeAnalyzerVisitor.visitImport(AbstractScopeAnalyzerVisitor.java:493)
+	at org.python.pydev.parser.jython.ast.Import.accept(Import.java:73)
+	at org.python.pydev.parser.jython.ast.Module.traverse(Module.java:79)
+	at com.python.pydev.analysis.scopeanalysis.AbstractScopeAnalyzerVisitor.traverse(AbstractScopeAnalyzerVisitor.java:191)
+	at org.python.pydev.parser.jython.ast.VisitorBase.visitModule(VisitorBase.java:9)
+	at org.python.pydev.parser.jython.ast.Module.accept(Module.java:72)
+	at com.python.pydev.refactoring.wizards.rename.AbstractRenameRefactorProcess.getOccurrencesWithScopeAnalyzer(AbstractRenameRefactorProcess.java:260)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameImportProcess.findReferencesToRenameOnLocalScope(PyRenameImportProcess.java:66)
+	at com.python.pydev.refactoring.wizards.rename.AbstractRenameRefactorProcess.findReferencesToRename(AbstractRenameRefactorProcess.java:179)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameEntryPoint.checkFinalConditions(PyRenameEntryPoint.java:256)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameEntryPoint.checkFinalConditions(PyRenameEntryPoint.java:225)
+	at com.python.pydev.refactoring.markoccurrences.MarkOccurrencesJob.checkAnnotations(MarkOccurrencesJob.java:227)
+	at com.python.pydev.refactoring.markoccurrences.MarkOccurrencesJob.run(MarkOccurrencesJob.java:129)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.python.pydev.core 4 4 2013-03-11 16:00:37.738
+!MESSAGE The module zipfile could not be found nor created!
+!STACK 0
+java.lang.RuntimeException: The module zipfile could not be found nor created!
+	at org.python.pydev.core.log.Log.log(Log.java:99)
+	at org.python.pydev.editor.codecompletion.revisited.ModulesManager.getModule(ModulesManager.java:771)
+	at org.python.pydev.editor.codecompletion.revisited.ModulesManager.getModule(ModulesManager.java:591)
+	at org.python.pydev.editor.codecompletion.revisited.SystemModulesManager.getRelativeModule(SystemModulesManager.java:142)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getModule(AbstractASTManager.java:454)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findModuleFromPath(AbstractASTManager.java:1457)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findOnImportedMods(AbstractASTManager.java:1301)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findOnImportedMods(AbstractASTManager.java:1207)
+	at com.python.pydev.analysis.visitors.ImportChecker.visitImportToken(ImportChecker.java:158)
+	at com.python.pydev.analysis.visitors.ImportChecker.visitImportToken(ImportChecker.java:139)
+	at com.python.pydev.analysis.visitors.Scope.addImportTokens(Scope.java:174)
+	at com.python.pydev.analysis.scopeanalysis.AbstractScopeAnalyzerVisitor.visitImport(AbstractScopeAnalyzerVisitor.java:493)
+	at org.python.pydev.parser.jython.ast.Import.accept(Import.java:73)
+	at org.python.pydev.parser.jython.ast.Module.traverse(Module.java:79)
+	at com.python.pydev.analysis.scopeanalysis.AbstractScopeAnalyzerVisitor.traverse(AbstractScopeAnalyzerVisitor.java:191)
+	at org.python.pydev.parser.jython.ast.VisitorBase.visitModule(VisitorBase.java:9)
+	at org.python.pydev.parser.jython.ast.Module.accept(Module.java:72)
+	at com.python.pydev.refactoring.wizards.rename.AbstractRenameRefactorProcess.getOccurrencesWithScopeAnalyzer(AbstractRenameRefactorProcess.java:260)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameImportProcess.findReferencesToRenameOnLocalScope(PyRenameImportProcess.java:66)
+	at com.python.pydev.refactoring.wizards.rename.AbstractRenameRefactorProcess.findReferencesToRename(AbstractRenameRefactorProcess.java:179)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameEntryPoint.checkFinalConditions(PyRenameEntryPoint.java:256)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameEntryPoint.checkFinalConditions(PyRenameEntryPoint.java:225)
+	at com.python.pydev.refactoring.markoccurrences.MarkOccurrencesJob.checkAnnotations(MarkOccurrencesJob.java:227)
+	at com.python.pydev.refactoring.markoccurrences.MarkOccurrencesJob.run(MarkOccurrencesJob.java:129)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.python.pydev.core 4 4 2013-03-11 16:00:37.739
+!MESSAGE The module string could not be found nor created!
+!STACK 0
+java.lang.RuntimeException: The module string could not be found nor created!
+	at org.python.pydev.core.log.Log.log(Log.java:99)
+	at org.python.pydev.editor.codecompletion.revisited.ModulesManager.getModule(ModulesManager.java:771)
+	at org.python.pydev.editor.codecompletion.revisited.ModulesManager.getModule(ModulesManager.java:591)
+	at org.python.pydev.editor.codecompletion.revisited.SystemModulesManager.getRelativeModule(SystemModulesManager.java:142)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getModule(AbstractASTManager.java:454)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findModuleFromPath(AbstractASTManager.java:1457)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findOnImportedMods(AbstractASTManager.java:1301)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findOnImportedMods(AbstractASTManager.java:1207)
+	at com.python.pydev.analysis.visitors.ImportChecker.visitImportToken(ImportChecker.java:158)
+	at com.python.pydev.analysis.visitors.ImportChecker.visitImportToken(ImportChecker.java:139)
+	at com.python.pydev.analysis.visitors.Scope.addImportTokens(Scope.java:174)
+	at com.python.pydev.analysis.scopeanalysis.AbstractScopeAnalyzerVisitor.visitImport(AbstractScopeAnalyzerVisitor.java:493)
+	at org.python.pydev.parser.jython.ast.Import.accept(Import.java:73)
+	at org.python.pydev.parser.jython.ast.Module.traverse(Module.java:79)
+	at com.python.pydev.analysis.scopeanalysis.AbstractScopeAnalyzerVisitor.traverse(AbstractScopeAnalyzerVisitor.java:191)
+	at org.python.pydev.parser.jython.ast.VisitorBase.visitModule(VisitorBase.java:9)
+	at org.python.pydev.parser.jython.ast.Module.accept(Module.java:72)
+	at com.python.pydev.refactoring.wizards.rename.AbstractRenameRefactorProcess.getOccurrencesWithScopeAnalyzer(AbstractRenameRefactorProcess.java:260)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameImportProcess.findReferencesToRenameOnLocalScope(PyRenameImportProcess.java:66)
+	at com.python.pydev.refactoring.wizards.rename.AbstractRenameRefactorProcess.findReferencesToRename(AbstractRenameRefactorProcess.java:179)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameEntryPoint.checkFinalConditions(PyRenameEntryPoint.java:256)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameEntryPoint.checkFinalConditions(PyRenameEntryPoint.java:225)
+	at com.python.pydev.refactoring.markoccurrences.MarkOccurrencesJob.checkAnnotations(MarkOccurrencesJob.java:227)
+	at com.python.pydev.refactoring.markoccurrences.MarkOccurrencesJob.run(MarkOccurrencesJob.java:129)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.python.pydev.core 4 4 2013-03-11 16:00:37.739
+!MESSAGE The module modulefinder could not be found nor created!
+!STACK 0
+java.lang.RuntimeException: The module modulefinder could not be found nor created!
+	at org.python.pydev.core.log.Log.log(Log.java:99)
+	at org.python.pydev.editor.codecompletion.revisited.ModulesManager.getModule(ModulesManager.java:771)
+	at org.python.pydev.editor.codecompletion.revisited.ModulesManager.getModule(ModulesManager.java:591)
+	at org.python.pydev.editor.codecompletion.revisited.SystemModulesManager.getRelativeModule(SystemModulesManager.java:142)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getModule(AbstractASTManager.java:454)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findModuleFromPath(AbstractASTManager.java:1464)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findOnImportedMods(AbstractASTManager.java:1301)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findOnImportedMods(AbstractASTManager.java:1207)
+	at com.python.pydev.analysis.visitors.ImportChecker.visitImportToken(ImportChecker.java:158)
+	at com.python.pydev.analysis.visitors.ImportChecker.visitImportToken(ImportChecker.java:139)
+	at com.python.pydev.analysis.visitors.Scope.addImportTokens(Scope.java:174)
+	at com.python.pydev.analysis.scopeanalysis.AbstractScopeAnalyzerVisitor.visitImportFrom(AbstractScopeAnalyzerVisitor.java:516)
+	at com.python.pydev.analysis.scopeanalysis.ScopeAnalyzerVisitor.visitImportFrom(ScopeAnalyzerVisitor.java:111)
+	at org.python.pydev.parser.jython.ast.ImportFrom.accept(ImportFrom.java:89)
+	at org.python.pydev.parser.jython.ast.Module.traverse(Module.java:79)
+	at com.python.pydev.analysis.scopeanalysis.AbstractScopeAnalyzerVisitor.traverse(AbstractScopeAnalyzerVisitor.java:191)
+	at org.python.pydev.parser.jython.ast.VisitorBase.visitModule(VisitorBase.java:9)
+	at org.python.pydev.parser.jython.ast.Module.accept(Module.java:72)
+	at com.python.pydev.refactoring.wizards.rename.AbstractRenameRefactorProcess.getOccurrencesWithScopeAnalyzer(AbstractRenameRefactorProcess.java:260)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameImportProcess.findReferencesToRenameOnLocalScope(PyRenameImportProcess.java:66)
+	at com.python.pydev.refactoring.wizards.rename.AbstractRenameRefactorProcess.findReferencesToRename(AbstractRenameRefactorProcess.java:179)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameEntryPoint.checkFinalConditions(PyRenameEntryPoint.java:256)
+	at com.python.pydev.refactoring.wizards.rename.PyRenameEntryPoint.checkFinalConditions(PyRenameEntryPoint.java:225)
+	at com.python.pydev.refactoring.markoccurrences.MarkOccurrencesJob.checkAnnotations(MarkOccurrencesJob.java:227)
+	at com.python.pydev.refactoring.markoccurrences.MarkOccurrencesJob.run(MarkOccurrencesJob.java:129)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.python.pydev.core 4 4 2013-03-11 16:06:20.649
+!MESSAGE Error while getting info for module:__builtin__. Project: null
+!STACK 0
+java.lang.RuntimeException: Unable to create shell for CompiledModule: __builtin__
+	at org.python.pydev.editor.codecompletion.revisited.modules.CompiledModule.getGlobalTokens(CompiledModule.java:330)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.internalGenerateGetCompletionsForModule(AbstractASTManager.java:719)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:545)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:516)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:508)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:500)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.internalGenerateGetCompletionsForModule(AbstractASTManager.java:727)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:545)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:516)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:508)
+	at org.python.pydev.editor.codecompletion.revisited.modules.SourceModule.findGlobalTokDef(SourceModule.java:899)
+	at org.python.pydev.editor.codecompletion.revisited.modules.SourceModule.findDefinitionsFromModAndTok(SourceModule.java:848)
+	at org.python.pydev.editor.codecompletion.revisited.modules.SourceModule.findDefinition(SourceModule.java:831)
+	at org.python.pydev.editor.codecompletion.revisited.modules.SourceModule.findDefinition(SourceModule.java:1)
+	at org.python.pydev.editor.refactoring.PyRefactoringFindDefinition.findActualDefinition(PyRefactoringFindDefinition.java:176)
+	at org.python.pydev.editor.refactoring.PyRefactoringFindDefinition.findActualDefinition(PyRefactoringFindDefinition.java:78)
+	at org.python.pydev.editor.hover.PyTextHover.getDocstringHover(PyTextHover.java:206)
+	at org.python.pydev.editor.hover.PyTextHover.getHoverInfo(PyTextHover.java:147)
+	at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:168)
+Caused by: java.lang.RuntimeException: The interpreter location found does not exist. Name:python:EndName:Version2.4Executable:C:\Python24\python.exe|C:\Python24\python24.zip|C:\Python24\DLLs|C:\Python24\lib|C:\Python24\lib\plat-win|C:\Python24\lib\lib-tk|C:\Python24|C:\Python24\lib\site-packages|C:\Python24\lib\site-packages\win32|C:\Python24\lib\site-packages\win32\lib|C:\Python24\lib\site-packages\Pythonwin@$|Image|OpenGL|__builtin__|__main__|_ast|_bisect|_bytesio|_codecs|_codecs_cn|_codecs_hk|_codecs_iso2022|_codecs_jp|_codecs_kr|_codecs_tw|_collections|_csv|_fileio|_functools|_heapq|_hotshot|_json|_locale|_lsprof|_md5|_multibytecodec|_random|_sha|_sha256|_sha512|_sre|_struct|_subprocess|_symtable|_warnings|_weakref|_winreg|array|audioop|binascii|cPickle|cStringIO|cmath|collections|datetime|email|errno|exceptions|future_builtins|gc|hashlib|imageop|imp|itertools|marshal|math|md5|mmap|msvcrt|nt|numpy|operator|os|os.path|parser|pytest|regex|rgbimg|scipy|sha|signal|socket|strop|struct|sys|thread|time|wx|wxPython|xxsubtype|zipimport|zlib
+	at org.python.pydev.editor.codecompletion.shell.PythonShell.createServerProcess(PythonShell.java:47)
+	at org.python.pydev.editor.codecompletion.shell.AbstractShell.startIt(AbstractShell.java:442)
+	at org.python.pydev.editor.codecompletion.shell.AbstractShell.getServerShell(AbstractShell.java:321)
+	at org.python.pydev.editor.codecompletion.shell.AbstractShell.getServerShell(AbstractShell.java:257)
+	at org.python.pydev.editor.codecompletion.revisited.modules.CompiledModule.getGlobalTokens(CompiledModule.java:328)
+	... 18 more
+
+!ENTRY org.python.pydev.core 4 4 2013-03-11 16:10:58.236
+!MESSAGE Error while getting info for module:__builtin__. Project: null
+!STACK 0
+java.lang.RuntimeException: Unable to create shell for CompiledModule: __builtin__
+	at org.python.pydev.editor.codecompletion.revisited.modules.CompiledModule.getGlobalTokens(CompiledModule.java:330)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.internalGenerateGetCompletionsForModule(AbstractASTManager.java:719)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:545)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:516)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:508)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:500)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.internalGenerateGetCompletionsForModule(AbstractASTManager.java:727)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:545)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:516)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:508)
+	at org.python.pydev.editor.codecompletion.revisited.modules.SourceModule.findGlobalTokDef(SourceModule.java:899)
+	at org.python.pydev.editor.codecompletion.revisited.modules.SourceModule.findDefinitionsFromModAndTok(SourceModule.java:848)
+	at org.python.pydev.editor.codecompletion.revisited.modules.SourceModule.findDefinition(SourceModule.java:831)
+	at org.python.pydev.editor.codecompletion.revisited.modules.SourceModule.findDefinition(SourceModule.java:1)
+	at org.python.pydev.editor.refactoring.PyRefactoringFindDefinition.findActualDefinition(PyRefactoringFindDefinition.java:176)
+	at org.python.pydev.editor.refactoring.PyRefactoringFindDefinition.findActualDefinition(PyRefactoringFindDefinition.java:78)
+	at org.python.pydev.editor.hover.PyTextHover.getDocstringHover(PyTextHover.java:206)
+	at org.python.pydev.editor.hover.PyTextHover.getHoverInfo(PyTextHover.java:147)
+	at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:168)
+Caused by: java.lang.RuntimeException: The interpreter location found does not exist. Name:python:EndName:Version2.4Executable:C:\Python24\python.exe|C:\Python24\python24.zip|C:\Python24\DLLs|C:\Python24\lib|C:\Python24\lib\plat-win|C:\Python24\lib\lib-tk|C:\Python24|C:\Python24\lib\site-packages|C:\Python24\lib\site-packages\win32|C:\Python24\lib\site-packages\win32\lib|C:\Python24\lib\site-packages\Pythonwin@$|Image|OpenGL|__builtin__|__main__|_ast|_bisect|_bytesio|_codecs|_codecs_cn|_codecs_hk|_codecs_iso2022|_codecs_jp|_codecs_kr|_codecs_tw|_collections|_csv|_fileio|_functools|_heapq|_hotshot|_json|_locale|_lsprof|_md5|_multibytecodec|_random|_sha|_sha256|_sha512|_sre|_struct|_subprocess|_symtable|_warnings|_weakref|_winreg|array|audioop|binascii|cPickle|cStringIO|cmath|collections|datetime|email|errno|exceptions|future_builtins|gc|hashlib|imageop|imp|itertools|marshal|math|md5|mmap|msvcrt|nt|numpy|operator|os|os.path|parser|pytest|regex|rgbimg|scipy|sha|signal|socket|strop|struct|sys|thread|time|wx|wxPython|xxsubtype|zipimport|zlib
+	at org.python.pydev.editor.codecompletion.shell.PythonShell.createServerProcess(PythonShell.java:47)
+	at org.python.pydev.editor.codecompletion.shell.AbstractShell.startIt(AbstractShell.java:442)
+	at org.python.pydev.editor.codecompletion.shell.AbstractShell.getServerShell(AbstractShell.java:321)
+	at org.python.pydev.editor.codecompletion.shell.AbstractShell.getServerShell(AbstractShell.java:257)
+	at org.python.pydev.editor.codecompletion.revisited.modules.CompiledModule.getGlobalTokens(CompiledModule.java:328)
+	... 18 more
+
+!ENTRY org.eclipse.jface.text 4 0 2013-03-11 16:12:28.699
+!MESSAGE Unexpected runtime error while computing a text hover
+!STACK 0
+java.lang.RuntimeException: java.lang.RuntimeException: The interpreter location found does not exist. Name:python:EndName:Version2.4Executable:C:\Python24\python.exe|C:\Python24\python24.zip|C:\Python24\DLLs|C:\Python24\lib|C:\Python24\lib\plat-win|C:\Python24\lib\lib-tk|C:\Python24|C:\Python24\lib\site-packages|C:\Python24\lib\site-packages\win32|C:\Python24\lib\site-packages\win32\lib|C:\Python24\lib\site-packages\Pythonwin@$|Image|OpenGL|__builtin__|__main__|_ast|_bisect|_bytesio|_codecs|_codecs_cn|_codecs_hk|_codecs_iso2022|_codecs_jp|_codecs_kr|_codecs_tw|_collections|_csv|_fileio|_functools|_heapq|_hotshot|_json|_locale|_lsprof|_md5|_multibytecodec|_random|_sha|_sha256|_sha512|_sre|_struct|_subprocess|_symtable|_warnings|_weakref|_winreg|array|audioop|binascii|cPickle|cStringIO|cmath|collections|datetime|email|errno|exceptions|future_builtins|gc|hashlib|imageop|imp|itertools|marshal|math|md5|mmap|msvcrt|nt|numpy|operator|os|os.path|parser|pytest|regex|rgbimg|scipy|sha|signal|socket|strop|struct|sys|thread|time|wx|wxPython|xxsubtype|zipimport|zlib
+	at org.python.pydev.editor.refactoring.PyRefactoringFindDefinition.findActualDefinition(PyRefactoringFindDefinition.java:85)
+	at org.python.pydev.editor.hover.PyTextHover.getDocstringHover(PyTextHover.java:206)
+	at org.python.pydev.editor.hover.PyTextHover.getHoverInfo(PyTextHover.java:147)
+	at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:168)
+Caused by: java.lang.RuntimeException: The interpreter location found does not exist. Name:python:EndName:Version2.4Executable:C:\Python24\python.exe|C:\Python24\python24.zip|C:\Python24\DLLs|C:\Python24\lib|C:\Python24\lib\plat-win|C:\Python24\lib\lib-tk|C:\Python24|C:\Python24\lib\site-packages|C:\Python24\lib\site-packages\win32|C:\Python24\lib\site-packages\win32\lib|C:\Python24\lib\site-packages\Pythonwin@$|Image|OpenGL|__builtin__|__main__|_ast|_bisect|_bytesio|_codecs|_codecs_cn|_codecs_hk|_codecs_iso2022|_codecs_jp|_codecs_kr|_codecs_tw|_collections|_csv|_fileio|_functools|_heapq|_hotshot|_json|_locale|_lsprof|_md5|_multibytecodec|_random|_sha|_sha256|_sha512|_sre|_struct|_subprocess|_symtable|_warnings|_weakref|_winreg|array|audioop|binascii|cPickle|cStringIO|cmath|collections|datetime|email|errno|exceptions|future_builtins|gc|hashlib|imageop|imp|itertools|marshal|math|md5|mmap|msvcrt|nt|numpy|operator|os|os.path|parser|pytest|regex|rgbimg|scipy|sha|signal|socket|strop|struct|sys|thread|time|wx|wxPython|xxsubtype|zipimport|zlib
+	at org.python.pydev.editor.codecompletion.shell.PythonShell.createServerProcess(PythonShell.java:47)
+	at org.python.pydev.editor.codecompletion.shell.AbstractShell.startIt(AbstractShell.java:442)
+	at org.python.pydev.editor.codecompletion.shell.AbstractShell.getServerShell(AbstractShell.java:321)
+	at org.python.pydev.editor.codecompletion.shell.AbstractShell.getServerShell(AbstractShell.java:257)
+	at org.python.pydev.editor.codecompletion.revisited.modules.CompiledModule.findDefinition(CompiledModule.java:421)
+	at org.python.pydev.editor.codecompletion.revisited.modules.CompiledModule.findDefinition(CompiledModule.java:1)
+	at org.python.pydev.editor.codecompletion.revisited.modules.SourceModule.findDefinition(SourceModule.java:813)
+	at org.python.pydev.editor.codecompletion.revisited.modules.SourceModule.findDefinition(SourceModule.java:1)
+	at org.python.pydev.editor.refactoring.PyRefactoringFindDefinition.findActualDefinition(PyRefactoringFindDefinition.java:176)
+	at org.python.pydev.editor.refactoring.PyRefactoringFindDefinition.findActualDefinition(PyRefactoringFindDefinition.java:78)
+	... 3 more
+
+!ENTRY org.python.pydev.core 4 4 2013-03-11 16:22:48.982
+!MESSAGE For input string: "0 (lewis wight's conflicted copy 2012-12-23)"
+!STACK 0
+java.lang.NumberFormatException: For input string: "0 (lewis wight's conflicted copy 2012-12-23)"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:48)
+	at java.lang.Integer.parseInt(Integer.java:458)
+	at java.lang.Integer.<init>(Integer.java:660)
+	at org.python.pydev.core.DeltaSaver$1.compare(DeltaSaver.java:223)
+	at org.python.pydev.core.DeltaSaver$1.compare(DeltaSaver.java:1)
+	at java.util.Arrays.mergeSort(Arrays.java:1270)
+	at java.util.Arrays.mergeSort(Arrays.java:1281)
+	at java.util.Arrays.sort(Arrays.java:1210)
+	at java.util.Collections.sort(Collections.java:157)
+	at org.python.pydev.core.DeltaSaver.findDeltas(DeltaSaver.java:218)
+	at org.python.pydev.core.DeltaSaver.loadDeltas(DeltaSaver.java:190)
+	at org.python.pydev.core.DeltaSaver.<init>(DeltaSaver.java:169)
+	at com.python.pydev.analysis.additionalinfo.AbstractAdditionalInfoWithBuild.createDeltaSaver(AbstractAdditionalInfoWithBuild.java:99)
+	at com.python.pydev.analysis.additionalinfo.AbstractAdditionalInfoWithBuild.init(AbstractAdditionalInfoWithBuild.java:38)
+	at com.python.pydev.analysis.additionalinfo.AdditionalProjectInterpreterInfo.<init>(AdditionalProjectInterpreterInfo.java:78)
+	at com.python.pydev.analysis.additionalinfo.AdditionalProjectInterpreterInfo.getAdditionalInfoForProject(AdditionalProjectInterpreterInfo.java:205)
+	at com.python.pydev.analysis.builder.AnalysisBuilderRunnable.doAnalysis(AnalysisBuilderRunnable.java:158)
+	at com.python.pydev.analysis.builder.AbstractAnalysisBuilderRunnable.run(AbstractAnalysisBuilderRunnable.java:156)
+	at org.python.pydev.core.concurrency.RunnableAsJobsPoolThread$1.run(RunnableAsJobsPoolThread.java:103)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.python.pydev.core 4 4 2013-03-11 16:23:41.984
+!MESSAGE For input string: "0 (lewis wight's conflicted copy 2012-12-23)"
+!STACK 0
+java.lang.NumberFormatException: For input string: "0 (lewis wight's conflicted copy 2012-12-23)"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:48)
+	at java.lang.Integer.parseInt(Integer.java:458)
+	at java.lang.Integer.<init>(Integer.java:660)
+	at org.python.pydev.core.DeltaSaver$1.compare(DeltaSaver.java:223)
+	at org.python.pydev.core.DeltaSaver$1.compare(DeltaSaver.java:1)
+	at java.util.Arrays.mergeSort(Arrays.java:1270)
+	at java.util.Arrays.mergeSort(Arrays.java:1281)
+	at java.util.Arrays.sort(Arrays.java:1210)
+	at java.util.Collections.sort(Collections.java:157)
+	at org.python.pydev.core.DeltaSaver.findDeltas(DeltaSaver.java:218)
+	at org.python.pydev.core.DeltaSaver.loadDeltas(DeltaSaver.java:190)
+	at org.python.pydev.core.DeltaSaver.<init>(DeltaSaver.java:169)
+	at com.python.pydev.analysis.additionalinfo.AbstractAdditionalInfoWithBuild.createDeltaSaver(AbstractAdditionalInfoWithBuild.java:99)
+	at com.python.pydev.analysis.additionalinfo.AbstractAdditionalInfoWithBuild.init(AbstractAdditionalInfoWithBuild.java:38)
+	at com.python.pydev.analysis.additionalinfo.AdditionalProjectInterpreterInfo.<init>(AdditionalProjectInterpreterInfo.java:78)
+	at com.python.pydev.analysis.additionalinfo.AdditionalProjectInterpreterInfo.getAdditionalInfoForProject(AdditionalProjectInterpreterInfo.java:205)
+	at com.python.pydev.analysis.builder.AnalysisBuilderRunnable.doAnalysis(AnalysisBuilderRunnable.java:158)
+	at com.python.pydev.analysis.builder.AbstractAnalysisBuilderRunnable.run(AbstractAnalysisBuilderRunnable.java:156)
+	at org.python.pydev.core.concurrency.RunnableAsJobsPoolThread$1.run(RunnableAsJobsPoolThread.java:103)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.core.resources 4 2 2013-03-11 16:27:08.286
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 0
+java.lang.IllegalStateException: Registry Directory not available: /Users/lewiswight/MistAway-Gateway/MistAway/.metadata/.plugins/org.eclipse.pde.core/.p2/org.eclipse.equinox.p2.engine/profileRegistry.
+	at org.eclipse.equinox.internal.p2.engine.SimpleProfileRegistry.restore(SimpleProfileRegistry.java:419)
+	at org.eclipse.equinox.internal.p2.engine.SimpleProfileRegistry.getProfileMap(SimpleProfileRegistry.java:277)
+	at org.eclipse.equinox.internal.p2.engine.SimpleProfileRegistry.getProfiles(SimpleProfileRegistry.java:259)
+	at org.eclipse.pde.internal.core.target.P2TargetUtils.cleanOrphanedTargetDefinitionProfiles(P2TargetUtils.java:162)
+	at org.eclipse.pde.internal.core.PDECore$1.saving(PDECore.java:258)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:382)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:191)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:194)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1129)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1108)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.core.resources 2 2 2013-03-11 16:27:08.290
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 566 2013-03-11 16:27:08.290
+!MESSAGE Problems occurred during save.
+!STACK 0
+java.lang.IllegalStateException: Registry Directory not available: /Users/lewiswight/MistAway-Gateway/MistAway/.metadata/.plugins/org.eclipse.pde.core/.p2/org.eclipse.equinox.p2.engine/profileRegistry.
+	at org.eclipse.equinox.internal.p2.engine.SimpleProfileRegistry.restore(SimpleProfileRegistry.java:419)
+	at org.eclipse.equinox.internal.p2.engine.SimpleProfileRegistry.getProfileMap(SimpleProfileRegistry.java:277)
+	at org.eclipse.equinox.internal.p2.engine.SimpleProfileRegistry.getProfiles(SimpleProfileRegistry.java:259)
+	at org.eclipse.pde.internal.core.target.P2TargetUtils.cleanOrphanedTargetDefinitionProfiles(P2TargetUtils.java:162)
+	at org.eclipse.pde.internal.core.PDECore$1.saving(PDECore.java:258)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:382)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:191)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:194)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1129)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1108)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.python.pydev.core 4 4 2013-03-11 16:28:34.536
+!MESSAGE For input string: "0 (lewis wight's conflicted copy 2012-12-23)"
+!STACK 0
+java.lang.NumberFormatException: For input string: "0 (lewis wight's conflicted copy 2012-12-23)"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:48)
+	at java.lang.Integer.parseInt(Integer.java:458)
+	at java.lang.Integer.<init>(Integer.java:660)
+	at org.python.pydev.core.DeltaSaver$1.compare(DeltaSaver.java:223)
+	at org.python.pydev.core.DeltaSaver$1.compare(DeltaSaver.java:1)
+	at java.util.Arrays.mergeSort(Arrays.java:1270)
+	at java.util.Arrays.mergeSort(Arrays.java:1281)
+	at java.util.Arrays.sort(Arrays.java:1210)
+	at java.util.Collections.sort(Collections.java:157)
+	at org.python.pydev.core.DeltaSaver.findDeltas(DeltaSaver.java:218)
+	at org.python.pydev.core.DeltaSaver.loadDeltas(DeltaSaver.java:190)
+	at org.python.pydev.core.DeltaSaver.<init>(DeltaSaver.java:169)
+	at com.python.pydev.analysis.additionalinfo.AbstractAdditionalInfoWithBuild.createDeltaSaver(AbstractAdditionalInfoWithBuild.java:99)
+	at com.python.pydev.analysis.additionalinfo.AbstractAdditionalInfoWithBuild.init(AbstractAdditionalInfoWithBuild.java:38)
+	at com.python.pydev.analysis.additionalinfo.AdditionalProjectInterpreterInfo.<init>(AdditionalProjectInterpreterInfo.java:78)
+	at com.python.pydev.analysis.additionalinfo.AdditionalProjectInterpreterInfo.getAdditionalInfoForProject(AdditionalProjectInterpreterInfo.java:205)
+	at com.python.pydev.analysis.builder.AnalysisBuilderRunnable.doAnalysis(AnalysisBuilderRunnable.java:158)
+	at com.python.pydev.analysis.builder.AbstractAnalysisBuilderRunnable.run(AbstractAnalysisBuilderRunnable.java:156)
+	at org.python.pydev.core.concurrency.RunnableAsJobsPoolThread$1.run(RunnableAsJobsPoolThread.java:103)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.python.pydev.core 4 4 2013-03-11 16:32:08.144
+!MESSAGE For input string: "0 (lewis wight's conflicted copy 2012-12-23)"
+!STACK 0
+java.lang.NumberFormatException: For input string: "0 (lewis wight's conflicted copy 2012-12-23)"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:48)
+	at java.lang.Integer.parseInt(Integer.java:458)
+	at java.lang.Integer.<init>(Integer.java:660)
+	at org.python.pydev.core.DeltaSaver$1.compare(DeltaSaver.java:223)
+	at org.python.pydev.core.DeltaSaver$1.compare(DeltaSaver.java:1)
+	at java.util.Arrays.mergeSort(Arrays.java:1270)
+	at java.util.Arrays.mergeSort(Arrays.java:1281)
+	at java.util.Arrays.sort(Arrays.java:1210)
+	at java.util.Collections.sort(Collections.java:157)
+	at org.python.pydev.core.DeltaSaver.findDeltas(DeltaSaver.java:218)
+	at org.python.pydev.core.DeltaSaver.loadDeltas(DeltaSaver.java:190)
+	at org.python.pydev.core.DeltaSaver.<init>(DeltaSaver.java:169)
+	at com.python.pydev.analysis.additionalinfo.AbstractAdditionalInfoWithBuild.createDeltaSaver(AbstractAdditionalInfoWithBuild.java:99)
+	at com.python.pydev.analysis.additionalinfo.AbstractAdditionalInfoWithBuild.init(AbstractAdditionalInfoWithBuild.java:38)
+	at com.python.pydev.analysis.additionalinfo.AdditionalProjectInterpreterInfo.<init>(AdditionalProjectInterpreterInfo.java:78)
+	at com.python.pydev.analysis.additionalinfo.AdditionalProjectInterpreterInfo.getAdditionalInfoForProject(AdditionalProjectInterpreterInfo.java:205)
+	at com.python.pydev.analysis.builder.AnalysisBuilderRunnable.doAnalysis(AnalysisBuilderRunnable.java:158)
+	at com.python.pydev.analysis.builder.AbstractAnalysisBuilderRunnable.run(AbstractAnalysisBuilderRunnable.java:156)
+	at org.python.pydev.core.concurrency.RunnableAsJobsPoolThread$1.run(RunnableAsJobsPoolThread.java:103)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
