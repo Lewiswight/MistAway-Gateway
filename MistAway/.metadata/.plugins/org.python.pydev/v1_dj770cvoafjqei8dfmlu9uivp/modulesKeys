@@ -143,7 +143,6 @@ compiler.syntax|C:\Python24\Lib\compiler\syntax.py
 compiler.transformer|C:\Python24\Lib\compiler\transformer.py
 compiler.visitor|C:\Python24\Lib\compiler\visitor.py
 cookielib|C:\Python24\Lib\cookielib.py
-copy|C:\Python24\Lib\copy.py
 copy_reg|C:\Python24\Lib\copy_reg.py
 csv|C:\Python24\Lib\csv.py
 curses.__init__|C:\Python24\Lib\curses\__init__.py
@@ -160,7 +159,6 @@ decimal|C:\Python24\Lib\decimal.py
 difflib|C:\Python24\Lib\difflib.py
 dircache|C:\Python24\Lib\dircache.py
 dis|C:\Python24\Lib\dis.py
-distutils.__init__|C:\Python24\Lib\distutils\__init__.py
 distutils.archive_util|C:\Python24\Lib\distutils\archive_util.py
 distutils.bcppcompiler|C:\Python24\Lib\distutils\bcppcompiler.py
 distutils.ccompiler|C:\Python24\Lib\distutils\ccompiler.py
@@ -200,7 +198,6 @@ distutils.log|C:\Python24\Lib\distutils\log.py
 distutils.msvccompiler|C:\Python24\Lib\distutils\msvccompiler.py
 distutils.mwerkscompiler|C:\Python24\Lib\distutils\mwerkscompiler.py
 distutils.spawn|C:\Python24\Lib\distutils\spawn.py
-distutils.sysconfig|C:\Python24\Lib\distutils\sysconfig.py
 distutils.tests.__init__|C:\Python24\Lib\distutils\tests\__init__.py
 distutils.tests.support|C:\Python24\Lib\distutils\tests\support.py
 distutils.tests.test_build_py|C:\Python24\Lib\distutils\tests\test_build_py.py
@@ -361,7 +358,6 @@ fpformat|C:\Python24\Lib\fpformat.py
 ftplib|C:\Python24\Lib\ftplib.py
 future_builtins
 gc
-getopt|C:\Python24\Lib\getopt.py
 getpass|C:\Python24\Lib\getpass.py
 gettext|C:\Python24\Lib\gettext.py
 glob|C:\Python24\Lib\glob.py
@@ -467,7 +463,6 @@ mimify|C:\Python24\Lib\mimify.py
 mmap
 mmapfile|C:\Python24\Lib\site-packages\win32\mmapfile.pyd
 mmsystem|C:\Python24\Lib\site-packages\win32\lib\mmsystem.py
-modulefinder|C:\Python24\Lib\modulefinder.py
 msvcr71|C:\Python24\msvcr71.dll
 msvcrt
 multifile|C:\Python24\Lib\multifile.py
@@ -485,7 +480,7 @@ odbc|C:\Python24\Lib\site-packages\win32\odbc.pyd
 opcode|C:\Python24\Lib\opcode.py
 operator
 optparse|C:\Python24\Lib\optparse.py
-os|C:\Python24\Lib\os.py
+os
 os.path
 os2emxpath|C:\Python24\Lib\os2emxpath.py
 parser
@@ -501,11 +496,9 @@ popen2|C:\Python24\Lib\popen2.py
 poplib|C:\Python24\Lib\poplib.py
 posixfile|C:\Python24\Lib\posixfile.py
 posixpath|C:\Python24\Lib\posixpath.py
-pprint|C:\Python24\Lib\pprint.py
 profile|C:\Python24\Lib\profile.py
 pstats|C:\Python24\Lib\pstats.py
 pty|C:\Python24\Lib\pty.py
-py_compile|C:\Python24\Lib\py_compile.py
 pyclbr|C:\Python24\Lib\pyclbr.py
 pydoc|C:\Python24\Lib\pydoc.py
 pyexpat|C:\Python24\DLLs\pyexpat.pyd
@@ -593,7 +586,6 @@ pywintypes|C:\Python24\Lib\site-packages\win32\lib\pywintypes.py
 quopri|C:\Python24\Lib\quopri.py
 random|C:\Python24\Lib\random.py
 rasutil|C:\Python24\Lib\site-packages\win32\lib\rasutil.py
-re|C:\Python24\Lib\re.py
 reconvert|C:\Python24\Lib\reconvert.py
 regcheck|C:\Python24\Lib\site-packages\win32\lib\regcheck.py
 regex
@@ -616,7 +608,6 @@ sgmllib|C:\Python24\Lib\sgmllib.py
 sha
 shelve|C:\Python24\Lib\shelve.py
 shlex|C:\Python24\Lib\shlex.py
-shutil|C:\Python24\Lib\shutil.py
 signal
 site|C:\Python24\Lib\site.py
 smtpd|C:\Python24\Lib\smtpd.py
@@ -632,7 +623,6 @@ sspicon|C:\Python24\Lib\site-packages\win32\lib\sspicon.py
 stat|C:\Python24\Lib\stat.py
 statcache|C:\Python24\Lib\statcache.py
 statvfs|C:\Python24\Lib\statvfs.py
-string|C:\Python24\Lib\string.py
 stringold|C:\Python24\Lib\stringold.py
 stringprep|C:\Python24\Lib\stringprep.py
 strop
@@ -648,7 +638,6 @@ tarfile|C:\Python24\Lib\tarfile.py
 tcl84|C:\Python24\DLLs\tcl84.dll
 tclpip84|C:\Python24\DLLs\tclpip84.dll
 telnetlib|C:\Python24\Lib\telnetlib.py
-tempfile|C:\Python24\Lib\tempfile.py
 test.__init__|C:\Python24\Lib\test\__init__.py
 test.autotest|C:\Python24\Lib\test\autotest.py
 test.badsyntax_future3|C:\Python24\Lib\test\badsyntax_future3.py
@@ -1171,6 +1160,5 @@ xml.sax.xmlreader|C:\Python24\Lib\xml\sax\xmlreader.py
 xmllib|C:\Python24\Lib\xmllib.py
 xmlrpclib|C:\Python24\Lib\xmlrpclib.py
 xxsubtype
-zipfile|C:\Python24\Lib\zipfile.py
 zipimport
 zlib|C:\Python24\DLLs\zlib.pyd

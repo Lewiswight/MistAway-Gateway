@@ -6,7 +6,7 @@ iDigi Database Synchronization Module
 # imports
 import sys
 from socket import *
-
+from devices.xbee.common.addressing import *
 from devices.xbee.common.ddo import retry_ddo_get_param
 from devices.device_base import DeviceBase
 from devices.xbee.xbee_devices.xbee_base import XBeeBase
@@ -394,11 +394,13 @@ class Uploader(PresentationBase, threading.Thread):
             xml.write("<idigi_data>")
         
         cm = self.__core.get_service("channel_manager")
-        cdb = cm.channel_database_get()
+        self.cdb = cm.channel_database_get()
+        
+        
 
         channel_list = SettingsBase.get_setting(self, "channels")
         if len(channel_list) == 0:
-            channel_list = cdb.channel_list()
+            channel_list = self.cdb.channel_list()
 
         new_sample_count = 0
       #  print channel_list
@@ -407,7 +409,7 @@ class Uploader(PresentationBase, threading.Thread):
            # print channel_name
            if self.trigger == 0:
                 try:
-                    channel = cdb.channel_get(channel_name) 
+                    channel = self.cdb.channel_get(channel_name) 
                     sample = channel.get()
                 #    print channel_name 
                  #   print sample.unit
@@ -432,16 +434,16 @@ class Uploader(PresentationBase, threading.Thread):
            if self.trigger == 1:
                 print "sending full uplaod"
                 try:
-                    channel = cdb.channel_get(channel_name) 
+                    channel = self.cdb.channel_get(channel_name) 
                     sample = channel.get()
 
-                   
-                    new_sample_count += 1
-                    compact_xml = SettingsBase.get_setting(self, "compact_xml")    
-                    if compact_xml:
-                        xml.write(self.__make_compact_xml(channel_name, sample))
-                    else:
-                        xml.write(self.__make_xml(channel_name, sample))
+                    if sample.timestamp >= 1315351499.0 and sample.unit != "1":
+                        new_sample_count += 1
+                        compact_xml = SettingsBase.get_setting(self, "compact_xml")    
+                        if compact_xml:
+                            xml.write(self.__make_compact_xml(channel_name, sample))
+                        else:
+                            xml.write(self.__make_xml(channel_name, sample))
                 
                 except Exception, e:
                     # Failed to retrieve the data
@@ -494,7 +496,7 @@ class Uploader(PresentationBase, threading.Thread):
         data += "</sample>"
 
         return data % (channel_name, self.__escape_entities(sample.value),
-                       sample.unit, iso_date(sample.timestamp))
+                       sample.unit, self.convert_timestamp(sample.timestamp))
 
 
     def __make_compact_xml(self, channel_name, sample):
@@ -502,8 +504,18 @@ class Uploader(PresentationBase, threading.Thread):
         data = "<sample name=\"%s\" value=\"%s\" unit=\"%s\" timestamp=\"%s\" />"
 
         return data % (channel_name, self.__escape_entities(sample.value),
-                       sample.unit, iso_date(sample.timestamp))
-
+                       sample.unit, self.convert_timestamp(sample.timestamp))
+    
+    def convert_timestamp(self, timestamp):
+        
+        sec_time = int(timestamp)
+        main_addr = "mainMistaway_" + gw_extended_address()
+        timezone = self.cdb.channel_get(main_addr + ".offset")
+        timezone = timezone.get()
+        timezone = timezone.value
+        offset = int(timezone)
+        time_here = sec_time + offset 
+        return time_here
 
     def __send_to_idigi(self, data):
 

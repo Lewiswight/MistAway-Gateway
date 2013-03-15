@@ -166,6 +166,7 @@ class XBeeSerialTerminal(XBeeSerial):
         self.__event_timer3 = None
         self.__event_timer_sig = None
         self.__event_timer_check = None
+        self.event_timer_status = None
         self.fwu = 0
         self.m_mode = 0 # 0 = not misting, 1=user initiated, 2=user cancelled, 3=success
         self.list = 0
@@ -234,7 +235,7 @@ class XBeeSerialTerminal(XBeeSerial):
                          #mist away firmware version
              
              ChannelSourceDeviceProperty(name="GWF", type=str,
-                initial=Sample(timestamp=time.time(), unit="", value="2013-03-06 v1"),
+                initial=Sample(timestamp=time.time(), unit="", value="2013-03-13 v1"),
                 perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
                          
                          #gateway firmware
@@ -346,14 +347,14 @@ class XBeeSerialTerminal(XBeeSerial):
             			 
 			
 			ChannelSourceDeviceProperty(name="LF", type=str,
-                initial=Sample(timestamp=0, unit="", value=""),
+                initial=Sample(timestamp=0, unit="1", value=""),
                 perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
                          
             #Last Fill, this will be that last time the LVL goes up, not down.
             
             
 			ChannelSourceDeviceProperty(name="LM", type=str,
-                initial=Sample(timestamp=0, unit="", value=""),
+                initial=Sample(timestamp=0, unit="1", value=""),
                 perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
 						
 			#Last Mist, will be set every time SS=Mist
@@ -408,12 +409,12 @@ class XBeeSerialTerminal(XBeeSerial):
 			#Volume (mL) of Last Mist
 			
 			
-            ChannelSourceDeviceProperty(name="AFR2", type=str,
+            ChannelSourceDeviceProperty(name="AF2", type=str,
                 initial=Sample(timestamp=0, unit="", value=""),
                 perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
             
             
-            ChannelSourceDeviceProperty(name="AFR", type=str,
+            ChannelSourceDeviceProperty(name="AF1", type=str,
                 initial=Sample(timestamp=0, unit="", value=""),
                 perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
 						
@@ -1042,7 +1043,7 @@ class XBeeSerialTerminal(XBeeSerial):
 			# remote agitation duration		 
 						 
 			ChannelSourceDeviceProperty(name="TNK", type=str,
-                initial=Sample(timestamp=0, unit="", value=""),
+                initial=Sample(timestamp=0, unit="", value="55"),
                 perms_mask=(DPROP_PERM_GET|DPROP_PERM_SET),
                 options=DPROP_OPT_AUTOTIMESTAMP,
                 set_cb=lambda x: self.set("TNK", x)),
@@ -1505,25 +1506,24 @@ class XBeeSerialTerminal(XBeeSerial):
     
     def update_loop(self):
         
-        while True:
-            time.sleep(3600)
-            print "update loop running!!"
-            try:   
-                if self.fwu == 0:
-                    try:
+        try:
+        
+            while True:
+                time.sleep(1800)
+                print "update loop running!!"
+                  
+                if self.fwu == 0:    
+                    self.serial_send("g=6,")
+                    self.full_update = True
+        except:
+            process_request('<rci_request><reboot /></rci_request>')
+                            
+                            
+                            
+                            
                         
-                        self.serial_send("g=6,")
-                        self.full_update = True
-                        
-                        
-                        
-                        
-                    except:
-                        print "error sending request to mistaway controller"
-                        
-            except:
-                time.sleep(3600)
-                pass
+                            
+                
     
     
     def update(self):
@@ -2256,8 +2256,8 @@ class XBeeSerialTerminal(XBeeSerial):
                  
             self.property_set(str(name), Sample(0, str(value1), unit="SS2code"))
             print "setting: " + name + " to: " + str(value1)
-            #if value1 != "OK" and self.status_checking == False:
-                #thread.start_new_thread(self.status_update, ())   
+            if value1 != "OK" and self.status_checking == False:
+                self.status_update()
         
         elif funct == "tenths2ml":
              val1 = self.tenths2ml(value)
@@ -2297,7 +2297,9 @@ class XBeeSerialTerminal(XBeeSerial):
                     except:
                         pass
                     
-                            
+                if value == "e":
+                    self.property_set("LVL", Sample(0, "0", "LVL"))  
+                
                 self.send_data_to_meshify = True
                 
         except: 
@@ -2305,14 +2307,32 @@ class XBeeSerialTerminal(XBeeSerial):
     
     
     def status_update(self):
-        self.status_checking = True
-        status = self.property_get("SS").value
         
-        while status != "OK":
-            status = self.property_get("SS").value
+        
+        
+        print "in the status update now"
+        
+        status = self.property_get("SS").value
+        self.status_checking = True
+        print status
+        
+        if status != "OK":
+            
+            if self.event_timer_status is not None:
+                try:
+                    self.__xbee_manager.xbee_device_schedule_cancel(
+                        self.event_timer_status)
+                except:
+                    pass
+                
+            self.event_timer_status = self.__xbee_manager.xbee_device_schedule_after(30, self.status_update)
+            print "getting SS"
             self.serial_send("p=SS,")
-            time.sleep(10)
-        self.status_checking = False
+        else:
+            self.status_checking = False
+        
+        
+        
     
     
     def f_name(self, register_name, val):
@@ -2624,6 +2644,7 @@ class XBeeSerialTerminal(XBeeSerial):
         
         if SS == "Empty":
             self.property_set("LVL", Sample(0, "0", "LVL"))
+            return
         
         
         LVL = ml
