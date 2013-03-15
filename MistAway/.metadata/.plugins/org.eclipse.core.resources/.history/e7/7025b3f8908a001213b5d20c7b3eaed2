@@ -12,7 +12,7 @@ devices:
             driver: "custom_devices.MistAway_Controller_updated_Dia2:XBeeSerialTerminal"
             settings: 
                 xbee_device_manager: "xbee_device_manager"
-                extended_address: ""
+                extended_address: "" 
                 sample_rate_sec: 3600
 
 

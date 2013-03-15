@@ -27,11 +27,3 @@ presentations:
     settings: 
         interval: 60
         sample_threshold: 10
-
-services: 
-  - name: watchdog_service0
-    driver: services.watchdog_service:WatchdogService
-    settings: 
-        watchdog_interval: 120
-        low_memory_threshold: 50000
-        auto_restart_interval: 259200

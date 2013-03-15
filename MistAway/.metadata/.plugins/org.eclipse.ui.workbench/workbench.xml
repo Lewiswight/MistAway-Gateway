@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="29" version="2.0">
+<workbench progressCount="17" version="2.0">
 <workbenchAdvisor/>
 <window height="618" maximized="true" width="820" x="0" y="0">
 <fastViewData fastViewLocation="1024">
@@ -49,11 +49,11 @@
 </folder>
 </info>
 </editorArea>
-<editor id="org.python.pydev.editor.PythonEditor" name="MistAway_Controller_updated_Dia2.py" partName="MistAway_Controller_updated_Dia2" path="/Users/lewiswight/Dropbox/Dia releases/9_projects/MistAway/meshable/custom_devices/MistAway_Controller_updated_Dia2.py" title="MistAway_Controller_updated_Dia2" tooltip="meshable/custom_devices/MistAway_Controller_updated_Dia2.py" workbook="DefaultEditorWorkbook">
+<editor id="org.python.pydev.editor.PythonEditor" name="MistAway_Controller_updated_Dia2.py" partName="MistAway_Controller_updated_Dia2" path="/Users/lewiswight/MistAway-Gateway/MistAway/meshable/custom_devices/MistAway_Controller_updated_Dia2.py" title="MistAway_Controller_updated_Dia2" tooltip="meshable/custom_devices/MistAway_Controller_updated_Dia2.py" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/meshable/custom_devices/MistAway_Controller_updated_Dia2.py"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="85206" selectionTopPixel="33900"/>
 </editor>
-<editor activePart="true" focus="true" id="com.digi.dpdev.ui.editors.YMLSmartEditor" name="HouseLynx1.yml" partName="HouseLynx1.yml" path="/Users/lewiswight/Dropbox/Dia releases/9_projects/MistAway/meshable/HouseLynx1.yml" title="HouseLynx1.yml" tooltip="meshable/HouseLynx1.yml" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="com.digi.dpdev.ui.editors.YMLSmartEditor" name="HouseLynx1.yml" partName="HouseLynx1.yml" path="/Users/lewiswight/MistAway-Gateway/MistAway/meshable/HouseLynx1.yml" title="HouseLynx1.yml" tooltip="meshable/HouseLynx1.yml" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/meshable/HouseLynx1.yml"/>
 </editor>
 <editor id="org.python.pydev.editor.PythonEditor" name="Testing.py" partName="Testing" path="C:/Users/Lewis/Dropbox/Dia releases/9_projects/MistAway/meshable/custom_devices/Testing.py" title="Testing" tooltip="meshable/custom_devices/Testing.py" workbook="DefaultEditorWorkbook">
@@ -107,32 +107,18 @@
 </view>
 <view id="org.eclipse.tm.terminal.view.TerminalView" partName="Terminal 1">
 <viewState ConnectionType="org.eclipse.tm.internal.terminal.telnet.TelnetConnector" Title="Terminal 1" _keys_="ConnectionType,Title,connectionManageractive,connectionManagerconnection0ConnectionType,connectionManagerconnection0HasCommandInputField,connectionManagerconnection0PartName,connectionManagerconnection0Summary,connectionManagerconnection0org.eclipse.tm.internal.terminal.ssh.SshConnector.Host,connectionManagerconnection0org.eclipse.tm.internal.terminal.ssh.SshConnector.Keepalive,connectionManagerconnection0org.eclipse.tm.internal.terminal.ssh.SshConnector.Port,connectionManagerconnection0org.eclipse.tm.internal.terminal.ssh.SshConnector.Timeout,connectionManagerconnection0org.eclipse.tm.internal.terminal.ssh.SshConnector.User,connectionManagerconnection0org.eclipse.tm.internal.terminal.telnet.TelnetConnector.Host,connectionManagerconnection0org.eclipse.tm.internal.terminal.telnet.TelnetConnector.NetworkPort,connectionManagerconnection0org.eclipse.tm.internal.terminal.telnet.TelnetConnector.Timeout,connectionManagersize,org.eclipse.tm.internal.terminal.ssh.SshConnector.Host,org.eclipse.tm.internal.terminal.ssh.SshConnector.Keepalive,org.eclipse.tm.internal.terminal.ssh.SshConnector.Port,org.eclipse.tm.internal.terminal.ssh.SshConnector.Timeout,org.eclipse.tm.internal.terminal.ssh.SshConnector.User,org.eclipse.tm.internal.terminal.telnet.TelnetConnector.Host,org.eclipse.tm.internal.terminal.telnet.TelnetConnector.NetworkPort,org.eclipse.tm.internal.terminal.telnet.TelnetConnector.Timeout" connectionManageractive="connection0" connectionManagerconnection0ConnectionType="org.eclipse.tm.internal.terminal.telnet.TelnetConnector" connectionManagerconnection0HasCommandInputField="false" connectionManagerconnection0PartName="Terminal 1" connectionManagerconnection0Summary="172.16.3.159:23" connectionManagersize="1">
-<connectionManagerconnection0org>
-<eclipse>
-<tm>
-<internal>
-<terminal>
-<ssh>
-<SshConnector Host="10.1.10.62" Keepalive="300" Port="22" Timeout="5" User="python"/>
+<connectionManagerconnection0org>&#x0A;<eclipse>&#x0A;<tm>&#x0A;<internal>&#x0A;<terminal>&#x0A;<ssh>&#x0A;<SshConnector Host="10.1.10.62" Keepalive="300" Port="22" Timeout="5" User="python"/>
 </ssh>
-<telnet>
-<TelnetConnector Host="172.16.3.159" NetworkPort="23" Timeout="10"/>
+<telnet>&#x0A;<TelnetConnector Host="172.16.3.159" NetworkPort="23" Timeout="10"/>
 </telnet>
 </terminal>
 </internal>
 </tm>
 </eclipse>
 </connectionManagerconnection0org>
-<org>
-<eclipse>
-<tm>
-<internal>
-<terminal>
-<ssh>
-<SshConnector Host="10.1.10.62" Keepalive="300" Port="22" Timeout="5" User="python"/>
+<org>&#x0A;<eclipse>&#x0A;<tm>&#x0A;<internal>&#x0A;<terminal>&#x0A;<ssh>&#x0A;<SshConnector Host="10.1.10.62" Keepalive="300" Port="22" Timeout="5" User="python"/>
 </ssh>
-<telnet>
-<TelnetConnector Host="172.16.3.159" NetworkPort="23" Timeout="10"/>
+<telnet>&#x0A;<TelnetConnector Host="172.16.3.159" NetworkPort="23" Timeout="10"/>
 </telnet>
 </terminal>
 </internal>
@@ -176,6 +162,10 @@
 </view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
+<expanded>
+<category IMemento.internal.id="Warnings (1 item)"/>
+<category IMemento.internal.id="Errors"/>
+</expanded>
 <columnWidths org.eclipse.ui.ide.locationField="90" org.eclipse.ui.ide.markerType="90" org.eclipse.ui.ide.pathField="120" org.eclipse.ui.ide.resourceField="90" org.eclipse.ui.ide.severityAndDescriptionField="652"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
@@ -385,13 +375,8 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/meshable/custom_devices/MistAway_Controller_updated_Dia2.py"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/meshable/custom_devices/test.py"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.digi.dpdev.ui.editors.YMLSmartEditor" path="/meshable/HouseLynx1.yml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/meshable/custom_devices/MistAway_Controller_updated_Dia2.py"/>
 </editors>
-<item historyLabel="MistAway_Controller_updated_Dia2" index="0">
-<position info="not_deleted" x="93811" y="0"/>
-</item>
-<item historyLabel="MistAway_Controller_updated_Dia2" index="0">
-<position info="not_deleted" x="92986" y="1"/>
-</item>
 <item historyLabel="HouseLynx1.yml" index="1"/>
 <item historyLabel="MistAway_Controller_updated_Dia2" index="0">
 <position info="not_deleted" x="92986" y="1"/>
@@ -496,6 +481,10 @@
 <item historyLabel="HouseLynx1.yml" index="1"/>
 <item historyLabel="MistAway_Controller_updated_Dia2" index="3">
 <position info="not_deleted" x="72776" y="0"/>
+</item>
+<item historyLabel="HouseLynx1.yml" index="5"/>
+<item historyLabel="MistAway_Controller_updated_Dia2" index="6">
+<position info="not_deleted" x="85206" y="0"/>
 </item>
 <item active="true" historyLabel="HouseLynx1.yml" index="5"/>
 </navigationHistory>
