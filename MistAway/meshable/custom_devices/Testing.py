@@ -1,4 +1,31 @@
-import urllib
+
+
+import MySQLdb 
+
+myDB = MySQLdb.connect(host="ec2-50-16-188-172.compute-1.amazonaws.com", port=3306, user="dane", passwd="WjDPqJPIl40c")
+
+db=myDB.cursor()
+db.execute("USE mistaway_channels")
+db.execute("SHOW TABLES")
+tables = db.fetchall()
+
+for (table_name,) in db:
+        print(table_name)
+
+
+
+#results=cHandler.fetchall()
+#print "=========================", "<br>"
+#for items in results:
+#   print items[0]
+
+
+
+
+
+
+
+"""import urllib
 
 
 
@@ -20,7 +47,6 @@ s = f.read()
 print s
 
 
-"""
 listenting on 2 ports 
 AES 128 bit set up
 key has been shared semetric key
