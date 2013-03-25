@@ -12,7 +12,6 @@ from devices.device_base import DeviceBase
 from devices.xbee.xbee_devices.xbee_base import XBeeBase
 from settings.settings_base import SettingsBase, Setting
 from channels.channel_source_device_property import *
-from rci import process_request
 
 from settings.settings_base import SettingsBase, Setting
 from presentations.presentation_base import PresentationBase
@@ -329,28 +328,24 @@ class Uploader(PresentationBase, threading.Thread):
 
     def run(self):
         
-        try:
+        #self.my_queue = Queue.Queue(maxsize=5)
+        print "queue in uploader started"
         
-            #self.my_queue = Queue.Queue(maxsize=5)
-            print "queue in uploader started"
+        while True:
+    
+            #msg = self.my_queue.get()
             
-            while True:
-        
-                #msg = self.my_queue.get()
-                
-                if self.send == True:
-                    #if self.sending == False:
-                    #if self.upload_lock.acquire(0) == False:
-                        #time.sleep(3)
-                        #continue
-                    self.__upload_data()
-                    #self.upload_lock.release()
-                    self.send = False
-                    time.sleep(3)
-                else:
-                    time.sleep(5)
-        except:
-            process_request('<rci_request><reboot /></rci_request>')
+            if self.send == True:
+                #if self.sending == False:
+                #if self.upload_lock.acquire(0) == False:
+                    #time.sleep(3)
+                    #continue
+                self.__upload_data()
+                #self.upload_lock.release()
+                self.send = False
+                time.sleep(3)
+            else:
+                time.sleep(5)
                 
                     
             

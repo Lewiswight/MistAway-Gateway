@@ -10257,3 +10257,103 @@ java.lang.NumberFormatException: For input string: "0 (lewis wight's conflicted 
 	at com.python.pydev.analysis.builder.AbstractAnalysisBuilderRunnable.run(AbstractAnalysisBuilderRunnable.java:156)
 	at org.python.pydev.core.concurrency.RunnableAsJobsPoolThread$1.run(RunnableAsJobsPoolThread.java:103)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.python.pydev.core 4 4 2013-03-25 10:13:49.278
+!MESSAGE For input string: "0 (lewis wight's conflicted copy 2012-12-23)"
+!STACK 0
+java.lang.NumberFormatException: For input string: "0 (lewis wight's conflicted copy 2012-12-23)"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:48)
+	at java.lang.Integer.parseInt(Integer.java:458)
+	at java.lang.Integer.<init>(Integer.java:660)
+	at org.python.pydev.core.DeltaSaver$1.compare(DeltaSaver.java:223)
+	at org.python.pydev.core.DeltaSaver$1.compare(DeltaSaver.java:1)
+	at java.util.Arrays.mergeSort(Arrays.java:1270)
+	at java.util.Arrays.mergeSort(Arrays.java:1281)
+	at java.util.Arrays.sort(Arrays.java:1210)
+	at java.util.Collections.sort(Collections.java:157)
+	at org.python.pydev.core.DeltaSaver.findDeltas(DeltaSaver.java:218)
+	at org.python.pydev.core.DeltaSaver.loadDeltas(DeltaSaver.java:190)
+	at org.python.pydev.core.DeltaSaver.<init>(DeltaSaver.java:169)
+	at com.python.pydev.analysis.additionalinfo.AbstractAdditionalInfoWithBuild.createDeltaSaver(AbstractAdditionalInfoWithBuild.java:99)
+	at com.python.pydev.analysis.additionalinfo.AbstractAdditionalInfoWithBuild.init(AbstractAdditionalInfoWithBuild.java:38)
+	at com.python.pydev.analysis.additionalinfo.AdditionalProjectInterpreterInfo.<init>(AdditionalProjectInterpreterInfo.java:78)
+	at com.python.pydev.analysis.additionalinfo.AdditionalProjectInterpreterInfo.getAdditionalInfoForProject(AdditionalProjectInterpreterInfo.java:205)
+	at com.python.pydev.analysis.builder.AnalysisBuilderRunnable.doAnalysis(AnalysisBuilderRunnable.java:158)
+	at com.python.pydev.analysis.builder.AbstractAnalysisBuilderRunnable.run(AbstractAnalysisBuilderRunnable.java:156)
+	at org.python.pydev.core.concurrency.RunnableAsJobsPoolThread$1.run(RunnableAsJobsPoolThread.java:103)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.python.pydev.core 4 4 2013-03-25 10:14:39.344
+!MESSAGE For input string: "0 (lewis wight's conflicted copy 2012-12-23)"
+!STACK 0
+java.lang.NumberFormatException: For input string: "0 (lewis wight's conflicted copy 2012-12-23)"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:48)
+	at java.lang.Integer.parseInt(Integer.java:458)
+	at java.lang.Integer.<init>(Integer.java:660)
+	at org.python.pydev.core.DeltaSaver$1.compare(DeltaSaver.java:223)
+	at org.python.pydev.core.DeltaSaver$1.compare(DeltaSaver.java:1)
+	at java.util.Arrays.mergeSort(Arrays.java:1270)
+	at java.util.Arrays.mergeSort(Arrays.java:1281)
+	at java.util.Arrays.sort(Arrays.java:1210)
+	at java.util.Collections.sort(Collections.java:157)
+	at org.python.pydev.core.DeltaSaver.findDeltas(DeltaSaver.java:218)
+	at org.python.pydev.core.DeltaSaver.loadDeltas(DeltaSaver.java:190)
+	at org.python.pydev.core.DeltaSaver.<init>(DeltaSaver.java:169)
+	at com.python.pydev.analysis.additionalinfo.AbstractAdditionalInfoWithBuild.createDeltaSaver(AbstractAdditionalInfoWithBuild.java:99)
+	at com.python.pydev.analysis.additionalinfo.AbstractAdditionalInfoWithBuild.init(AbstractAdditionalInfoWithBuild.java:38)
+	at com.python.pydev.analysis.additionalinfo.AdditionalProjectInterpreterInfo.<init>(AdditionalProjectInterpreterInfo.java:78)
+	at com.python.pydev.analysis.additionalinfo.AdditionalProjectInterpreterInfo.getAdditionalInfoForProject(AdditionalProjectInterpreterInfo.java:205)
+	at com.python.pydev.analysis.builder.AnalysisBuilderRunnable.doAnalysis(AnalysisBuilderRunnable.java:158)
+	at com.python.pydev.analysis.builder.AbstractAnalysisBuilderRunnable.run(AbstractAnalysisBuilderRunnable.java:156)
+	at org.python.pydev.core.concurrency.RunnableAsJobsPoolThread$1.run(RunnableAsJobsPoolThread.java:103)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.python.pydev.core 4 4 2013-03-25 10:20:21.152
+!MESSAGE For input string: "0 (lewis wight's conflicted copy 2012-12-23)"
+!STACK 0
+java.lang.NumberFormatException: For input string: "0 (lewis wight's conflicted copy 2012-12-23)"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:48)
+	at java.lang.Integer.parseInt(Integer.java:458)
+	at java.lang.Integer.<init>(Integer.java:660)
+	at org.python.pydev.core.DeltaSaver$1.compare(DeltaSaver.java:223)
+	at org.python.pydev.core.DeltaSaver$1.compare(DeltaSaver.java:1)
+	at java.util.Arrays.mergeSort(Arrays.java:1270)
+	at java.util.Arrays.mergeSort(Arrays.java:1281)
+	at java.util.Arrays.sort(Arrays.java:1210)
+	at java.util.Collections.sort(Collections.java:157)
+	at org.python.pydev.core.DeltaSaver.findDeltas(DeltaSaver.java:218)
+	at org.python.pydev.core.DeltaSaver.loadDeltas(DeltaSaver.java:190)
+	at org.python.pydev.core.DeltaSaver.<init>(DeltaSaver.java:169)
+	at com.python.pydev.analysis.additionalinfo.AbstractAdditionalInfoWithBuild.createDeltaSaver(AbstractAdditionalInfoWithBuild.java:99)
+	at com.python.pydev.analysis.additionalinfo.AbstractAdditionalInfoWithBuild.init(AbstractAdditionalInfoWithBuild.java:38)
+	at com.python.pydev.analysis.additionalinfo.AdditionalProjectInterpreterInfo.<init>(AdditionalProjectInterpreterInfo.java:78)
+	at com.python.pydev.analysis.additionalinfo.AdditionalProjectInterpreterInfo.getAdditionalInfoForProject(AdditionalProjectInterpreterInfo.java:205)
+	at com.python.pydev.analysis.builder.AnalysisBuilderRunnable.doAnalysis(AnalysisBuilderRunnable.java:158)
+	at com.python.pydev.analysis.builder.AbstractAnalysisBuilderRunnable.run(AbstractAnalysisBuilderRunnable.java:156)
+	at org.python.pydev.core.concurrency.RunnableAsJobsPoolThread$1.run(RunnableAsJobsPoolThread.java:103)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.python.pydev.core 4 4 2013-03-25 10:20:41.657
+!MESSAGE For input string: "0 (lewis wight's conflicted copy 2012-12-23)"
+!STACK 0
+java.lang.NumberFormatException: For input string: "0 (lewis wight's conflicted copy 2012-12-23)"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:48)
+	at java.lang.Integer.parseInt(Integer.java:458)
+	at java.lang.Integer.<init>(Integer.java:660)
+	at org.python.pydev.core.DeltaSaver$1.compare(DeltaSaver.java:223)
+	at org.python.pydev.core.DeltaSaver$1.compare(DeltaSaver.java:1)
+	at java.util.Arrays.mergeSort(Arrays.java:1270)
+	at java.util.Arrays.mergeSort(Arrays.java:1281)
+	at java.util.Arrays.sort(Arrays.java:1210)
+	at java.util.Collections.sort(Collections.java:157)
+	at org.python.pydev.core.DeltaSaver.findDeltas(DeltaSaver.java:218)
+	at org.python.pydev.core.DeltaSaver.loadDeltas(DeltaSaver.java:190)
+	at org.python.pydev.core.DeltaSaver.<init>(DeltaSaver.java:169)
+	at com.python.pydev.analysis.additionalinfo.AbstractAdditionalInfoWithBuild.createDeltaSaver(AbstractAdditionalInfoWithBuild.java:99)
+	at com.python.pydev.analysis.additionalinfo.AbstractAdditionalInfoWithBuild.init(AbstractAdditionalInfoWithBuild.java:38)
+	at com.python.pydev.analysis.additionalinfo.AdditionalProjectInterpreterInfo.<init>(AdditionalProjectInterpreterInfo.java:78)
+	at com.python.pydev.analysis.additionalinfo.AdditionalProjectInterpreterInfo.getAdditionalInfoForProject(AdditionalProjectInterpreterInfo.java:205)
+	at com.python.pydev.analysis.builder.AnalysisBuilderRunnable.doAnalysis(AnalysisBuilderRunnable.java:158)
+	at com.python.pydev.analysis.builder.AbstractAnalysisBuilderRunnable.run(AbstractAnalysisBuilderRunnable.java:156)
+	at org.python.pydev.core.concurrency.RunnableAsJobsPoolThread$1.run(RunnableAsJobsPoolThread.java:103)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)

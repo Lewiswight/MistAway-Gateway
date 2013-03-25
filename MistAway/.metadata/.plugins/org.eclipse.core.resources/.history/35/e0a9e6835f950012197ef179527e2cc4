@@ -16,7 +16,7 @@ devices:
                 sample_rate_sec: 3600
 
 
-presentations: 
+presentations:
   - name: rci1
     driver: presentations.rci.rci_handler:RCIHandler
     settings: 
@@ -34,3 +34,4 @@ services:
     settings: 
         watchdog_interval: 120
         low_memory_threshold: 40961
+        auto_restart_interval: 174501

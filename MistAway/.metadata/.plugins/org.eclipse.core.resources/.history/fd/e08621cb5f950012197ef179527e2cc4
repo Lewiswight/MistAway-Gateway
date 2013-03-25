@@ -34,3 +34,4 @@ services:
     settings: 
         watchdog_interval: 120
         low_memory_threshold: 40961
+        auto_restart_interval: 174501
