@@ -2,7 +2,7 @@
 <section name="Workbench">
 	<section name="org.eclipse.tm.terminal.view.CONSOLE_CONFIGURATION_DIALOG_SECTION">
 		<item value="97" key="org.eclipse.tm.terminal.view.IP_DIALOG_ORIGIN_Y"/>
-		<item value="-1015" key="org.eclipse.tm.terminal.view.IP_DIALOG_ORIGIN_X"/>
+		<item value="0" key="org.eclipse.tm.terminal.view.IP_DIALOG_ORIGIN_X"/>
 	</section>
 	<section name="org.eclipse.tm.internal.terminal.view.TerminalSettingsDlg">
 		<item value="280" key="DIALOG_WIDTH"/>

@@ -25,7 +25,7 @@ from devices.xbee.xbee_device_manager.xbee_device_manager_event_specs \
 import threading
 from threading import Lock
 import time
-import Queue
+#import Queue
 import cStringIO
 
 import sys
@@ -137,7 +137,8 @@ class Uploader(PresentationBase, threading.Thread):
        self.__xbee_manager = None
        self.filename = "file"
        self.filenumber = 0
-       self.sending = False # True if I'm in the proccess of doing an uplaod
+       self.sending = False 
+       self.send = False# True if I'm in the proccess of doing an uplaod
        #self.upload_lock = Lock() #lock for the upload
 
         # Settings
@@ -294,7 +295,8 @@ class Uploader(PresentationBase, threading.Thread):
         
         
         try:
-            self.my_queue.put(1)
+            self.send = True
+            #self.my_queue.put(1)
         except:
             self.connected += 1
             print "error in sending from repeat function"
@@ -326,19 +328,23 @@ class Uploader(PresentationBase, threading.Thread):
 
     def run(self):
         
-        self.my_queue = Queue.Queue(maxsize=1)
+        #self.my_queue = Queue.Queue(maxsize=5)
         print "queue in uploader started"
         
         while True:
     
-            msg = self.my_queue.get()
-            if msg == 1:
+            #msg = self.my_queue.get()
+            
+            if self.send == True:
                 #if self.sending == False:
                 #if self.upload_lock.acquire(0) == False:
                     #time.sleep(3)
                     #continue
                 self.__upload_data()
                 #self.upload_lock.release()
+                self.send = False
+                time.sleep(3)
+            else:
                 time.sleep(5)
                 
                     
@@ -368,16 +374,16 @@ class Uploader(PresentationBase, threading.Thread):
      #          (self.__name)
     def upload_data(self):
         
-        self.my_queue.put(1)
-        
+        #self.my_queue.put(1)
+        self.send = True
         
     
     def __upload_data(self):
         
-        now_time = time.time()
+        now_time = time.time() - 5
         
         if self.sending == True:
-            self.my_queue.put(1)
+            self.send = True
             return
         
         self.sending = True

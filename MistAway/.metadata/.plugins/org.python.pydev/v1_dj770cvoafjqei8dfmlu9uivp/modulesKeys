@@ -967,7 +967,6 @@ test.xmltests|C:\Python24\Lib\test\xmltests.py
 textwrap|C:\Python24\Lib\textwrap.py
 this|C:\Python24\Lib\this.py
 thread
-threading|C:\Python24\Lib\threading.py
 time
 timeit|C:\Python24\Lib\timeit.py
 timer|C:\Python24\Lib\site-packages\win32\timer.pyd
@@ -983,7 +982,6 @@ toaiff|C:\Python24\Lib\toaiff.py
 token|C:\Python24\Lib\token.py
 tokenize|C:\Python24\Lib\tokenize.py
 trace|C:\Python24\Lib\trace.py
-traceback|C:\Python24\Lib\traceback.py
 tty|C:\Python24\Lib\tty.py
 turtle|C:\Python24\Lib\lib-tk\turtle.py
 types|C:\Python24\Lib\types.py

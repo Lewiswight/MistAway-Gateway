@@ -235,14 +235,14 @@ class XBeeSerialTerminal(XBeeSerial):
                          #mist away firmware version
              
              ChannelSourceDeviceProperty(name="GWF", type=str,
-                initial=Sample(timestamp=time.time(), unit="", value="2013-03-13 v1"),
+                initial=Sample(timestamp=time.time(), unit="", value="2013-03-22 v1"),
                 perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
                          
                          #gateway firmware
              
              
              ChannelSourceDeviceProperty(name="last_com", type=str,
-                initial=Sample(timestamp=0, unit="", value=""),
+                initial=Sample(timestamp=time.time(), unit="", value=""),
                 perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
              
              #last com from controller
@@ -1238,8 +1238,6 @@ class XBeeSerialTerminal(XBeeSerial):
                 options=DPROP_OPT_AUTOTIMESTAMP,
                 set_cb=lambda x: self.get("g", x)),
             
-           
-            
             ChannelSourceDeviceProperty(name="r", type=str,
                 initial=Sample(timestamp=0, unit="", value="not_set"),
                 perms_mask=(DPROP_PERM_GET|DPROP_PERM_SET),
@@ -1509,8 +1507,20 @@ class XBeeSerialTerminal(XBeeSerial):
         try:
         
             while True:
-                time.sleep(1800)
+                
                 print "update loop running!!"
+                time.sleep(1800)
+                
+                last_time = self.property_get("last_com").timestamp
+                time_dif =  time.time() - int(last_time)
+                
+                if time_dif > 7000:
+                    print "restarting!!!! look out!!"
+                    time.sleep(2)
+                    process_request('<rci_request><reboot /></rci_request>')
+                    
+                
+                
                   
                 if self.fwu == 0:    
                     self.serial_send("g=6,")
@@ -1529,14 +1539,14 @@ class XBeeSerialTerminal(XBeeSerial):
     def update(self):
         
         
-        if self.__event_timer2 is not None:
+        """if self.__event_timer2 is not None:
             try:
                 self.__xbee_manager.xbee_device_schedule_cancel(
                     self.__event_timer2)
             except:
                 pass
             
-        self.__event_timer2 = self.__xbee_manager.xbee_device_schedule_after(3600, self.update)
+        self.__event_timer2 = self.__xbee_manager.xbee_device_schedule_after(3600, self.update)"""
         """
             Request the latest data from the device.
         """   
@@ -1900,7 +1910,7 @@ class XBeeSerialTerminal(XBeeSerial):
     		
             if r == "M":
                 self.serial_send("r=M,")
-                self.property_set("LM", Sample(0, value="Last_Mist", unit=""))
+                #self.property_set("LM", Sample(0, value="Last_Mist", unit=""))
             elif r == "FSP":
                 self.serial_send("p=FLT,")
                 time.sleep(3)
@@ -1968,7 +1978,7 @@ class XBeeSerialTerminal(XBeeSerial):
         
         #time.sleep(10)
         
-        self.check_up()
+        #self.check_up()
         
         
         
@@ -1985,6 +1995,9 @@ class XBeeSerialTerminal(XBeeSerial):
 
 
         self.property_set("serialReceive", Sample(0, buf, ""))
+        
+        if buf.startswith("?") or buf.endswith("?"):
+            return
         
         if self.listen == False:
             return
@@ -2308,7 +2321,10 @@ class XBeeSerialTerminal(XBeeSerial):
     
     def status_update(self):
         
-        
+        if self.event_timer_status == None:
+                
+            self.event_timer_status = self.__xbee_manager.xbee_device_schedule_after(30, self.status_update)
+            return
         
         print "in the status update now"
         
@@ -2330,6 +2346,7 @@ class XBeeSerialTerminal(XBeeSerial):
             self.serial_send("p=SS,")
         else:
             self.status_checking = False
+            self.event_timer_status = None
         
         
         

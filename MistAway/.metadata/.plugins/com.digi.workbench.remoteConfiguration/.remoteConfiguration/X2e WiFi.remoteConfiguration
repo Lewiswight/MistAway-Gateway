@@ -3,6 +3,10 @@
 <intAttribute key="com.digi.workbench.remoteConfiguration.DPDev.TCP_TIMEOUT" value="5"/>
 <intAttribute key="com.digi.workbench.remoteConfiguration.DPDev.SSH_PORT" value="22"/>
 <stringAttribute key="com.digi.workbench.remoteConfiguration.DPDev.X3_COM_PORT" value="None"/>
+<<<<<<< HEAD
+=======
+<stringAttribute key="com.digi.workbench.remoteConfiguration.DPDev.DEVICE_TYPE" value="ConnectPort X2"/>
+>>>>>>> Dev-Bracnh-March-11th
 <booleanAttribute key="com.digi.workbench.remoteConfiguration.DPDev.CW_IP_SELECTION" value="false"/>
 <stringAttribute key="com.digi.workbench.remoteConfiguration.DPDev.DEVICE_TYPE" value="ConnectPort X2"/>
 <booleanAttribute key="com.digi.workbench.remoteConfiguration.DPDev.IP_SELECTION" value="false"/>
@@ -14,7 +18,7 @@
 <stringAttribute key="com.digi.workbench.remoteConfiguration.DPDev.TELNET_PASS" value="dbps"/>
 <booleanAttribute key="com.digi.workbench.remoteConfiguration.DPDev.VALIDATE_CONNECTION" value="true"/>
 <booleanAttribute key="com.digi.workbench.remoteConfiguration.DPDev.TELNET_REQUIRES_LOGIN" value="true"/>
-<stringAttribute key="com.digi.workbench.remoteConfiguration.DPDev.HOST_NAME" value="172.16.4.63"/>
+<stringAttribute key="com.digi.workbench.remoteConfiguration.DPDev.HOST_NAME" value="172.16.4.116"/>
 <stringAttribute key="dummyL" value="false"/>
 <stringAttribute key="dummyP" value="false"/>
 <stringAttribute key="com.digi.workbench.remoteConfiguration.DPDev.CW_DEVICE_ID" value="00000000-00000000-00409DFF-FF3F2E03"/>

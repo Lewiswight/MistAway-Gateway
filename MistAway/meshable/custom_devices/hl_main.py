@@ -234,7 +234,7 @@ class hl_main(DeviceBase, threading.Thread):
             except:
                 pass
             
-        self.__event_timer_offest = self.__xbee_manager.xbee_device_schedule_after(300, self.time_offest)
+        self.__event_timer_offest = self.__xbee_manager.xbee_device_schedule_after(1800, self.time_offest)
     
 
         url = "http://devbuildinglynx.apphb.com/api/gateway?macaddressForTimezone=" + MAC
