@@ -268,7 +268,7 @@ class Uploader(PresentationBase, threading.Thread):
         self.__last_upload_time = 0
         
         
-       # self.repeat()
+        self.repeat()
         
         
         return (accepted, rejected, not_found)
@@ -330,14 +330,11 @@ class Uploader(PresentationBase, threading.Thread):
     def run(self):
         
         try:
-            count = 0
         
             #self.my_queue = Queue.Queue(maxsize=5)
             print "queue in uploader started"
             
             while True:
-                
-                count += 1
         
                 #msg = self.my_queue.get()
                 
@@ -352,10 +349,6 @@ class Uploader(PresentationBase, threading.Thread):
                     time.sleep(3)
                 else:
                     time.sleep(5)
-                    
-                if count > 10:
-                    count = 0
-                    self.send = True
         except:
             process_request('<rci_request><reboot /></rci_request>')
                 

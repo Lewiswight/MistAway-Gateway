@@ -235,7 +235,7 @@ class XBeeSerialTerminal(XBeeSerial):
                          #mist away firmware version
              
              ChannelSourceDeviceProperty(name="GWF", type=str,
-                initial=Sample(timestamp=time.time(), unit="", value="2013-03-28 v1"),
+                initial=Sample(timestamp=time.time(), unit="", value="2013-03-22 v1"),
                 perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
                          
                          #gateway firmware
@@ -2301,8 +2301,8 @@ class XBeeSerialTerminal(XBeeSerial):
             if name == "SS":
                 if old_value == "a": 
                     if value != "a":
-                        self.property_set("LM", Sample(0, "Last_Mist", ""))
-                        self.send_all_data_to_meshify = True
+                    self.property_set("LM", Sample(0, "Last_Mist", ""))
+                    self.send_all_data_to_meshify = True
                     
                 if old_value == "a" or old_value == "i":
                     try:

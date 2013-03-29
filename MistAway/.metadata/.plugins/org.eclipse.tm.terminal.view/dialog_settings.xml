@@ -5,10 +5,10 @@
 		<item value="0" key="org.eclipse.tm.terminal.view.IP_DIALOG_ORIGIN_X"/>
 	</section>
 	<section name="org.eclipse.tm.internal.terminal.view.TerminalSettingsDlg">
-		<item value="280" key="DIALOG_WIDTH"/>
+		<item value="315" key="DIALOG_WIDTH"/>
 		<item value="95" key="DIALOG_Y_ORIGIN"/>
-		<item value="420" key="DIALOG_HEIGHT"/>
+		<item value="421" key="DIALOG_HEIGHT"/>
 		<item value="429" key="DIALOG_X_ORIGIN"/>
-		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+		<item value="1|Lucida Grande|11.0|0|COCOA|1|LucidaGrande" key="DIALOG_FONT_NAME"/>
 	</section>
 </section>

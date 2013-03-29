@@ -268,7 +268,7 @@ class Uploader(PresentationBase, threading.Thread):
         self.__last_upload_time = 0
         
         
-       # self.repeat()
+        self.repeat()
         
         
         return (accepted, rejected, not_found)

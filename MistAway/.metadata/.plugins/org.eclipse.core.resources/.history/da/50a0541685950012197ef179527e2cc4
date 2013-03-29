@@ -25,7 +25,7 @@ presentations:
   - name: Uploader
     driver: custom_presentations.presentations.idigi_db.MistAwayUpload2:Uploader
     settings: 
-        interval: 30
+        interval: 120
         sample_threshold: 10
 
 services: 

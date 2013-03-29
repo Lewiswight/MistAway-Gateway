@@ -235,7 +235,7 @@ class XBeeSerialTerminal(XBeeSerial):
                          #mist away firmware version
              
              ChannelSourceDeviceProperty(name="GWF", type=str,
-                initial=Sample(timestamp=time.time(), unit="", value="2013-03-28 v1"),
+                initial=Sample(timestamp=time.time(), unit="", value="2013-03-27 v1"),
                 perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
                          
                          #gateway firmware

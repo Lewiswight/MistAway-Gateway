@@ -14,7 +14,7 @@
 <stringAttribute key="com.digi.workbench.remoteConfiguration.DPDev.TELNET_PASS" value="dbps"/>
 <booleanAttribute key="com.digi.workbench.remoteConfiguration.DPDev.VALIDATE_CONNECTION" value="true"/>
 <booleanAttribute key="com.digi.workbench.remoteConfiguration.DPDev.TELNET_REQUIRES_LOGIN" value="true"/>
-<stringAttribute key="com.digi.workbench.remoteConfiguration.DPDev.HOST_NAME" value="172.16.6.73"/>
+<stringAttribute key="com.digi.workbench.remoteConfiguration.DPDev.HOST_NAME" value="172.16.9.173"/>
 <stringAttribute key="dummyL" value="false"/>
 <stringAttribute key="dummyP" value="false"/>
 <stringAttribute key="com.digi.workbench.remoteConfiguration.DPDev.CW_DEVICE_ID" value="00000000-00000000-00409DFF-FF4584E9"/>
