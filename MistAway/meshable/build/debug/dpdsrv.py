@@ -1,7 +1,7 @@
 #####################################################################
 # Automatically generated file
 # Don't edit this file
-# Created on: 28 March 2013
+# Created on: 28 June 2013
 #####################################################################
 
 import threading
@@ -10,7 +10,7 @@ import sys, os
 sys.path.insert(0, os.path.join(os.path.abspath('.'), 'dpdebug.zip'))
 
 import pydevd
-pydevd.settrace('172.16.178.1', stdoutToServer=False, stderrToServer=False, suspend=False, trace_only_current_thread=False)
+pydevd.settrace('172.16.4.0', stdoutToServer=False, stderrToServer=False, suspend=False, trace_only_current_thread=False)
 threading.settrace(pydevd.GetGlobalDebugger().trace_dispatch)
 
 print "Debugging Dia framework ...\r\n"

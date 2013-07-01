@@ -47,7 +47,7 @@ class XBeeSerialTerminal(XBeeSerial):
         self.sched = 0
         self.w_retry = 0
         self.timer_c = 0
-        self.main_addr = "main_" + gw_extended_address()
+        self.main_addr = "mainMistaway_" + gw_extended_address()
         self.last_temp = 0
         
 
@@ -460,43 +460,21 @@ class XBeeSerialTerminal(XBeeSerial):
         return (accepted, rejected, not_found)
     def start(self):
 
-        # Fetch the XBee Manager name from the Settings Manager:
         xbee_manager_name = SettingsBase.get_setting(self, "xbee_device_manager")
         dm = self.__core.get_service("device_driver_manager")
         self.__xbee_manager = dm.instance_get(xbee_manager_name)
-
-        # Register ourselves with the XBee Device Manager instance:
-        self.__xbee_manager.xbee_device_register(self)
-
-        # Get the extended address of the device:
-        extended_address = SettingsBase.get_setting(self, "extended_address")
-
-        #register a callback for when the config is done
-        xb_rdy_state_spec = XBeeDeviceManagerRunningEventSpec()
-        xb_rdy_state_spec.cb_set(self._config_done_cb)
-        self.__xbee_manager.xbee_device_event_spec_add(self, xb_rdy_state_spec)
         
-        # Create a DDO configuration block for this device:
-        xbee_ddo_cfg = XBeeConfigBlockDDO(extended_address)
-
-        # Call the XBeeSerial function to add the initial set up of our device.
-        # This will set up the destination address of the devidce, and also set
-        # the default baud rate, parity, stop bits and flow control.
-        XBeeSerial.initialize_xbee_serial(self, xbee_ddo_cfg)
-
-        # Register this configuration block with the XBee Device Manager:
-        self.__xbee_manager.xbee_device_config_block_add(self, xbee_ddo_cfg)
-
-        # Indicate that we have no more configuration to add:
-        self.__xbee_manager.xbee_device_configure(self)
+        test = XBeeSerial.start(self)
         
-        self.apply_settings()
-
-        self.reset_stored_values()
-
+        self._config_done_cb()
+        
         self.update()
         
-        return True
+        
+        return test
+
+        #self.reset_stored_values()
+
 
     
     def update(self):

@@ -252,13 +252,22 @@ from common.helpers.format_channels import iso_date
 from channels.channel_database_interface import \
     LOG_SEEK_SET, LOG_SEEK_CUR, LOG_SEEK_END, LOG_SEEK_REC
 from common.dia_proc import get_drivers
-
+from common.digi_device_info import get_device_id
+import websocket
+import thread
 # constants
 ENTITY_MAP = {
     "<": "&lt;",
     ">": "&gt;",
     "&": "&amp;",
 }
+
+MAC = str(get_device_id())  #st
+MAC = MAC.replace("0x0000000000000000", "")
+MAC = MAC.replace("ffff", "")
+MAC = MAC.upper()
+print "Here is the MAC"
+print MAC
 
 # classes
 
@@ -286,6 +295,14 @@ class RCIHandler(PresentationBase):
         self.__name = name
         self.__core = core_services
         self.__thread = None
+        
+        
+        self.websocketCom = False
+        self.retrying = False
+        self.pingy = 0
+        self.reconnecting = 0
+        self.started = False
+        self.ping_loop = False
 
         from core.tracing import get_tracer
         self.__tracer = get_tracer(name)
@@ -302,8 +319,22 @@ class RCIHandler(PresentationBase):
 
     
     
+    def connect(self):
+        
+        time.sleep(5)
+        
+        websocket.enableTrace(False)
+        print "starting webSockets"
+        self.ws = websocket.WebSocketApp("ws://54.225.90.203:9020",
+                                    on_message = self.on_message,
+                                    on_error = self.on_error,
+                                    on_close = self.on_close)
+        self.ws.on_open = self.on_open
+        self.ws.run_forever()
+    
     def start(self):
-        pass
+        thread.start_new_thread(self.connect, ())
+
 
     def stop(self):
         """Stop listening for messages"""
@@ -997,3 +1028,132 @@ class RCIHandler(PresentationBase):
             device_string.write('</device>')
 
         return device_string.getvalue()
+    
+    
+    def send_message(self, msg):
+        print "message from send_message"
+        print msg
+        self.ws.send(msg)
+
+    def on_message(self, ws, message):
+        print message
+ 
+        if message == "pong":
+            self.pingy = 0
+            print "ping success"
+            return
+
+        if message == "not_connected":
+                self.pingy = 0
+                self.websocketCom = False
+                msg = "connect:" + MAC
+                self.ws.send(msg)
+                return
+        if self.websocketCom == False:
+            if message == "connected":
+                self.websocketCom = True
+                self.pingy = 0
+                if self.ping_loop == False:
+                    thread.start_new_thread(self.kickstart, ())
+                
+                return
+            if message == "not_connected":
+                msg = "connect:" + MAC
+                self.ws.send(msg)
+                self.pingy = 0
+                return
+        if self.websocketCom == True:
+            self.pingy = 0
+            self.rci_request(message, self.ws)
+
+    def on_error(self, ws, error):
+        print "there was an error"
+        print error
+        self.pingy = 0
+        self.ws.close()
+        
+        
+        
+    
+    def on_close(self, ws):
+        self.websocketCom = False
+        self.pingy = 0
+        print "### closed ###"
+        if self.reconnecting == 0:
+            thread.start_new_thread(self.reConnect, ())
+    
+    def reConnect(self):
+        self.pingy = 0
+        self.reconnecting = 1
+        try:
+            self.ws.close()
+        except:
+            print "ws couldn't close"
+        while self.websocketCom == False:
+            print "waiting 1 minutes and trying to reconnect"
+            time.sleep(45)
+            try:
+                self.connect()
+            except:
+                pass
+            time.sleep(45)
+        
+    
+    def connectWs(self):
+        print "starting handshake"
+        retrys = 0
+        while self.websocketCom == False:
+            msg = "connect:" + MAC
+            self.ws.send(msg)
+            time.sleep(10)
+            retrys += 1
+            if retrys > 10:
+                self.ws.close()
+                self.pingy = 0
+                self.websocketCom = False
+                thread.start_new_thread(self.reConnect, ())
+                return
+                
+       
+        
+    
+    def pinging(self):
+        
+        try:
+        #if self.websocketCom == True:
+            self.ws.send("ping")
+        except:
+            self.pingy = 1
+            print "could not send ping"
+        
+        if self.pingy == 1:
+            self.ws.close()
+            self.websocketCom = False
+            if self.reconnecting == 0:
+                thread.start_new_thread(self.reConnect, ())
+                self.pingy = 0
+            return
+        
+        try:
+        #if self.websocketCom == True:
+            self.pingy = 1
+            self.ws.send("ping")
+        except:
+            self.pingy = 1
+            print "could net send ping"
+        
+    
+    def on_open(self, ws):
+        self.reconnecting = 0
+        self.retrying = False
+        thread.start_new_thread(self.connectWs, ())
+        
+        
+    def kickstart(self):
+        self.ping_loop = True
+        while True:
+            try:
+                self.pinging()
+            except:
+                print "error pinging"
+            time.sleep(120)

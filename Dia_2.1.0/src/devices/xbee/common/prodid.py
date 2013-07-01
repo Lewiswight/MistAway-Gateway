@@ -160,6 +160,7 @@ MISTAWAY_CONTROLLER_MC3Z        = 0X0402
 MISTAWAY_CONTROLLER_MC1         = 0X0403
 MISTAWAY_CONTROLLER_MC1Z        = 0X0404
 
+SMARTOES_24CT                   = 0x0601
 
 PROD_NAME_MAP = {
 
@@ -172,11 +173,11 @@ PROD_NAME_MAP = {
     MISTAWAY_CONTROLLER_MC3Z: "mc3z",
     MISTAWAY_CONTROLLER_MC1: "mc13",
     MISTAWAY_CONTROLLER_MC1Z: "mc13z",
-    RCS_THERMOSTAT: "Houselynx Thermsotat",
+    RCS_THERMOSTAT: "thermostat",
     HOUSE_LYNX_VENT: "Houselynx Smart Vent",
-    SERIAL_TEMP: "Houselynx Serial Temp",
+    SERIAL_TEMP: "temp",
     DHW: "Domestic Hot Water Sensor",
-    ARTS_GATE: "Art's front gate",
+    ARTS_GATE: "gate",
     PROD_DIGI_CPX8: "Digi ConnectPort X8",
     PROD_DIGI_CPX4: "Digi ConnectPort X4",
     PROD_DIGI_CPX2: "Digi ConnectPort X2",
@@ -184,7 +185,7 @@ PROD_NAME_MAP = {
     PROD_DIGI_XB_ADAPTER_RS232: "Digi XBee RS-232 Adapter",
     PROD_DIGI_XB_ADAPTER_RS485: "Digi XBee RS-485 Adapter",
     PROD_DIGI_XB_ADAPTER_SENSOR: "Digi XBee Sensor (1-wire) Adapter",
-    PROD_DIGI_XB_WALL_ROUTER: "Digi XBee Wall Router",
+    PROD_DIGI_XB_WALL_ROUTER: "router",
     PROD_DIGI_XB_RS232_PH: "Digi RS-232 Power Harvester Adapter",
     PROD_DIGI_XB_ADAPTER_DIO: "Digi XBee Digital I/O Adapter",
     PROD_DIGI_XB_ADAPTER_AIO: "Digi XBee Analog I/O Adapter",

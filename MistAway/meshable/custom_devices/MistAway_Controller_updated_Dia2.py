@@ -235,7 +235,7 @@ class XBeeSerialTerminal(XBeeSerial):
                          #mist away firmware version
              
              ChannelSourceDeviceProperty(name="GWF", type=str,
-                initial=Sample(timestamp=time.time(), unit="", value="2013-03-28 v1"),
+                initial=Sample(timestamp=time.time() + 30, unit="", value="2013-06-22 Dev 1"),
                 perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
                          
                          #gateway firmware
@@ -409,6 +409,7 @@ class XBeeSerialTerminal(XBeeSerial):
 			#Volume (mL) of Last Mist
 			
 			
+            
             ChannelSourceDeviceProperty(name="AF2", type=str,
                 initial=Sample(timestamp=0, unit="", value=""),
                 perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
@@ -1043,7 +1044,7 @@ class XBeeSerialTerminal(XBeeSerial):
 			# remote agitation duration		 
 						 
 			ChannelSourceDeviceProperty(name="TNK", type=str,
-                initial=Sample(timestamp=0, unit="", value="55"),
+                initial=Sample(timestamp=0, unit="", value="0"),
                 perms_mask=(DPROP_PERM_GET|DPROP_PERM_SET),
                 options=DPROP_OPT_AUTOTIMESTAMP,
                 set_cb=lambda x: self.set("TNK", x)),
@@ -1354,6 +1355,7 @@ class XBeeSerialTerminal(XBeeSerial):
 	    return crc  
     
     def __get_signal(self, register_name, val):
+        val.timestamp = time.time()
         self.property_set(register_name, val)
         self.get_signal()
     
@@ -1393,15 +1395,15 @@ class XBeeSerialTerminal(XBeeSerial):
                     print files
                     file_list.append(files)"""
             try:        
-                self.property_set("FOP1", Sample(0, value=str(file_list[0]), unit=""))
+                self.property_set("FOP1", Sample(time.time(), value=str(file_list[0]), unit=""))
             except:
-                self.property_set("FOP1", Sample(0, value="No File", unit=""))
+                self.property_set("FOP1", Sample(time.time(), value="No File", unit=""))
                 print "didn't find any files"
             try:
-                self.property_set("FOP2", Sample(0, value=str(file_list[1]), unit=""))
+                self.property_set("FOP2", Sample(time.time(), value=str(file_list[1]), unit=""))
                 
             except:
-                self.property_set("FOP2", Sample(0, value="No File", unit=""))
+                self.property_set("FOP2", Sample(time.time(), value="No File", unit=""))
                 print "didn't find second file"
             #except:
                 #print "couldn't get files"
@@ -1445,7 +1447,7 @@ class XBeeSerialTerminal(XBeeSerial):
                     dd = dd
                     print "signal strength ="
                     print dd
-                    self.property_set("signal", Sample(0, value=str(dd), unit=""))
+                    self.property_set("signal", Sample(time.time(), value=str(dd), unit=""))
                     
                     
                     """sv = str(sv)
@@ -1468,7 +1470,7 @@ class XBeeSerialTerminal(XBeeSerial):
                     continue
             
             if i == 5:
-                self.property_set("signal", Sample(0, value="0", unit=""))
+                self.property_set("signal", Sample(time.time(), value="0", unit=""))
                 if send:
                     self.upload.upload_data()
                     
@@ -1503,11 +1505,10 @@ class XBeeSerialTerminal(XBeeSerial):
         
     
     def update_loop(self):
-        
         try:
         
             while True:
-                
+                self.heartBeat()
                 print "update loop running!!"
                 time.sleep(1800)
                 
@@ -1526,6 +1527,7 @@ class XBeeSerialTerminal(XBeeSerial):
                     self.serial_send("g=6,")
                     self.full_update = True
         except:
+            print "rebooting now from MA driver, see ya"
             process_request('<rci_request><reboot /></rci_request>')
                             
                             
@@ -1725,6 +1727,7 @@ class XBeeSerialTerminal(XBeeSerial):
     	#self.list += 1
     	
     	#time.sleep(self.list)
+        val.timestamp = time.time()
     	val.unit = "sec2time"
     	self.property_set(register_name, val)
     	value = val.value
@@ -1755,17 +1758,20 @@ class XBeeSerialTerminal(XBeeSerial):
      	#self.list -= 1
     
     
-    def set_lvl(self, register_name, val):
+    def set_lvl(self, register_name, val, bot=None):
         val.unit = "LVL"
+        val.timestamp = time.time()
         
         old_lvl = self.property_get("LVL").value
         
         if float(val.value) > float(old_lvl):
             print "level increased"
-            self.property_set("LF", Sample(0, value=iso_date(self.current_time_get()), unit=""))
+            self.property_set("LF", Sample(time.time(), value=iso_date(self.current_time_get()), unit=""))
             self.upload.upload_data()
             
-        
+        if int(val.value) > 100:
+            val.value = "100"
+            
         self.property_set(register_name, val)
         
         
@@ -1777,7 +1783,12 @@ class XBeeSerialTerminal(XBeeSerial):
                 time.sleep(3)
                 
         if self.sys_type == 3: 
-            CF = (int(self.property_get("CF").value) * 10)
+            if bot == None:
+                CF = (int(self.property_get("BOT").value) * 295.735)
+            else:
+                CF = bot * 295.735
+            print "here is the CF value"
+            print CF
         else:
             CF = (float(self.property_get("TNK").value) * 3785.41)
             
@@ -1787,7 +1798,7 @@ class XBeeSerialTerminal(XBeeSerial):
         print "here is the ml Value"
         print mlValue
         data = "s(" + register_name + "=" + str(mlValue) + ")"
-         
+        print data
         self.serial_send(data)
         time.sleep(2)
         
@@ -1798,14 +1809,18 @@ class XBeeSerialTerminal(XBeeSerial):
         
         self.upload.upload_data()
         
-       
+    
     
     def set_10ml2oz(self, register_name, val):
         
-        #self.list += 1
+
         
-        #time.sleep(self.list)
+        LVL = self.property_get("LVL").value
         
+        print LVL + " is the value of Level (LVL)"
+        
+        LVL = float(LVL)
+        val.timestamp = time.time()
         val.unit = "10ml2oz"
         self.property_set(register_name, val)
         
@@ -1817,22 +1832,30 @@ class XBeeSerialTerminal(XBeeSerial):
         
         tenthMl = int(tenthMl)
         
+        
         data = "s(" + register_name + "=" + str(tenthMl) + ")"
-         
+        
+        print "here is the BOT data"
+        
+        print data 
+        
         self.serial_send(data)
         
-    
-    
-        #self.list -= 1
-    
-    
+        
+        LVL_ml = (295.735 * oz) * (LVL / 100)
+        LVL_ml = int(LVL_ml)
+        data = "s(" + "LVL" + "=" + str(LVL_ml) + ")"
+        
+        self.serial_send(data)
+        print "level data:"
+        print data
     
     def set_cycle(self, register_name, val):
         
         #self.list += 1
         
         #time.sleep(self.list)
-        
+        val.timestamp = time.time()
         self.property_set(register_name, val)
         
         print val.value
@@ -1849,6 +1872,7 @@ class XBeeSerialTerminal(XBeeSerial):
          #self.list += 1
         
          #time.sleep(self.list)
+         val.timestamp = time.time()
          val.unit = "sec2min"
          new_value = int(val.value) * 60
          
@@ -1866,12 +1890,18 @@ class XBeeSerialTerminal(XBeeSerial):
     	#self.list += 1
     	
     	#time.sleep(self.list)
+        val.timestamp = time.time()
     	
      	self.property_set(register_name, val)
      	print val.value
      	data = "s(" + register_name + "=" + str(val.value) + ")"
      	
      	self.serial_send(data)
+         
+        if register_name == "MD":
+            if self.fwu == 0:    
+                self.serial_send("g=6,")
+                self.full_update = True
      	
      	#self.list -= 1
      	
@@ -1880,6 +1910,7 @@ class XBeeSerialTerminal(XBeeSerial):
     def set_dst(self, register_name, val):
         
         
+         val.timestamp = time.time()
          self.property_set(register_name, val)
          
          value = val.value
@@ -1895,6 +1926,7 @@ class XBeeSerialTerminal(XBeeSerial):
     
     
     def new_update(self, register_name, val):
+        val.timestamp = time.time()
     	
     	self.property_set(register_name, val)
     	
@@ -1994,7 +2026,7 @@ class XBeeSerialTerminal(XBeeSerial):
 
 
 
-        self.property_set("serialReceive", Sample(0, buf, ""))
+        self.property_set("serialReceive", Sample(time.time(), buf, ""))
         
         if buf.startswith("?") or buf.endswith("?"):
             return
@@ -2015,13 +2047,13 @@ class XBeeSerialTerminal(XBeeSerial):
                 print "retry count ="
                 print self.retry_count
                 ere = "retry count =" + str(self.retry_count) + " on line number:" + str(self.line)
-                self.property_set("error", Sample(0, ere, "E"))
+                self.property_set("error", Sample(time.time(), ere, "E"))
                 if self.retry_count > 15:
                 	self.line = 300
                 	self.retry_count = 0
                 	self.error = "error updating firmware. Program quitting"
-                	self.property_set("error", Sample(0, self.error, "E"))
-                	self.property_set("line_number", Sample(0, 300, "line"))
+                	self.property_set("error", Sample(time.time(), self.error, "E"))
+                	self.property_set("line_number", Sample(time.time(), 300, "line"))
             	else:
                     self.send_repeat()
         elif self.fwu == 2:
@@ -2044,7 +2076,7 @@ class XBeeSerialTerminal(XBeeSerial):
                 
                 #on each com string update the timestamp of the last_com channel
                 
-                self.property_set("last_com", Sample(0, value=iso_date(self.current_time_get()), unit=""))
+                self.property_set("last_com", Sample(time.time(), value=iso_date(self.current_time_get()), unit=""))
                 
 
                 self.string = self.string + buf
@@ -2095,7 +2127,7 @@ class XBeeSerialTerminal(XBeeSerial):
                             value = d[i]
                             old_value = None
                             if name == "VER":
-                                self.property_set("VER", Sample(0, str(value), unit=""))
+                                self.property_set("VER", Sample(time.time(), str(value), unit=""))
                             try:
                                 self.set_loop(name, value, old_value)
                             except:
@@ -2132,7 +2164,7 @@ class XBeeSerialTerminal(XBeeSerial):
                         
                         
                         if name == "VER":
-                            self.property_set("VER", Sample(0, str(value), unit=""))
+                            self.property_set("VER", Sample(time.time(), str(value), unit=""))
                             
                         print "old value = " + str(old_value)
                         print "new value = " + str(value)
@@ -2193,7 +2225,7 @@ class XBeeSerialTerminal(XBeeSerial):
             print "setting: " + name + " to: " + value
             
             
-            self.property_set(str(name), Sample(0, str(value), unit=""))
+            self.property_set(str(name), Sample(time.time(), str(value), unit=""))
             if name == "VL":
                 self.send_data_to_meshify = True
              
@@ -2203,7 +2235,7 @@ class XBeeSerialTerminal(XBeeSerial):
              seconds = int(value)
              timeStr = self.sec2time(seconds)
              print "setting: " + name + " to: " + str(timeStr)
-             self.property_set(str(name), Sample(0, str(timeStr), unit="sec2time"))
+             self.property_set(str(name), Sample(time.time(), str(timeStr), unit="sec2time"))
         
         
         elif funct == "LVL":
@@ -2217,30 +2249,32 @@ class XBeeSerialTerminal(XBeeSerial):
                 if int(value) > int(old_value):
                     print "level increased"
                     
-                    self.property_set("LF", Sample(0, value=iso_date(self.current_time_get()), unit=""))
+                    self.property_set("LF", Sample(time.time(), value=iso_date(self.current_time_get()), unit=""))
         
         
         elif funct == "LD":
             if value == "0":
-                self.property_set(str(name), Sample(0, "1", unit="LD"))
+                self.property_set(str(name), Sample(time.time(), "1", unit="LD"))
             if value == "1":
-                self.property_set(str(name), Sample(0, "0", unit="LD"))
+                self.property_set(str(name), Sample(time.time(), "0", unit="LD"))
         
         elif funct == "ST":
             if value == "1":
-                self.property_set(str(name), Sample(0, "Gen 1.3", unit="ST"))
+                self.property_set(str(name), Sample(time.time(), "Gen 1.3", unit="ST"))
             if value == "3":
-                self.property_set(str(name), Sample(0, "Gen 3+", unit="ST"))
+                self.property_set(str(name), Sample(time.time(), "Gen 3+", unit="ST"))
         
         
         elif funct == "10ml2oz":
             ml = int(value)
             oz = self.ml2oz(ml)
             print "setting: " + name + " to: " + str(oz)
-            self.property_set(str(name), Sample(0, str(oz), unit="10ml2oz"))
+            self.property_set(str(name), Sample(time.time(), str(oz), unit="10ml2oz"))
         
         elif funct == "SS2code":
             
+            if value == "s":
+                value1 = "OK (SKIP)"
             if value == "a":
                 value1 = "Misting"
             elif value == "i":
@@ -2267,41 +2301,43 @@ class XBeeSerialTerminal(XBeeSerial):
                 value1 = "Error 7"
             print value1
                  
-            self.property_set(str(name), Sample(0, str(value1), unit="SS2code"))
+            self.property_set(str(name), Sample(time.time(), str(value1), unit="SS2code"))
             print "setting: " + name + " to: " + str(value1)
-            if value1 != "OK" and self.status_checking == False:
-                self.status_update()
+            if value1 == "Misting":
+                self.property_set("LM", Sample(time.time(), "Last_Mist", ""))
+            #if value1 != "OK" and self.status_checking == False:
+                #self.status_update()
         
         elif funct == "tenths2ml":
              val1 = self.tenths2ml(value)
              print "setting: " + name + " to: " + str(val1)
-             self.property_set(str(name), Sample(0, str(val1), unit="tenths2ml"))
+             self.property_set(str(name), Sample(time.time(), str(val1), unit="tenths2ml"))
         
         elif funct == "sec2hour":
             hours1 = self.sec2hour(value)
-            self.property_set(str(name), Sample(0, str(hours1), unit="sec2hour"))
+            self.property_set(str(name), Sample(time.time(), str(hours1), unit="sec2hour"))
         
         elif funct == "tensec2hour":
             hours1 = self.tensec2hour(value)
-            self.property_set(str(name), Sample(0, str(hours1), unit="tensec2hour"))
+            self.property_set(str(name), Sample(time.time(), str(hours1), unit="tensec2hour"))
             
         elif funct == "sec2min":
              min = ( int(value) / 60)
              min = int(min)
              print "setting: " + name + " to: " + str(min)
-             self.property_set(str(name), Sample(0, str(min), unit="sec2min"))
+             self.property_set(str(name), Sample(time.time(), str(min), unit="sec2min"))
         
         
         else:
             print "setting: " + name + " to: " + str(value)
-            self.property_set(str(name), Sample(0, str(value), unit=funct))
+            self.property_set(str(name), Sample(time.time(), str(value), unit=funct))
             
         try:
             
             if name == "SS":
                 if old_value == "a": 
                     if value != "a":
-                        self.property_set("LM", Sample(0, "Last_Mist", ""))
+                        self.property_set("LM", Sample(time.time(), "Last_Mist", ""))
                         self.send_all_data_to_meshify = True
                     
                 if old_value == "a" or old_value == "i":
@@ -2312,7 +2348,7 @@ class XBeeSerialTerminal(XBeeSerial):
                         pass
                     
                 if value == "e":
-                    self.property_set("LVL", Sample(0, "0", "LVL"))  
+                    self.property_set("LVL", Sample(time.time(), "0", "LVL"))  
                 
                 self.send_data_to_meshify = True
                 
@@ -2354,6 +2390,7 @@ class XBeeSerialTerminal(XBeeSerial):
     
     
     def f_name(self, register_name, val):
+        val.timestamp = time.time()
     	
     	self.property_set(register_name, val)
     	
@@ -2396,25 +2433,33 @@ class XBeeSerialTerminal(XBeeSerial):
         line = self.line
         
         if register_name != "a":
+            val.timestamp = time.time()
             self.property_set(register_name, val)
         
         # I do this because I don't use the sample object if I call this function internally, instead I just pass it the filename
         if register_name != "a":
             self.filename = "WEB/python/" + val.value
+
         
             
         try:
             self.file = open(self.filename, "r")
         except:
-            self.fwu = 0
-            print "could not open file"
-            self.error = "file could not open"
-            self.property_set("error", Sample(0, self.error, "E"))
-            return
+            try:
+                self.filename = "./" + val.value
+                self.file = open(self.filename, "r")
+            except:
+                self.fwu = 0
+                print "could not open file"
+                self.error = "file could not open"
+                self.property_set("error", Sample(time.time(), self.error, "E"))
+                return
         
         
         
         print "sending q"
+        self.send("q")
+        time.sleep(1)
         self.send("q")
         
         
@@ -2430,7 +2475,7 @@ class XBeeSerialTerminal(XBeeSerial):
         time.sleep(1)
         self.send("r=F,crc=63902,$")
         
-        time.sleep(10)
+        time.sleep(20)
         self.fwu = 1
          
         print "sending N"
@@ -2438,7 +2483,7 @@ class XBeeSerialTerminal(XBeeSerial):
         
         
         self.send("N")
-        time.sleep(3)
+        time.sleep(10)
         
         self.listen = False
         
@@ -2475,13 +2520,14 @@ class XBeeSerialTerminal(XBeeSerial):
             self.fwu = 0
             self.listen = True
             self.error = "could not break up line:" + str(self.line) + " into pieces"
-            self.property_set("error", Sample(0, self.error, "E"))
+            self.property_set("error", Sample(time.time(), self.error, "E"))
             print self.error
             return
         
         
 
         try:
+            self.listen = True
             self.send("@")
             time.sleep(1)
             for i in range(len(lst)):
@@ -2492,7 +2538,7 @@ class XBeeSerialTerminal(XBeeSerial):
         except:
             self.listen = True
             self.error = "error sending line:" + str(self.line)
-            self.property_set("error", Sample(0, self.error, "E"))
+            self.property_set("error", Sample(time.time(), self.error, "E"))
             print self.error
 
     def send_repeat(self):
@@ -2542,7 +2588,7 @@ class XBeeSerialTerminal(XBeeSerial):
         size = self.property_get("block_size").value
         
         
-        self.property_set("line_number", Sample(0, line, "line"))
+        self.property_set("line_number", Sample(time.time(), line, "line"))
         
         if line < 50:
         	time.sleep(2)
@@ -2555,7 +2601,7 @@ class XBeeSerialTerminal(XBeeSerial):
                 print "ending upload"
                 self.fwu = 2
                 time.sleep(10)
-                self.property_set("line_number", Sample(0, 200, "line"))
+                self.property_set("line_number", Sample(time.time(), 200, "line"))
 		    #	self.file.close()
                 self.send("YY")
                 time.sleep(10)
@@ -2579,7 +2625,7 @@ class XBeeSerialTerminal(XBeeSerial):
         except:
             self.listen = True
             self.error = "error sending line:" + str(self.line)
-            self.property_set("error", Sample(0, self.error, "E"))
+            self.property_set("error", Sample(time.time(), self.error, "E"))
             print self.error
 	    
 	    
@@ -2605,7 +2651,7 @@ class XBeeSerialTerminal(XBeeSerial):
         if self.check > 1:	
             if self.line == self.last_line:
                 print "restarting, device timed out"
-                self.property_set("error", Sample(0, "restarting, device timed out", "E"))
+                self.property_set("error", Sample(time.time(), "restarting, device timed out", "E"))
                 self.retry += 1
 	    		
                 if self.retry < 5:
@@ -2616,8 +2662,8 @@ class XBeeSerialTerminal(XBeeSerial):
                     self.fwu = 0
                     self.retry = 0
                     self.error = "error updating firmware. Program quitting"
-                    self.property_set("error", Sample(0, self.error, "E"))
-                    self.property_set("line_number", Sample(0, 300, "line"))
+                    self.property_set("error", Sample(time.time(), self.error, "E"))
+                    self.property_set("line_number", Sample(time.time(), 300, "line"))
     				
     				
 	    		
@@ -2661,7 +2707,7 @@ class XBeeSerialTerminal(XBeeSerial):
         SS = self.property_get("SS").value
         
         if SS == "Empty":
-            self.property_set("LVL", Sample(0, "0", "LVL"))
+            self.property_set("LVL", Sample(time.time(), "0", "LVL"))
             return
         
         
@@ -2671,6 +2717,10 @@ class XBeeSerialTerminal(XBeeSerial):
             CF = self.property_get("CF").value
         else:
             CF = (float(self.property_get("TNK").value) * 3785.41)
+            
+        if CF == 0:
+            return
+        
         print LVL
         print CF
         try:
@@ -2689,8 +2739,11 @@ class XBeeSerialTerminal(XBeeSerial):
                 remaining = remaining * 100
                 
             remaining = round(remaining, 2) 
+            
+            if remaining > 100:
+                remaining = "100"
             #remaining = int(remaining)
-            self.property_set("LVL", Sample(0, str(remaining), "LVL"))
+            self.property_set("LVL", Sample(time.time(), str(remaining), "LVL"))
             print "precent remaining"
             print remaining
     
@@ -2711,24 +2764,24 @@ class XBeeSerialTerminal(XBeeSerial):
                         nameCL = "CL" + str(i)
                         x = i + 1
                         valueCL = "A" + str(x)
-                        self.property_set(nameCL, Sample(0, str(valueCL), ""))
+                        self.property_set(nameCL, Sample(time.time(), str(valueCL), ""))
                     else:
                         nameCL = "CL" + str(i)
                         x = i - 11
                         valueCL = "B" + str(x)
-                        self.property_set(nameCL, Sample(0, str(valueCL), ""))
+                        self.property_set(nameCL, Sample(time.time(), str(valueCL), ""))
             if not zone and CL == "A1":
                 for i in range(0, 24 / 1):
                         nameCL = "CL" + str(i)
                         x = i + 1
                         valueCL = "C" + str(x)
-                        self.property_set(nameCL, Sample(0, str(valueCL), ""))
+                        self.property_set(nameCL, Sample(time.time(), str(valueCL), ""))
             if not znc and CL == "A1":
                 for i in range(0, 24 / 1):
                         nameCL = "CL" + str(i)
                         x = i + 1
                         valueCL = "C" + str(x)
-                        self.property_set(nameCL, Sample(0, str(valueCL), ""))
+                        self.property_set(nameCL, Sample(time.time(), str(valueCL), ""))
         except:
             pass
             
@@ -2739,7 +2792,7 @@ class XBeeSerialTerminal(XBeeSerial):
         
         
         
-    	#total means, I'm doing a total sweep of work here, which means I need to 
+    	#total means, I'm doing a total upload  of everything here, which means I need to 
         if total:
             self.set_labels()
                
@@ -2772,8 +2825,8 @@ class XBeeSerialTerminal(XBeeSerial):
         # required 
         if total:
         
-            self.property_set("TOD", Sample(0, str(clock_time), "sec2time"))
-            self.property_set("DOW", Sample(0, str(day), ""))
+            self.property_set("TOD", Sample(time.time(), str(clock_time), "sec2time"))
+            self.property_set("DOW", Sample(time.time(), str(day), ""))
         
         
         
@@ -2836,11 +2889,11 @@ class XBeeSerialTerminal(XBeeSerial):
             if int(time1) > int(timeSec) and int(time_list[time1]) > 1:
                 if int(time1) == 0:
                    aTime = "12:00 AM"
-                   self.property_set("NSM", Sample(0, str(aTime), "E"))
+                   self.property_set("NSM", Sample(time.time(), str(aTime), "E"))
                    return 
                 if int(time1) < 60:
                     aTime = "12:00 AM"
-                    self.property_set("NSM", Sample(0, str(aTime), "E"))
+                    self.property_set("NSM", Sample(time.time(), str(aTime), "E"))
                     return
                 minutes, seconds= divmod(int(time1), 60)
                 if minutes < 60:
@@ -2867,7 +2920,7 @@ class XBeeSerialTerminal(XBeeSerial):
                 print "time of next mist is:"
                 print aTime
                 set = True
-                self.property_set("NSM", Sample(0, str(aTime), "E"))
+                self.property_set("NSM", Sample(time.time(), str(aTime), "E"))
                 if total:
                     self.upload.upload_data()
                 return
@@ -2879,14 +2932,14 @@ class XBeeSerialTerminal(XBeeSerial):
             if int(time_list[time1]) != 0:
                 if int(time1) == 0:
                    aTime = "12:00 AM Tomorrow"
-                   self.property_set("NSM", Sample(0, str(aTime), "E"))
+                   self.property_set("NSM", Sample(time.time(), str(aTime), "E"))
                    if total:
                         self.upload.upload_data()
                    return 
                 
                 if int(time1) < 60:
                     aTime = "12:00 AM Tomorrow"
-                    self.property_set("NSM", Sample(0, str(aTime), "E"))
+                    self.property_set("NSM", Sample(time.time(), str(aTime), "E"))
                     if total:
                         self.upload.upload_data()
                     return
@@ -2916,10 +2969,10 @@ class XBeeSerialTerminal(XBeeSerial):
                 print "time of next mist is:"
                 print aTime
                 set = True
-                self.property_set("NSM", Sample(0, str(aTime), "E"))
+                self.property_set("NSM", Sample(time.time(), str(aTime), "E"))
                 break
         if set == False:
-            self.property_set("NSM", Sample(0, "No Mist Scheduled", "E"))
+            self.property_set("NSM", Sample(time.time(), "No Mist Scheduled", "E"))
         if total:
             self.upload.upload_data()
                 
@@ -2928,6 +2981,7 @@ class XBeeSerialTerminal(XBeeSerial):
     	
 
     def serial_write(self, register_name, val):
+        val.timestamp = time.time()
     	
     	self.property_set(register_name, val)
     	
@@ -3004,12 +3058,12 @@ class XBeeSerialTerminal(XBeeSerial):
         if on == "3":
             on = "1"
             direction = "backward"
-            self.property_set("DST", Sample(0, "1", ""))
+            self.property_set("DST", Sample(time.time(), "1", ""))
         
         if on == "2":
             on = "1"
             direction = "forward"
-            self.property_set("DST", Sample(0, "1", ""))
+            self.property_set("DST", Sample(time.time(), "1", ""))
         
         if on == "1":
             for i in range(0, 24 / 1):

@@ -13,7 +13,6 @@ HTMLParser|C:\Python24\Lib\HTMLParser.py
 Image
 MimeWriter|C:\Python24\Lib\MimeWriter.py
 OpenGL
-Queue|C:\Python24\Lib\Queue.py
 ScrolledText|C:\Python24\Lib\lib-tk\ScrolledText.py
 SimpleDialog|C:\Python24\Lib\lib-tk\SimpleDialog.py
 SimpleHTTPServer|C:\Python24\Lib\SimpleHTTPServer.py
@@ -372,7 +371,6 @@ hotshot.stats|C:\Python24\Lib\hotshot\stats.py
 hotshot.stones|C:\Python24\Lib\hotshot\stones.py
 htmlentitydefs|C:\Python24\Lib\htmlentitydefs.py
 htmllib|C:\Python24\Lib\htmllib.py
-httplib|C:\Python24\Lib\httplib.py
 idlelib.AutoExpand|C:\Python24\Lib\idlelib\AutoExpand.py
 idlelib.Bindings|C:\Python24\Lib\idlelib\Bindings.py
 idlelib.CallTipWindow|C:\Python24\Lib\idlelib\CallTipWindow.py
@@ -613,7 +611,7 @@ site|C:\Python24\Lib\site.py
 smtpd|C:\Python24\Lib\smtpd.py
 smtplib|C:\Python24\Lib\smtplib.py
 sndhdr|C:\Python24\Lib\sndhdr.py
-socket|C:\Python24\Lib\socket.py
+socket
 sre|C:\Python24\Lib\sre.py
 sre_compile|C:\Python24\Lib\sre_compile.py
 sre_constants|C:\Python24\Lib\sre_constants.py
@@ -989,7 +987,6 @@ tzparse|C:\Python24\Lib\tzparse.py
 unicodedata|C:\Python24\DLLs\unicodedata.pyd
 unittest|C:\Python24\Lib\unittest.py
 urllib|C:\Python24\Lib\urllib.py
-urllib2|C:\Python24\Lib\urllib2.py
 urlparse|C:\Python24\Lib\urlparse.py
 user|C:\Python24\Lib\user.py
 uu|C:\Python24\Lib\uu.py
@@ -1138,13 +1135,10 @@ winxptheme|C:\Python24\Lib\site-packages\win32\lib\winxptheme.py
 wx
 wxPython
 xdrlib|C:\Python24\Lib\xdrlib.py
-xml.__init__|C:\Python24\Lib\xml\__init__.py
 xml.dom.NodeFilter|C:\Python24\Lib\xml\dom\NodeFilter.py
-xml.dom.__init__|C:\Python24\Lib\xml\dom\__init__.py
 xml.dom.domreg|C:\Python24\Lib\xml\dom\domreg.py
 xml.dom.expatbuilder|C:\Python24\Lib\xml\dom\expatbuilder.py
 xml.dom.minicompat|C:\Python24\Lib\xml\dom\minicompat.py
-xml.dom.minidom|C:\Python24\Lib\xml\dom\minidom.py
 xml.dom.pulldom|C:\Python24\Lib\xml\dom\pulldom.py
 xml.dom.xmlbuilder|C:\Python24\Lib\xml\dom\xmlbuilder.py
 xml.parsers.__init__|C:\Python24\Lib\xml\parsers\__init__.py

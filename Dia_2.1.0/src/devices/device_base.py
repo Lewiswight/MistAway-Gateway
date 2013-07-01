@@ -32,6 +32,7 @@ from channels.channel_source_device_property import ChannelSourceDeviceProperty
 import time
 from devices.xbee.common.addressing import *
 import traceback
+from samples.sample import Sample
 # constants
 
 # exception classes
@@ -369,6 +370,14 @@ class DeviceBase(SettingsBase):
                 del chan_obj
         self.__properties = { }
 
+    
+    
+    def heartBeat(self):
+        print "updating heat beat"
+        main_addr = "mainMistaway_" + gw_extended_address()
+        main_addr = main_addr + ".hb"
+        self.property_set_globe(main_addr, Sample(time.time(), value="On_db", unit=" "))
+        
     
     def current_time_get(self):
         sec_time = time.time()

@@ -194,6 +194,8 @@ class XBeeXBR(XBeeBase):
 
         # Get the extended address of the device:
         extended_address = SettingsBase.get_setting(self, "extended_address")
+        
+       
 
         # Create a callback specification for our device address, endpoint
         # Digi XBee profile and sample cluster id:

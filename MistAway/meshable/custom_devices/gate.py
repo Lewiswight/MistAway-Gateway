@@ -87,15 +87,19 @@ class XBeeSensorA(XBeeBase):
     def __init__(self, name, core_services):
         self.__name = name
         self.__core = core_services
-
+        self.opening = False
         ## Local State Variables:
         self.__xbee_manager = None
 
         ## Settings Table Definition:
         settings_list = [
             Setting(
+                name='xbee_device_manager', type=str, required=True),             
+            Setting(
+                name='extended_address', type=str, required=True),
+            Setting(
                 name='sleep', type=bool, required=False,
-                default_value=True),
+                default_value=False),
             Setting(
                 name='sample_rate_ms', type=int, required=False,
                 default_value=400,
@@ -188,19 +192,23 @@ class XBeeSensorA(XBeeBase):
             
     def unlock(self, bool_sample):
         
-        self.property_set("activate",
-            Sample(0, Boolean(bool_sample.value, style=STYLE_ONOFF)))
+        if self.opening == False:
+            self.opening = True
         
-        self.prop_set_power_control1_high(Sample(0, Boolean("on", STYLE_ONOFF)))
-        time.sleep(0.75)
-        self.prop_set_power_control1_high(Sample(0, Boolean("off", STYLE_ONOFF)))
-        time.sleep(0.5)
-        self.prop_set_power_control1_low(Sample(0, Boolean("on", STYLE_ONOFF)))
-        time.sleep(0.75)
-        self.prop_set_power_control1_low(Sample(0, Boolean("off", STYLE_ONOFF)))
-        
-        self.property_set("activate",
-            Sample(0, Boolean(False, style=STYLE_ONOFF)))
+            self.property_set("activate",
+                Sample(0, Boolean(bool_sample.value, style=STYLE_ONOFF)))
+            
+            self.prop_set_power_control1_high(Sample(0, Boolean("on", STYLE_ONOFF)))
+            time.sleep(0.75)
+            self.prop_set_power_control1_high(Sample(0, Boolean("off", STYLE_ONOFF)))
+            time.sleep(5)
+            self.prop_set_power_control1_low(Sample(0, Boolean("on", STYLE_ONOFF)))
+            time.sleep(0.75)
+            self.prop_set_power_control1_low(Sample(0, Boolean("off", STYLE_ONOFF)))
+            
+            self.property_set("activate",
+                Sample(0, Boolean(False, style=STYLE_ONOFF)))
+            self.opening = False
         
         
         

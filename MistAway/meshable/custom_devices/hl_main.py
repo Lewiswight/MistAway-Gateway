@@ -103,7 +103,7 @@ class hl_main(DeviceBase, threading.Thread):
             
             
             ChannelSourceDeviceProperty(name="zip", type=str,
-                initial=Sample(timestamp=time.time(), unit="zip", value="10001"),
+                initial=Sample(timestamp=time.time() + 600, unit="zip", value="10001"),
                 perms_mask=(DPROP_PERM_GET|DPROP_PERM_SET),
                 options=DPROP_OPT_AUTOTIMESTAMP,
                 set_cb=lambda x: self.update_name("zip", x)),
@@ -120,9 +120,10 @@ class hl_main(DeviceBase, threading.Thread):
                 options=DPROP_OPT_AUTOTIMESTAMP),
             
             ChannelSourceDeviceProperty(name="hb", type=str,
-                initial=Sample(timestamp=time.time(), unit="", value="On"),
+                initial=Sample(timestamp=time.time() + 600, unit="", value="On"),
                 perms_mask=(DPROP_PERM_GET|DPROP_PERM_SET),
-                options=DPROP_OPT_AUTOTIMESTAMP),
+                options=DPROP_OPT_AUTOTIMESTAMP,
+                set_cb=lambda x: self.update_hb("hb", x)),
             
             ChannelSourceDeviceProperty(name="w_h", type=str,
                 initial=Sample(timestamp=time.time(), unit="percent", value="O"),
@@ -163,6 +164,21 @@ class hl_main(DeviceBase, threading.Thread):
         dm = self.__core.get_service("device_driver_manager")
         self.__xbee_manager = dm.instance_get(xbee_manager_name)
         
+        extended_address = self.myName.split("_")
+        extended_address = extended_address[1]
+        print extended_address
+        """
+        id = self.__xbee_manager.xbee_device_ddo_get_param(extended_address, "ID", use_cache=True)
+        
+        print id
+        try:
+            #dd = struct.unpack(">B", db)
+            pan = struct.unpack(">i", id)
+            print pan
+        except:
+            print "failed 8" 
+        
+        """
         
         
         
@@ -176,7 +192,7 @@ class hl_main(DeviceBase, threading.Thread):
         
     #    thread.start_new_thread(self.get_temp(), ())
         
-    #    threading.Thread.start(self)
+        #threading.Thread.start(self)
 
         return True
 
@@ -191,11 +207,28 @@ class hl_main(DeviceBase, threading.Thread):
 
     # Threading related functions:
     def run(self):
+        self.weather()
+        #self.time_offest()
+        #self.property_set("hb", Sample(time.time(), "On", ""))
+        """count = 4
+        hb_count = 0
+        hb_count = 120
+        while True:
+            count += 1
+            if count == 5:
+                count = 0
+                hb_count += 1
+                self.property_set("hb", Sample(time.time(), "On", ""))
+                time.sleep(60)
+            if hb_count == 120:
+                hb_count = 0
+                self.time_offest()
+                time.sleep(60)
         pass
         
         self.weather()
         
-      #  time.sleep(SettingsBase.get_setting(self,"update_rate"))
+      #  time.sleep(SettingsBase.get_setting(self,"update_rate"))"""
         
         
         
@@ -224,7 +257,7 @@ class hl_main(DeviceBase, threading.Thread):
     
     def time_offest(self):
         
-        self.property_set("hb", Sample(0, "On", ""))
+        self.property_set("hb", Sample(time.time(), "On", ""))
         
         
         if self.__event_timer_offest is not None:
@@ -420,7 +453,12 @@ class hl_main(DeviceBase, threading.Thread):
         
         
     
-       
+    def update_hb(self, register_name, val):
+        
+        
+        self.property_set(register_name, val)   
+    
+    
     def update_update(self, repeat_val):    
        
         

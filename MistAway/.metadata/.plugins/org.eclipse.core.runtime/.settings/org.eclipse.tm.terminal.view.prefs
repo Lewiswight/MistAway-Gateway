@@ -1,6 +1,6 @@
-#Tue Mar 26 15:50:58 CDT 2013
-Connectors.ConnectionType=org.eclipse.tm.internal.terminal.telnet.TelnetConnector
-Connectors.org.eclipse.tm.internal.terminal.ssh.SshConnector.Host=172.16.6.73
+#Tue Jun 25 22:50:52 CDT 2013
+Connectors.ConnectionType=org.eclipse.tm.internal.terminal.ssh.SshConnector
+Connectors.org.eclipse.tm.internal.terminal.ssh.SshConnector.Host=172.16.40.99
 Connectors.org.eclipse.tm.internal.terminal.telnet.TelnetConnector.Timeout=10
 Connectors.org.eclipse.tm.internal.terminal.ssh.SshConnector.Keepalive=300
 Connectors.org.eclipse.tm.internal.terminal.telnet.TelnetConnector.Host=172.16.3.159

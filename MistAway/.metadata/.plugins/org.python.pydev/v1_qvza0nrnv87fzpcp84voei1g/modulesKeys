@@ -272,6 +272,7 @@ bgenlocations|/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/pl
 binascii|/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-dynload/binascii.so
 binhex|/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/binhex.py
 bisect|/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/bisect.py
+bottle|/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/bottle.py
 bsddb.__init__|/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/bsddb/__init__.py
 bsddb.db|/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/bsddb/db.py
 bsddb.dbobj|/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/bsddb/dbobj.py

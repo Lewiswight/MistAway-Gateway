@@ -346,9 +346,10 @@ class Uploader(PresentationBase, threading.Thread):
                     #if self.upload_lock.acquire(0) == False:
                         #time.sleep(3)
                         #continue
-                    self.__upload_data()
-                    #self.upload_lock.release()
-                    self.send = False
+                    if self.sending == False:
+                        self.__upload_data()
+                        #self.upload_lock.release()
+                        self.send = False
                     time.sleep(3)
                 else:
                     time.sleep(5)
@@ -357,6 +358,7 @@ class Uploader(PresentationBase, threading.Thread):
                     count = 0
                     self.send = True
         except:
+            print "rebooting now from MA uploader, see ya"
             process_request('<rci_request><reboot /></rci_request>')
                 
                     
@@ -392,7 +394,7 @@ class Uploader(PresentationBase, threading.Thread):
     
     def __upload_data(self):
         
-        now_time = time.time() - 5
+        now_time = time.time() 
         
         if self.sending == True:
             self.send = True
@@ -481,6 +483,7 @@ class Uploader(PresentationBase, threading.Thread):
                 self.__last_upload_time = now_time
                 success = self.__send_to_idigi(xml.getvalue())
             except:
+                success = False
                 self.connected += 1
                 print "could not send to HouseLynx"
             if success == True:
@@ -503,6 +506,10 @@ class Uploader(PresentationBase, threading.Thread):
 
         xml.close()
         self.sending = False
+        
+        if self.connected > 10:
+            print "rebooting due to too many failed uploads"
+            process_request('<rci_request><reboot /></rci_request>')
 
     def __make_xml(self, channel_name, sample):
 
