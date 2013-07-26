@@ -6,4 +6,10 @@
 		<item value="105" key="com.digi.workbench.DIALOG_ORIGIN_X"/>
 		<item value="515" key="com.digi.workbench.DIALOG_HEIGHT"/>
 	</section>
+	<section name="com.digi.dpdev.REBOOT_DIALOG_SECTION">
+		<item value="400" key="com.digi.workbench.DIALOG_WIDTH"/>
+		<item value="460" key="com.digi.workbench.DIALOG_ORIGIN_Y"/>
+		<item value="1440" key="com.digi.workbench.DIALOG_ORIGIN_X"/>
+		<item value="440" key="com.digi.workbench.DIALOG_HEIGHT"/>
+	</section>
 </section>

@@ -45,7 +45,7 @@ import struct
 
 from devices.device_base import DeviceBase
 from devices.xbee.xbee_devices.xbee_base import XBeeBase
-from devices.xbee.xbee_devices.xbee_serial import XBeeSerial
+from custom_devices.xbee_serialTemp import XBeeSerial
 from settings.settings_base import SettingsBase, Setting  
 from channels.channel_source_device_property import *
 
@@ -65,7 +65,7 @@ from devices.xbee.common.addressing import *
 from devices.xbee.common.io_sample import parse_is, sample_to_mv
 from devices.xbee.common.prodid \
     import MOD_XB_ZB, parse_dd, format_dd, product_name, \
-    SERIAL_TEMP, PROD_DIGI_UNSPECIFIED
+    SERIAL_TEMP
 # constants
 
 # exception classes
@@ -82,7 +82,7 @@ class XBeeSerialTerminal(XBeeSerial):
         for an example implementation.
 
     """
-    SUPPORTED_PRODUCTS = [ SERIAL_TEMP, PROD_DIGI_UNSPECIFIED, ]
+    SUPPORTED_PRODUCTS = [ SERIAL_TEMP ]
     
     def __init__(self, name, core_services):
         self.__name = name
@@ -223,70 +223,29 @@ class XBeeSerialTerminal(XBeeSerial):
         return (accepted, rejected, not_found)
 
     def start(self):
-
-        # Fetch the XBee Manager name from the Settings Manager:
-        xbee_manager_name = SettingsBase.get_setting(self, "xbee_device_manager")
-        dm = self.__core.get_service("device_driver_manager")
-        self.__xbee_manager = dm.instance_get(xbee_manager_name)
-
-        # Register ourselves with the XBee Device Manager instance:
-        self.__xbee_manager.xbee_device_register(self)
-
-        # Get the extended address of the device:
-        extended_address = SettingsBase.get_setting(self, "extended_address")
-
-        # Create a DDO configuration block for this device:
-        xbee_ddo_cfg = XBeeConfigBlockDDO(extended_address)
-
-        # Call the XBeeSerial function to add the initial set up of our device.
-        # This will set up the destination address of the devidce, and also set
-        # the default baud rate, parity, stop bits and flow control.
-        XBeeSerial.initialize_xbee_serial(self, xbee_ddo_cfg)
-
-        # Register this configuration block with the XBee Device Manager:
-        self.__xbee_manager.xbee_device_config_block_add(self, xbee_ddo_cfg)
-        
-      
-        # Setup the sleep parameters on this device:
-        will_sleep = SettingsBase.get_setting(self, "sleep")
-        sample_predelay = SettingsBase.get_setting(self, "sample_predelay")
-        awake_time_ms = (SettingsBase.get_setting(self, "awake_time_ms") +
-                         sample_predelay)
-        
-        if will_sleep:
-            # Sample time pre-delay, allow the circuitry to power up and
-            # settle before we allow the XBee to send us a sample:            
-            xbee_ddo_wh_block = XBeeConfigBlockDDO(extended_address)
-            xbee_ddo_wh_block.apply_only_to_modules((MOD_XB_ZB,))
-            xbee_ddo_wh_block.add_parameter('WH', sample_predelay)
-            self.__xbee_manager.xbee_device_config_block_add(self,
-                                    xbee_ddo_wh_block)
-
-        # The original sample rate is used as the sleep rate:
-        sleep_rate_ms = SettingsBase.get_setting(self, "sample_rate_ms")
-        xbee_sleep_cfg = XBeeConfigBlockSleep(extended_address)
-        if will_sleep:
-            xbee_sleep_cfg.sleep_cycle_set(awake_time_ms, sleep_rate_ms, enable_pin_wake=True)
-        else:
-            xbee_sleep_cfg.sleep_mode_set(SM_DISABLED)
-        self.__xbee_manager.xbee_device_config_block_add(self, xbee_sleep_cfg)
-        
+    	
+    	
+		xbee_manager_name = SettingsBase.get_setting(self, "xbee_device_manager")
+		dm = self.__core.get_service("device_driver_manager")
+		self.__xbee_manager = dm.instance_get(xbee_manager_name)
+		
+		test = XBeeSerial.start(self)
+		
+		#self._config_done_cb()
+		
+		self.property_set("incl", Sample(0, value=Boolean(bool(1), style=STYLE_ONOFF)))
+		self.property_set("excl", Sample(0, value=Boolean(bool(0), style=STYLE_ONOFF)))
+		
+		return test
+    	
+    	
+    	
+    	
           
             
-        self.property_set("incl", Sample(0, value=Boolean(bool(1), style=STYLE_ONOFF)))
-        self.property_set("excl", Sample(0, value=Boolean(bool(0), style=STYLE_ONOFF)))
-
-        # Indicate that we have no more configuration to add:
-        self.__xbee_manager.xbee_device_configure(self)
+       
         
-        
-        self.reset_stored_values()
-
-        
-        
-        
-        return True
-
+    	
     def stop(self):
 
         # Unregister ourselves with the XBee Device Manager instance:

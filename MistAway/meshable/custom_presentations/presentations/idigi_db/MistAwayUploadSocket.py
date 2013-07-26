@@ -12,7 +12,7 @@ import websocket
 import thread
 import time
 
-
+from devices.xbee.common.addressing import *
 
 from devices.xbee.common.ddo import retry_ddo_get_param
 from devices.device_base import DeviceBase
@@ -216,7 +216,8 @@ class Uploader(PresentationBase, threading.Thread):
         time.sleep(5)
         
         websocket.enableTrace(False)
-        self.ws = websocket.WebSocketApp("ws://10.1.10.61:9000",
+        print "starting webSockets"
+        self.ws = websocket.WebSocketApp("ws://54.225.90.203:9020",
                                     on_message = self.on_message,
                                     on_error = self.on_error,
                                     on_close = self.on_close)
@@ -265,7 +266,7 @@ class Uploader(PresentationBase, threading.Thread):
         
         if self.started == False:
             self.started = True
-            thread.start_new_thread(self.connect(), ())
+            thread.start_new_thread(self.connect, ())
         return True
 
 
@@ -452,11 +453,11 @@ class Uploader(PresentationBase, threading.Thread):
             xml.write("<idigi_data>")
         
         cm = self.__core.get_service("channel_manager")
-        cdb = cm.channel_database_get()
+        self.cdb = cm.channel_database_get()
 
         channel_list = SettingsBase.get_setting(self, "channels")
         if len(channel_list) == 0:
-            channel_list = cdb.channel_list()
+            channel_list = self.cdb.channel_list()
 
         new_sample_count = 0
       #  print channel_list
@@ -465,7 +466,7 @@ class Uploader(PresentationBase, threading.Thread):
            # print channel_name
            if self.trigger == 0:
                 try:
-                    channel = cdb.channel_get(channel_name) 
+                    channel = self.cdb.channel_get(channel_name) 
                     sample = channel.get()
                 #    print channel_name 
                  #   print sample.unit
@@ -490,7 +491,7 @@ class Uploader(PresentationBase, threading.Thread):
            if self.trigger == 1:
                 print "sending full uplaod"
                 try:
-                    channel = cdb.channel_get(channel_name) 
+                    channel = self.cdb.channel_get(channel_name) 
                     sample = channel.get()
 
                    
@@ -548,7 +549,7 @@ class Uploader(PresentationBase, threading.Thread):
         data += "</sample>"
 
         return data % (channel_name, self.__escape_entities(sample.value),
-                       sample.unit, iso_date(sample.timestamp))
+                       sample.unit, self.convert_timestamp(sample.timestamp))
 
 
     def __make_compact_xml(self, channel_name, sample):
@@ -556,9 +557,21 @@ class Uploader(PresentationBase, threading.Thread):
         data = "<sample name=\"%s\" value=\"%s\" unit=\"%s\" timestamp=\"%s\" />"
 
         return data % (channel_name, self.__escape_entities(sample.value),
-                       sample.unit, iso_date(sample.timestamp))
+                       sample.unit, self.convert_timestamp(sample.timestamp))
 
 
+    def convert_timestamp(self, timestamp):
+        
+        sec_time = int(timestamp)
+        main_addr = "mainMistaway_" + gw_extended_address()
+        timezone = self.cdb.channel_get(main_addr + ".offset")
+        timezone = timezone.get()
+        timezone = timezone.value
+        offset = int(timezone)
+        time_here = sec_time + offset 
+        return time_here
+    
+    
     def __send_to_idigi(self, data):
 
         success = True
@@ -651,7 +664,7 @@ class Uploader(PresentationBase, threading.Thread):
         self.pingy = 0
         print "### closed ###"
         if self.reconnecting == 0:
-            thread.start_new_thread(self.reConnect(), ())
+            thread.start_new_thread(self.reConnect, ())
     
     def reConnect(self):
         self.pingy = 0
@@ -682,7 +695,7 @@ class Uploader(PresentationBase, threading.Thread):
                 self.ws.close()
                 self.pingy = 0
                 self.websocketCom = False
-                thread.start_new_thread(self.reConnect(), ())
+                thread.start_new_thread(self.reConnect, ())
                 return
                 
        
@@ -701,7 +714,7 @@ class Uploader(PresentationBase, threading.Thread):
             self.ws.close()
             self.websocketCom = False
             if self.reconnecting == 0:
-                thread.start_new_thread(self.reConnect(), ())
+                thread.start_new_thread(self.reConnect, ())
                 self.pingy = 0
             return
         

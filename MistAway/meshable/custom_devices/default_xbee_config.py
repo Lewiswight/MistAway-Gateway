@@ -5,7 +5,7 @@ import zigbee
 import serial
 
 #zigbee.default_xbee.serial = serial.Serial("COM1", 115200, rtscts = 0)
-zigbee.default_xbee.serial = serial.Serial("COM13", 115200, rtscts = 0)
+zigbee.default_xbee.serial = serial.Serial("/dev/tty.usbserial-AE016J3F", 115200, rtscts = 0)
 #zigbee.default_xbee.serial = serial.Serial("COM22", 115200, rtscts = 0)
 
 # set AO = 1, get full explicit messages

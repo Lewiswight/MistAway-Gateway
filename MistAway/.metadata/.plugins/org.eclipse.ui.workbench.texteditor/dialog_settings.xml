@@ -22,8 +22,8 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="243" key="DIALOG_WIDTH"/>
-		<item value="109" key="DIALOG_Y_ORIGIN"/>
-		<item value="1133" key="DIALOG_X_ORIGIN"/>
+		<item value="179" key="DIALOG_Y_ORIGIN"/>
+		<item value="995" key="DIALOG_X_ORIGIN"/>
 		<item value="379" key="DIALOG_HEIGHT"/>
 		<item value="1|Lucida Grande|11.0|0|COCOA|1|LucidaGrande" key="DIALOG_FONT_NAME"/>
 	</section>
@@ -33,26 +33,26 @@
 		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="serialR" key="selection"/>
+		<item value="service_l" key="selection"/>
 		<list key="findhistory">
-			<item value="serialR"/>
-			<item value="serial_R"/>
-			<item value="serial_"/>
-			<item value="check_up"/>
-			<item value="last_com"/>
-			<item value="startswith"/>
-			<item value="serialReceive"/>
-			<item value="queue"/>
+			<item value="service_l"/>
+			<item value="self.__tracer.info"/>
+			<item value="self.__tracer.info("/>
+			<item value="time of day"/>
+			<item value="print"/>
+			<item value="trace"/>
+			<item value="list with"/>
+			<item value="update"/>
 		</list>
 		<list key="replacehistory">
-			<item value="temp_dst"/>
-			<item value="timestamp=1315351500"/>
-			<item value="unit=&quot;sec2time&quot;"/>
-			<item value="cr"/>
-			<item value="cfv"/>
-			<item value="st"/>
-			<item value="mc"/>
-			<item value="value"/>
+			<item value="print "/>
+			<item value="self.__tracer.info(str("/>
+			<item value="self.__tracer.info("/>
+			<item value="self.sendUpData()"/>
+			<item value="4096"/>
+			<item value="2048"/>
+			<item value="self.event_timer_start"/>
+			<item value="unit=&quot;&quot;"/>
 		</list>
 	</section>
 </section>

@@ -33,8 +33,10 @@ The ZigBee Device Manager class and related classes.
 This class will manage all ZigBee devices seen and controlled by the Dia.
 '''
 import traceback
-
-from xbee import ddo_get_param, ddo_set_param
+try:
+    from xbee import ddo_get_param, ddo_set_param
+except:
+    from zigbee import ddo_get_param, ddo_set_param
 from xbee_device_manager import *
 from devices.xbee.xbee_config_blocks.xbee_config_block_sleep import \
      generate_sn_sp
