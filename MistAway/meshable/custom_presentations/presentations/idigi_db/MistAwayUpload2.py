@@ -4,7 +4,7 @@ iDigi Database Synchronization Module
 """
 
 # imports
-import sys
+
 from socket import *
 from devices.xbee.common.addressing import *
 from devices.xbee.common.ddo import retry_ddo_get_param
@@ -30,13 +30,13 @@ import time
 import cStringIO
 
 import sys
-
+import digi_httplib as httplib
 
 
 import os
 
 
-import httplib
+
 #import digicli
 
 try:
@@ -83,7 +83,7 @@ ADDRESS_A = """<gateway>"""
 ADDRESS_B = """</gateway>"""
         
         
-        
+ 
         
 #status, output = digicli.digicli('show net')
         
@@ -199,8 +199,6 @@ class Uploader(PresentationBase, threading.Thread):
         
 
         # Verify that the user has a reasonable iDigi host set on their device.
-  
-
         # Start by appending 1 to filename of pushed data
         self.__current_file_number = 1
 
@@ -210,8 +208,9 @@ class Uploader(PresentationBase, threading.Thread):
         # Count of samples since last data push
         self.__sample_count = 0
         
-        self.fc = f_counter()
-        self.__core.set_service("fc", self.fc)
+        #self.fc = f_counter()
+        #
+        #self.__core.set_service("fc", self.fc)
 
         # Here we grab the channel publisher
         channels = SettingsBase.get_setting(self, "channels")
@@ -224,7 +223,8 @@ class Uploader(PresentationBase, threading.Thread):
     #            cp.subscribe(channel, self.receive)
     #    else:
     #        cp.subscribe_to_all(self.receive)
-
+        self.lock = threading.Lock()
+        print threading.stack_size()
         threading.Thread.start(self)
         self.apply_settings()
         return True
@@ -333,9 +333,16 @@ class Uploader(PresentationBase, threading.Thread):
             count = 0
         
             #self.my_queue = Queue.Queue(maxsize=5)
-            print "queue in uploader started"
+            
             
             while True:
+            #    list = threading.enumerate()
+            #    print len(list)
+            #    for item in list:
+            #        print item
+                print "#############"
+                print "##looping! ##"
+                print "#############"
                 
                 count += 1
         
@@ -346,18 +353,32 @@ class Uploader(PresentationBase, threading.Thread):
                     #if self.upload_lock.acquire(0) == False:
                         #time.sleep(3)
                         #continue
-                    self.__upload_data()
-                    #self.upload_lock.release()
-                    self.send = False
-                    time.sleep(3)
+                    if self.sending == False:
+                        self.lock.acquire()
+                        print "##################"
+                        print "##sending start!##"
+                        print "##################"
+                        self.__upload_data()
+                        self.lock.release()
+                        print "###################"
+                        print "##sending finish!##"
+                        print "###################"
+                        #self.upload_lock.release()
+                        self.send = False
+                    time.sleep(5)
                 else:
                     time.sleep(5)
                     
-                if count > 10:
+                if count > 5:
                     count = 0
                     self.send = True
         except:
-            process_request('<rci_request><reboot /></rci_request>')
+            try:
+                self.lock.release()
+            except:
+                pass
+            print "rebooting now from MA uploader, see ya"
+            #process_request('<rci_request><reboot /></rci_request>')
                 
                     
             
@@ -385,14 +406,17 @@ class Uploader(PresentationBase, threading.Thread):
      #   print "idigi_db (%s): Out of run loop.  Shutting down..." % \
      #          (self.__name)
     def upload_data(self):
-        
+        if self.send == True:
+            return
         #self.my_queue.put(1)
+        self.lock.acquire()
         self.send = True
+        self.lock.release()
         
     
     def __upload_data(self):
         
-        now_time = time.time() - 5
+        now_time = time.time() 
         
         if self.sending == True:
             self.send = True
@@ -404,6 +428,8 @@ class Uploader(PresentationBase, threading.Thread):
         
         xml = cStringIO.StringIO()
         
+        print "made XML file"
+        
     #    xml.write("<?xml version=\"1.0\"?>")
         compact_xml = SettingsBase.get_setting(self, "compact_xml")    
         if compact_xml:
@@ -412,14 +438,15 @@ class Uploader(PresentationBase, threading.Thread):
             xml.write("<idigi_data>")
         
         cm = self.__core.get_service("channel_manager")
-        self.cdb = cm.channel_database_get()
+        cdb = cm.channel_database_get()
         
         
 
         channel_list = SettingsBase.get_setting(self, "channels")
         if len(channel_list) == 0:
-            channel_list = self.cdb.channel_list()
+            channel_list = cdb.channel_list()
 
+        print "channel list has been made"
         new_sample_count = 0
       #  print channel_list
 
@@ -427,11 +454,11 @@ class Uploader(PresentationBase, threading.Thread):
            # print channel_name
            if self.trigger == 0:
                 try:
-                    channel = self.cdb.channel_get(channel_name) 
+                    channel = cdb.channel_get(channel_name)
+                    if not (channel.perm_mask() & DPROP_PERM_GET):
+                        # skip ungettable things
+                        continue
                     sample = channel.get()
-                #    print channel_name 
-                 #   print sample.unit
-                 #   print sample.value 
                     if sample.timestamp >= self.__last_upload_time and sample.timestamp >= 1315351499.0 and sample.unit != "1":  
                         print "idigi_db (%s): Channel %s was updated since last " \
                                "push" % (self.__name, channel_name)
@@ -452,7 +479,7 @@ class Uploader(PresentationBase, threading.Thread):
            if self.trigger == 1:
                 print "sending full uplaod"
                 try:
-                    channel = self.cdb.channel_get(channel_name) 
+                    channel = cdb.channel_get(channel_name) 
                     sample = channel.get()
 
                     if sample.timestamp >= 1315351499.0 and sample.unit != "1":
@@ -481,6 +508,7 @@ class Uploader(PresentationBase, threading.Thread):
                 self.__last_upload_time = now_time
                 success = self.__send_to_idigi(xml.getvalue())
             except:
+                success = False
                 self.connected += 1
                 print "could not send to HouseLynx"
             if success == True:
@@ -490,7 +518,7 @@ class Uploader(PresentationBase, threading.Thread):
                   #  DeviceBase.property_set("f_count", Sample(0, value=str(average), unit="aF"))
                     print "number of failed tries"
                     print self.connected
-                    self.fc.count = self.connected
+                    #self.fc.count = self.connected
                     
                     
                 self.connected = 0
@@ -503,6 +531,10 @@ class Uploader(PresentationBase, threading.Thread):
 
         xml.close()
         self.sending = False
+        
+        if self.connected > 10:
+            print "rebooting due to too many failed uploads"
+            #process_request('<rci_request><reboot /></rci_request>')
 
     def __make_xml(self, channel_name, sample):
 
@@ -526,14 +558,15 @@ class Uploader(PresentationBase, threading.Thread):
     
     def convert_timestamp(self, timestamp):
         
-        sec_time = int(timestamp)
+        return timestamp
+        """sec_time = int(timestamp)
         main_addr = "mainMistaway_" + gw_extended_address()
-        timezone = self.cdb.channel_get(main_addr + ".offset")
+        timezone = cdb.channel_get(main_addr + ".offset")
         timezone = timezone.get()
         timezone = timezone.value
         offset = int(timezone)
         time_here = sec_time + offset 
-        return time_here
+        return time_here"""
 
     def __send_to_idigi(self, data):
 
@@ -567,7 +600,8 @@ class Uploader(PresentationBase, threading.Thread):
             
           #  file2.close()
 
-            webservice = httplib.HTTP("devbuildinglynx.apphb.com")
+            print "opening http post"
+            webservice = httplib.HTTPConnection("devbuildinglynx.apphb.com", timeout=10)
             #    print "line 1"
             webservice.putrequest(unicode("POST", "utf-8" ), unicode("/api/fromGateway", "utf-8" ), "HTTP/1.1")
             #        webservice.putheader("POST", "/NumericUpDown.asmx", "" )
@@ -585,11 +619,24 @@ class Uploader(PresentationBase, threading.Thread):
             # print "line 7"
             webservice.send(unicode(string, "utf-8" ))
             
+            
+            response = webservice.getresponse()
+            errcode = response.status
+            errmsg = response.reason
+            headers = response.msg
+            print errcode
+            print errmsg
+            print headers
+            
+            webservice.close()
+            print "close http post"
+            
+            """
             statuscode, statusmessage, header = webservice.getreply()
             print "Response: ", statuscode, statusmessage
             print "headers: ", header
             res = webservice.getfile().read()
-            print res
+            print res"""
             
           #  file3 = open("WEB/python/Resp" + file + ".txt", "w")
             

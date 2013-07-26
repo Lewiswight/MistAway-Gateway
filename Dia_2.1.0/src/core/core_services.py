@@ -492,10 +492,18 @@ in the core service.
         using the power control module and request reactivation after
         `sleep` seconds.
         '''
-        self.__sleep_req = sleep
-        self.__shutdown_event.set()
+        print "#####################"
+        print "#####################"
+        print "#####################"
+        print "### shutdown rqst ###"
+        print "#####################"
+        print "#####################"
+        print "#####################"
+        #self.__sleep_req = sleep
+        #self.__shutdown_event.set()
 
 # internal functions & classes
+
 
 def _get_other_threads():
     '''\

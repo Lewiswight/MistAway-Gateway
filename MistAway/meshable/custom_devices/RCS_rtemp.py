@@ -18,6 +18,7 @@ from devices.xbee.common.addressing import *
 from devices.xbee.common.prodid import RCS_THERMOSTAT
 import time
 import thread
+thread.stack_size(2048*1024)
 
 
 
@@ -47,7 +48,7 @@ class XBeeSerialTerminal(XBeeSerial):
         self.sched = 0
         self.w_retry = 0
         self.timer_c = 0
-        self.main_addr = "main_" + gw_extended_address()
+        self.main_addr = "mainMistaway_" + gw_extended_address()
         self.last_temp = 0
         
 
@@ -82,8 +83,11 @@ class XBeeSerialTerminal(XBeeSerial):
         
         
         property_list = [
-            
-           
+                         
+            ChannelSourceDeviceProperty(name="SS", type=str,
+                initial=Sample(timestamp=0, unit="", value="System is Idle"),
+                perms_mask=(DPROP_PERM_GET|DPROP_PERM_SET),
+                options=DPROP_OPT_AUTOTIMESTAMP),
             
             ChannelSourceDeviceProperty(name="ST", type=str,
                 initial=Sample(timestamp=0, unit="R,W,I", value="0"),
@@ -104,7 +108,6 @@ class XBeeSerialTerminal(XBeeSerial):
                 initial=Sample(timestamp=0, unit="percent", value="O"),
                 perms_mask=(DPROP_PERM_GET|DPROP_PERM_SET),
                 options=DPROP_OPT_AUTOTIMESTAMP),
-            
           
             
             ChannelSourceDeviceProperty(name="sch", type=Boolean,
@@ -460,43 +463,21 @@ class XBeeSerialTerminal(XBeeSerial):
         return (accepted, rejected, not_found)
     def start(self):
 
-        # Fetch the XBee Manager name from the Settings Manager:
         xbee_manager_name = SettingsBase.get_setting(self, "xbee_device_manager")
         dm = self.__core.get_service("device_driver_manager")
         self.__xbee_manager = dm.instance_get(xbee_manager_name)
-
-        # Register ourselves with the XBee Device Manager instance:
-        self.__xbee_manager.xbee_device_register(self)
-
-        # Get the extended address of the device:
-        extended_address = SettingsBase.get_setting(self, "extended_address")
-
-        #register a callback for when the config is done
-        xb_rdy_state_spec = XBeeDeviceManagerRunningEventSpec()
-        xb_rdy_state_spec.cb_set(self._config_done_cb)
-        self.__xbee_manager.xbee_device_event_spec_add(self, xb_rdy_state_spec)
         
-        # Create a DDO configuration block for this device:
-        xbee_ddo_cfg = XBeeConfigBlockDDO(extended_address)
-
-        # Call the XBeeSerial function to add the initial set up of our device.
-        # This will set up the destination address of the devidce, and also set
-        # the default baud rate, parity, stop bits and flow control.
-        XBeeSerial.initialize_xbee_serial(self, xbee_ddo_cfg)
-
-        # Register this configuration block with the XBee Device Manager:
-        self.__xbee_manager.xbee_device_config_block_add(self, xbee_ddo_cfg)
-
-        # Indicate that we have no more configuration to add:
-        self.__xbee_manager.xbee_device_configure(self)
+        test = XBeeSerial.start(self)
         
-        self.apply_settings()
-
-        self.reset_stored_values()
-
+        self._config_done_cb()
+        
         self.update()
         
-        return True
+        
+        return test
+
+        #self.reset_stored_values()
+
 
     
     def update(self):
@@ -650,6 +631,7 @@ class XBeeSerialTerminal(XBeeSerial):
         
         
         channel_list = cdb.channel_list()
+        print "channel list is made in the thermostat"
 
         temps=[]
         list2=[]
@@ -1044,6 +1026,10 @@ class XBeeSerialTerminal(XBeeSerial):
         """
         self.property_set("fan", Sample(0, value=val, unit="dF"))
         
+        if val:
+            val = 1
+        else:
+            val = 0
         try:
             self.serial_send("A=1,Z=1,F=" + str(val) + "\x0D")
         except:
@@ -1084,72 +1070,84 @@ class XBeeSerialTerminal(XBeeSerial):
             if d1.has_key("C1A"):
                 self.d4 = d1
             
-        
-            	
-        
-        if d1.has_key("T"):
-            if (d1["T"]) != (self.d3["T"]) or testing < 10: 
-                self.property_set("current_temp",
-                                Sample(0, value=int(d1["T"]), unit="dF"))
-        if d1.has_key("SP"):
-        	if (d1["SP"]) != (self.d3["SP"]) or testing < 10:
-                    self.property_set("spt", 
-                                Sample(0, value=int(d1["SP"]), unit="dF"))
-        if d1.has_key("SPH"):
-        	if (d1["SPH"]) != (self.d3["SPH"]) or testing < 10:
-                    self.property_set("spht",
-                               Sample(0, value=int(d1["SPH"]), unit="dF"))
-        if d1.has_key("SPC"):
-        	if (d1["SPC"]) != (self.d3["SPC"]) or testing < 10:
-                    samp = Sample(0, value=int(d1["SPC"]), unit="dF")
-                    self.property_set("splt", samp)
-        if d1.has_key("ST"):
-            if (d1["ST"]) != (self.d3["ST"]) or testing < 10:
-                    self.property_set("ST", \
-                    Sample(0, value=d1["ST"], unit="o/h/c/a"))
-        if d1.has_key("M"):
-        	if (d1["M"]) != (self.d3["M"]) or testing < 10:
-                    self.property_set("mode", \
-                    Sample(0, value=d1["M"], unit="o/h/c/a"))
-        if d1.has_key("FM"):
-        	if (d1["FM"]) != (self.d3["FM"]) or testing < 10:
-                    self.property_set("fan", Sample(0, value=Boolean(bool(int(d1["FM"])),
-            						style=STYLE_ONOFF)))
-        
-        	            
+        try:   
+                	
+            
+            if d1.has_key("T"):
+                if (d1["T"]) != (self.d3["T"]) or testing < 10: 
+                    self.property_set("current_temp",
+                                    Sample(0, value=int(d1["T"]), unit="dF"))
+            if d1.has_key("SP"):
+            	if (d1["SP"]) != (self.d3["SP"]) or testing < 10:
+                        self.property_set("spt", 
+                                    Sample(0, value=int(d1["SP"]), unit="dF"))
+            if d1.has_key("SPH"):
+            	if (d1["SPH"]) != (self.d3["SPH"]) or testing < 10:
+                        self.property_set("spht",
+                                   Sample(0, value=int(d1["SPH"]), unit="dF"))
+            if d1.has_key("SPC"):
+            	if (d1["SPC"]) != (self.d3["SPC"]) or testing < 10:
+                        samp = Sample(0, value=int(d1["SPC"]), unit="dF")
+                        self.property_set("splt", samp)
+            if d1.has_key("ST"):
+                if (d1["ST"]) != (self.d3["ST"]) or testing < 10:
+                        self.property_set("ST", \
+                        Sample(0, value=d1["ST"], unit="o/h/c/a"))
+            if d1.has_key("M"):
+            	if (d1["M"]) != (self.d3["M"]) or testing < 10:
+                        self.property_set("mode", \
+                        Sample(0, value=d1["M"], unit="o/h/c/a"))
+            if d1.has_key("FM"):
+            	if (d1["FM"]) != (self.d3["FM"]) or testing < 10:
+                        self.property_set("fan", Sample(0, value=Boolean(bool(int(d1["FM"])),
+                						style=STYLE_ONOFF)))
+            
+            	            
+                            
                         
-                    
-        if d1.has_key("C2A"):
-        	if (d1["C2A"]) != (self.d4["C2A"]) or testing < 10: # or (int(d1["C2A"])) == 1:
-                    self.property_set("ac_2", Sample(0, value=Boolean(bool(int(d1["C2A"])),
-            							style=STYLE_ONOFF)))
-        if d1.has_key("H1A"):
-        	if (d1["H1A"]) != (self.d4["H1A"]) or testing < 10: # or (int(d1["H1A"])) == 1:
-                    self.property_set("heat_1", Sample(0, value=Boolean(bool(int(d1["H1A"])),
-            								style=STYLE_ONOFF)))
-        if d1.has_key("H2A"):
-        	if (d1["H2A"]) != (self.d4["H2A"]) or testing < 10: # or (int(d1["H2A"])) == 1:
-                    self.property_set("heat_2", Sample(0, value=Boolean(bool(int(d1["H2A"])),
-            								style=STYLE_ONOFF)))
-        if d1.has_key("H3A"):
-        	if (d1["H3A"]) != (self.d4["H3A"]) or testing < 10: # or (int(d1["H3A"])) == 1:
-                    self.property_set("heat_3", Sample(0, value=Boolean(bool(int(d1["H3A"])),
-            								style=STYLE_ONOFF)))
-        
-        if d1.has_key("C1A"):
-        	if (d1["C1A"]) != (self.d4["C1A"]) or testing < 10: # or (int(d1["C1A"])) == 1:
-                    self.property_set("ac_1", Sample(0, value=Boolean(bool(int(d1["C1A"])),
-            							style=STYLE_ONOFF)))    
-                    if (d1["C1A"]) == "1" and  (self.d4["C1A"]) == "0" and testing == 10:
-                    	self.serial_send("A=1,Z=1,F=1\x0D")
-                    if (d1["C1A"]) == "0" and  (self.d4["C1A"]) == "1" and testing == 10:
-                    	thread.start_new_thread(self.fan_cycle, ())
-                                                      	            	                    
-        
+            if d1.has_key("C2A"):
+            	if (d1["C2A"]) != (self.d4["C2A"]) or testing < 10: # or (int(d1["C2A"])) == 1:
+                        self.property_set("ac_2", Sample(0, value=Boolean(bool(int(d1["C2A"])),
+                							style=STYLE_ONOFF)))
+            if d1.has_key("H1A"):
+            	if (d1["H1A"]) != (self.d4["H1A"]) or testing < 10: # or (int(d1["H1A"])) == 1:
+                        self.property_set("heat_1", Sample(0, value=Boolean(bool(int(d1["H1A"])),
+                								style=STYLE_ONOFF)))
+                            
+            if d1.has_key("H2A"):
+            	if (d1["H2A"]) != (self.d4["H2A"]) or testing < 10: # or (int(d1["H2A"])) == 1:
+                        self.property_set("heat_2", Sample(0, value=Boolean(bool(int(d1["H2A"])),
+                								style=STYLE_ONOFF)))
+            if d1.has_key("H3A"):
+            	if (d1["H3A"]) != (self.d4["H3A"]) or testing < 10: # or (int(d1["H3A"])) == 1:
+                        self.property_set("heat_3", Sample(0, value=Boolean(bool(int(d1["H3A"])),
+                								style=STYLE_ONOFF)))
+            
+            if d1.has_key("C1A"):
+            	if (d1["C1A"]) != (self.d4["C1A"]) or testing < 10: # or (int(d1["C1A"])) == 1:
+                        self.property_set("ac_1", Sample(0, value=Boolean(bool(int(d1["C1A"])),
+                							style=STYLE_ONOFF)))
+                                              
+                        if (d1["C1A"]) == "1" and  (self.d4["C1A"]) == "0" and testing == 10:
+                        	self.serial_send("A=1,Z=1,F=1\x0D")
+                        if (d1["C1A"]) == "0" and  (self.d4["C1A"]) == "1" and testing == 10:
+                        	thread.start_new_thread(self.fan_cycle, ())
+              
+            if d1.has_key("C1A") and d1.has_key("H1A"): 
+                
+                if bool(int(d1["C1A"])) and not bool(int(d1["H1A"])):
+                    self.property_set("SS", Sample(0, value="A/C is Running", unit=""))
+                elif bool(int(d1["H1A"])) and not bool(int(d1["C1A"])):
+                    self.property_set("SS", Sample(0, value="Heater is Running", unit=""))
+                elif not bool(int(d1["C1A"])) and not bool(int(d1["H1A"])):
+                    self.property_set("SS", Sample(0, value="System is Idle", unit="")) 
+        except:
+            pass  	            	                    
+                                                                                               
         if testing < 10:
         	testing += 1
         	self.test = testing
-            
+         
         
         if d1.has_key("SPC") and d1.has_key("T"):
         	self.d3 = d1
