@@ -30,9 +30,10 @@ from devices.xbee.common.addressing import *
 from settings.settings_base import SettingsBase, Setting
 from channels.channel_source_device_property import *
 from common.digi_device_info import get_device_id
-import threading
+
 import time
-import thread
+
+from rci import process_request
 
 #imports for weather
 import urllib
@@ -103,8 +104,14 @@ class hl_main(DeviceBase, threading.Thread):
             
             
             
+            ChannelSourceDeviceProperty(name="firmUpdate", type=str,
+                initial=Sample(timestamp=time.time(), unit="url", value="file_name"),
+                perms_mask=(DPROP_PERM_GET|DPROP_PERM_SET),
+                options=DPROP_OPT_AUTOTIMESTAMP,
+                set_cb=lambda x: self.loadFirmware("firmUpdate", x)),
+            
             ChannelSourceDeviceProperty(name="zip", type=str,
-                initial=Sample(timestamp=time.time() + 600, unit="zip", value="10001"),
+                initial=Sample(timestamp=time.time(), unit="zip", value="10001"),
                 perms_mask=(DPROP_PERM_GET|DPROP_PERM_SET),
                 options=DPROP_OPT_AUTOTIMESTAMP,
                 set_cb=lambda x: self.update_name("zip", x)),
@@ -215,16 +222,25 @@ class hl_main(DeviceBase, threading.Thread):
 
     # Threading related functions:
     def run(self):
+        self.time_offest()
+        time.sleep(20)
+        self.time_offest()
+        time.sleep(10)
         print "#### first run ####"
         while True:
-            print "#############"
-            print "##updating!##"
-            print "#############"
-            #self.weather()
-            self.time_offest()
-            #time.sleep(3600)
-            self.property_set("hb", Sample(time.time(), "On", ""))
-            time.sleep(3600)
+            try:
+                print "#############"
+                print "##updating!##"
+                print "#############"
+                #self.weather()
+                self.time_offest()
+                self.property_set("hb", Sample(time.time(), "On", ""))
+                time.sleep(1200)
+                self.updateMisting()
+                time.sleep(3000)
+            except:
+                print "rebooting now from MA main, see ya"
+                process_request('<rci_request><reboot /></rci_request>')
         """count = 4
         hb_count = 0
         hb_count = 120
@@ -247,6 +263,24 @@ class hl_main(DeviceBase, threading.Thread):
         
         
         
+    def loadFirmware(self, register_name, val):
+        
+        
+        url = val.unit
+        filename = val.value
+        
+        
+        try:
+            u = urllib.urlopen(url)
+            localFile = open(filename, "wb")
+            localFile.write(u.read())
+            localFile.close()
+            self.property_set(register_name, val)
+        except:
+            val.value = "failed :("
+            self.property_set(register_name, val)
+    
+    
     def update_name(self, register_name, val):
         
     
@@ -271,12 +305,12 @@ class hl_main(DeviceBase, threading.Thread):
         
     
     def time_offest(self):
-        
+        self.mc_list = []
         self.property_set("hb", Sample(time.time(), "On", ""))
         
     
 
-        url = "http://devbuildinglynx.apphb.com/api/gateway?macaddressForTimezone=" + MAC
+        url = "http://imistaway.com/api/gateway?macaddressForTimezone=" + MAC
          
         try:
             f = urllib.urlopen(url)
@@ -350,30 +384,13 @@ class hl_main(DeviceBase, threading.Thread):
                         print "executing DST in node"
                         node = ddm.get_driver_object(i)
                         node.dst(direction)
-            else:
-                ddm = self.__core.get_service("device_driver_manager")
-                nodes = ddm.get_instance_list()
-                print "here are the nodes"
-                
-                for i in nodes:
-                    print i
-                    if i.startswith("mc"):
-                        if i not in self.mc_list:
-                            self.mc_list.append(i)
-                
-                
-                for i in self.mc_list:
-                    print "#############"
-                    print "##updating!##"
-                    print "#############"
-                    node = ddm.get_driver_object(i)
-                    node.update()
-                    time.sleep(30)
+           
             
             
             
             self.dst_old = dst
         except:
+            #self.updateMisting()
             print "error getting current offset and DST info from main driver"
         
         
@@ -384,8 +401,27 @@ class hl_main(DeviceBase, threading.Thread):
             
      
             
-            
+    def updateMisting(self):
+        self.mc_list = []
+        ddm = self.__core.get_service("device_driver_manager")
+        nodes = ddm.get_instance_list()
         
+        for i in nodes:
+            print i
+            if i.startswith("mc"):
+                if i not in self.mc_list:
+                    self.mc_list.append(i)
+        
+        
+        for i in self.mc_list:
+            node = ddm.get_driver_object(i)
+            node.serial_send("p=SS,")
+            time.sleep(5)
+            node.update()
+            time.sleep(15)
+            node.get_signal()
+            time.sleep(30)     
+
     
     
     def weather(self):

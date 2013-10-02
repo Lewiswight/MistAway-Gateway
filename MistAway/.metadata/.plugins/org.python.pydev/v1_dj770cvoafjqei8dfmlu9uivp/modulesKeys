@@ -18,7 +18,6 @@ SimpleDialog|C:\Python24\Lib\lib-tk\SimpleDialog.py
 SimpleHTTPServer|C:\Python24\Lib\SimpleHTTPServer.py
 SimpleXMLRPCServer|C:\Python24\Lib\SimpleXMLRPCServer.py
 SocketServer|C:\Python24\Lib\SocketServer.py
-StringIO|C:\Python24\Lib\StringIO.py
 Tix|C:\Python24\Lib\lib-tk\Tix.py
 Tkconstants|C:\Python24\Lib\lib-tk\Tkconstants.py
 Tkdnd|C:\Python24\Lib\lib-tk\Tkdnd.py
@@ -598,7 +597,6 @@ robotparser|C:\Python24\Lib\robotparser.py
 sched|C:\Python24\Lib\sched.py
 scintilla|C:\Python24\Lib\site-packages\pythonwin\scintilla.dll
 scipy
-select|C:\Python24\DLLs\select.pyd
 servicemanager|C:\Python24\Lib\site-packages\win32\servicemanager.pyd
 sets|C:\Python24\Lib\sets.py
 sgmllib|C:\Python24\Lib\sgmllib.py
@@ -981,7 +979,6 @@ tokenize|C:\Python24\Lib\tokenize.py
 trace|C:\Python24\Lib\trace.py
 tty|C:\Python24\Lib\tty.py
 turtle|C:\Python24\Lib\lib-tk\turtle.py
-types|C:\Python24\Lib\types.py
 tzparse|C:\Python24\Lib\tzparse.py
 unicodedata|C:\Python24\DLLs\unicodedata.pyd
 unittest|C:\Python24\Lib\unittest.py
@@ -1140,8 +1137,6 @@ xml.dom.expatbuilder|C:\Python24\Lib\xml\dom\expatbuilder.py
 xml.dom.minicompat|C:\Python24\Lib\xml\dom\minicompat.py
 xml.dom.pulldom|C:\Python24\Lib\xml\dom\pulldom.py
 xml.dom.xmlbuilder|C:\Python24\Lib\xml\dom\xmlbuilder.py
-xml.parsers.__init__|C:\Python24\Lib\xml\parsers\__init__.py
-xml.parsers.expat|C:\Python24\Lib\xml\parsers\expat.py
 xml.sax.__init__|C:\Python24\Lib\xml\sax\__init__.py
 xml.sax._exceptions|C:\Python24\Lib\xml\sax\_exceptions.py
 xml.sax.expatreader|C:\Python24\Lib\xml\sax\expatreader.py

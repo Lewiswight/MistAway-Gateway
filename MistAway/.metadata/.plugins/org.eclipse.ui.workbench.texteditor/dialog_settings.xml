@@ -22,8 +22,8 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="243" key="DIALOG_WIDTH"/>
-		<item value="179" key="DIALOG_Y_ORIGIN"/>
-		<item value="995" key="DIALOG_X_ORIGIN"/>
+		<item value="400" key="DIALOG_Y_ORIGIN"/>
+		<item value="1143" key="DIALOG_X_ORIGIN"/>
 		<item value="379" key="DIALOG_HEIGHT"/>
 		<item value="1|Lucida Grande|11.0|0|COCOA|1|LucidaGrande" key="DIALOG_FONT_NAME"/>
 	</section>
@@ -33,26 +33,26 @@
 		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="service_l" key="selection"/>
+		<item value="last_com" key="selection"/>
 		<list key="findhistory">
-			<item value="service_l"/>
-			<item value="self.__tracer.info"/>
-			<item value="self.__tracer.info("/>
-			<item value="time of day"/>
-			<item value="print"/>
-			<item value="trace"/>
-			<item value="list with"/>
-			<item value="update"/>
+			<item value="last_com"/>
+			<item value="globe"/>
+			<item value="def sendup"/>
+			<item value="sendup"/>
+			<item value="property_set(&quot;last"/>
+			<item value="get_sig"/>
+			<item value="%"/>
+			<item value="property_get"/>
 		</list>
 		<list key="replacehistory">
+			<item value="#print"/>
+			<item value="cdb"/>
+			<item value="#self.lock.release()"/>
+			<item value="#self.lock.acquire()"/>
+			<item value="#self.lock.release() "/>
 			<item value="print "/>
 			<item value="self.__tracer.info(str("/>
 			<item value="self.__tracer.info("/>
-			<item value="self.sendUpData()"/>
-			<item value="4096"/>
-			<item value="2048"/>
-			<item value="self.event_timer_start"/>
-			<item value="unit=&quot;&quot;"/>
 		</list>
 	</section>
 </section>

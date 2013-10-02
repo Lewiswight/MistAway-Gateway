@@ -294,6 +294,7 @@ class RCIHandler(PresentationBase):
         self.__name = name
         self.__core = core_services
         self.__handle = None
+        self.addedXML = None
 
         from core.tracing import get_tracer
         self.__tracer = get_tracer(name)
@@ -379,7 +380,15 @@ class RCIHandler(PresentationBase):
             self.__tracer.debug(traceback.format_exc())
 
         #self.__tracer.info("Reply is: ", str(self.__reply))
-
+        print "here is the first relpy"
+        print
+        print
+        print self.__reply
+        if self.addedXML != None:
+            self.__reply = self.__reply.replace("</data>", "")
+            self.__reply = self.__reply + self.addedXML + "</data>"
+            self.addedXML = None
+        print self.__reply
         return str(self.__reply)
 
     def __handle_start_element(self, name, attrs):
@@ -431,7 +440,8 @@ class RCIHandler(PresentationBase):
         Keyword arguments:
             name -- the name of the end element
         """
-
+        
+            
         self.__reply += "</" + str(name) + ">"
 
     def __do_channel_dump(self, attrs):

@@ -34,7 +34,7 @@ from time import localtime
 import time 
 from common.abstract_service_manager import AbstractServiceManager
 
-from core.tracing import get_tracer
+#from core.tracing import get_tracer
 #from custom_presentations.presentations.idigi_db.idigi_dbM import iDigi_DB
 
 import Queue
@@ -183,7 +183,7 @@ class XBeeSerialTerminal(XBeeSerial):
     SUPPORTED_PRODUCTS = [ MISTAWAY_CONTROLLER_MC3, MISTAWAY_CONTROLLER_MC3Z, MISTAWAY_CONTROLLER_MC1, MISTAWAY_CONTROLLER_MC1Z, MISTAWAY_CONTROLLER_MC3D, ]
     
     def __init__(self, name, core_services):
-        self.__tracer = get_tracer(name)
+       # self.__tracer = get_tracer(name)
         if name.startswith("mc3"):
             self.sys_type = 3
         else:
@@ -202,7 +202,7 @@ class XBeeSerialTerminal(XBeeSerial):
         self.fwu = 0
         self.m_mode = 0 # 0 = not misting, 1=user initiated, 2=user cancelled, 3=success
         self.list = 0
-        self.__tracer = get_tracer(name)
+        #self.__tracer = get_tracer(name)
         self.full_update = False
         self.string = ""
 		
@@ -229,12 +229,19 @@ class XBeeSerialTerminal(XBeeSerial):
         self.test2 = 0 #previous status
         self.count = 0
         self.queue = []# Queue.Queue(maxsize=50)
+        self.systemStatusCount = 0
+        
+        self.currentData = None
+        self.looking_for_response = False
         
         self.firstLVL = True
         
         self.getting_all_values = 0 # true or false for if I'm looking for an r=6 return
         
-        self.current = None
+        self.current = {}
+        self.respTimes = 0
+        
+        self.update_mode = False
 
         ## Settings Table Definition:
         settings_list = [
@@ -271,114 +278,17 @@ class XBeeSerialTerminal(XBeeSerial):
                          #mist away firmware version
              
              ChannelSourceDeviceProperty(name="GWF", type=str,
-                initial=Sample(timestamp=time.time() + 30, unit="", value="2013-07-12 Dev 1"),
+                initial=Sample(timestamp=time.time() + 600, unit="", value="2013-09-25 Rel 1"),
                 perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
                          
                          #gateway firmware
              
              
              ChannelSourceDeviceProperty(name="last_com", type=str,
-                initial=Sample(timestamp=time.time(), unit="", value=""),
+                initial=Sample(timestamp=1, unit="", value=""),
                 perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
              
-             #last com from controller
              
-             ChannelSourceDeviceProperty(name="CL0", type=str,
-                initial=Sample(timestamp=time.time(), unit="", value="C1"),
-                perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
-            
-            ChannelSourceDeviceProperty(name="CL1", type=str,
-                initial=Sample(timestamp=time.time(), unit="", value="C2"),
-                perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
-            
-            ChannelSourceDeviceProperty(name="CL2", type=str,
-                initial=Sample(timestamp=time.time(), unit="", value="C3"),
-                perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
-            
-            ChannelSourceDeviceProperty(name="CL3", type=str,
-                initial=Sample(timestamp=time.time(), unit="", value="C4"),
-                perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
-            
-            ChannelSourceDeviceProperty(name="CL4", type=str,
-                initial=Sample(timestamp=time.time(), unit="", value="C5"),
-                perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
-            
-            ChannelSourceDeviceProperty(name="CL5", type=str,
-                initial=Sample(timestamp=time.time(), unit="", value="C6"),
-                perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
-            
-            ChannelSourceDeviceProperty(name="CL6", type=str,
-                initial=Sample(timestamp=time.time(), unit="", value="C7"),
-                perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
-            
-            ChannelSourceDeviceProperty(name="CL7", type=str,
-                initial=Sample(timestamp=time.time(), unit="", value="C8"),
-                perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
-            
-             
-            ChannelSourceDeviceProperty(name="CL8", type=str,
-                initial=Sample(timestamp=time.time(), unit="", value="C9"),
-                perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
-            
-            ChannelSourceDeviceProperty(name="CL9", type=str,
-                initial=Sample(timestamp=time.time(), unit="", value="C10"),
-                perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
-            
-            ChannelSourceDeviceProperty(name="CL10", type=str,
-                initial=Sample(timestamp=time.time(), unit="", value="C11"),
-                perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
-            
-            ChannelSourceDeviceProperty(name="CL11", type=str,
-                initial=Sample(timestamp=time.time(), unit="", value="C12"),
-                perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
-            
-            ChannelSourceDeviceProperty(name="CL12", type=str,
-                initial=Sample(timestamp=time.time(), unit="", value="C13"),
-                perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
-            
-            ChannelSourceDeviceProperty(name="CL13", type=str,
-                initial=Sample(timestamp=time.time(), unit="", value="C14"),
-                perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
-            
-            ChannelSourceDeviceProperty(name="CL14", type=str,
-                initial=Sample(timestamp=time.time(), unit="", value="C15"),
-                perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
-            
-            ChannelSourceDeviceProperty(name="CL15", type=str,
-                initial=Sample(timestamp=time.time(), unit="", value="C16"),
-                perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
-            
-            ChannelSourceDeviceProperty(name="CL16", type=str,
-                initial=Sample(timestamp=time.time(), unit="", value="C17"),
-                perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
-            
-            ChannelSourceDeviceProperty(name="CL17", type=str,
-                initial=Sample(timestamp=time.time(), unit="", value="C18"),
-                perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
-            
-            ChannelSourceDeviceProperty(name="CL18", type=str,
-                initial=Sample(timestamp=time.time(), unit="", value="C19"),
-                perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
-            
-            ChannelSourceDeviceProperty(name="CL19", type=str,
-                initial=Sample(timestamp=time.time(), unit="", value="C20"),
-                perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
-            
-            ChannelSourceDeviceProperty(name="CL20", type=str,
-                initial=Sample(timestamp=time.time(), unit="", value="C21"),
-                perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
-            
-            ChannelSourceDeviceProperty(name="CL21", type=str,
-                initial=Sample(timestamp=time.time(), unit="", value="C22"),
-                perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
-            
-            ChannelSourceDeviceProperty(name="CL22", type=str,
-                initial=Sample(timestamp=time.time(), unit="", value="C23"),
-                perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
-            
-            ChannelSourceDeviceProperty(name="CL23", type=str,
-                initial=Sample(timestamp=time.time(), unit="", value="C24"),
-                perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
             
             			 
 			
@@ -390,7 +300,7 @@ class XBeeSerialTerminal(XBeeSerial):
             
             
 			ChannelSourceDeviceProperty(name="LM", type=str,
-                initial=Sample(timestamp=0, unit="1", value=""),
+                initial=Sample(timestamp=1, unit="1", value=""),
                 perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
 						
 			#Last Mist, will be set every time SS=Mist
@@ -444,7 +354,9 @@ class XBeeSerialTerminal(XBeeSerial):
 						
 			#Volume (mL) of Last Mist
 			
-			
+			ChannelSourceDeviceProperty(name="AF30", type=str,
+                initial=Sample(timestamp=0, unit="", value=""),
+                perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
             
             ChannelSourceDeviceProperty(name="AF2", type=str,
                 initial=Sample(timestamp=0, unit="", value=""),
@@ -1321,7 +1233,8 @@ class XBeeSerialTerminal(XBeeSerial):
         XBeeSerial.__init__(self, self.__name, self.__core,    
                                 settings_list, property_list)
 
-
+        #threading.Thread.__init__(self, name=name)
+        #threading.Thread.setDaemon(self, True)
     
     
     @staticmethod
@@ -1350,9 +1263,14 @@ class XBeeSerialTerminal(XBeeSerial):
 
     
     
-    """def run(self):  
+    def run(self):
+          
+        if self.fwu == 0:    
+            self.serial_send("g=6,")
+            self.full_update = True
+        time.sleep(3600)
                                       
-        print ( "the Queue has been started!")
+        """print ( "the Queue has been started!")
         time.sleep(60)   
         count = 0
         while True:
@@ -1369,6 +1287,7 @@ class XBeeSerialTerminal(XBeeSerial):
                     #####self.lock.release()
                 #print "finishing the wait in the queue"
             except:
+                pass
                 #####self.lock.release()
                # print "failed to check queue"
             #else: 
@@ -1399,6 +1318,7 @@ class XBeeSerialTerminal(XBeeSerial):
                         self.full_update = True
                     #####self.lock.release()
                 except:
+                    pass
                     #####self.lock.release()
                     #print "rebooting now from MA driver, see ya"
                     #process_request('<rci_request><reboot /></rci_request>')"""
@@ -1420,7 +1340,7 @@ class XBeeSerialTerminal(XBeeSerial):
         return (accepted, rejected, not_found)
 
     def start(self):
-    	self.lock = threading.Lock()
+    	#self.lock = threading.Lock()
         
     	xbee_manager_name = SettingsBase.get_setting(self, "xbee_device_manager")
         dm = self.__core.get_service("device_driver_manager")
@@ -1430,6 +1350,7 @@ class XBeeSerialTerminal(XBeeSerial):
     	
     	self.event_timer_start = self.__xbee_manager.xbee_device_schedule_after(30, self._config_done_cb)
         
+        #threading.Thread.start(self)
 
         return test
 
@@ -1445,15 +1366,34 @@ class XBeeSerialTerminal(XBeeSerial):
 	    return (crc & 0xFFFF)
 	 
     def calcString(self, st, crc):
-	    """Given a bunary string and starting CRC, Calc a final CRC-16 """
-	    for ch in st:
-	        crc = (crc >> 8) ^ TABLE[(crc ^ ord(ch)) & 0xFF]
-	    return crc  
+        return 12345
+	   #"""Given a bunary string and starting CRC, Calc a final CRC-16 """
+	   #for ch in st:
+	   #     crc = (crc >> 8) ^ TABLE[(crc ^ ord(ch)) & 0xFF]
+	   #return crc  
     
     def __get_signal(self, register_name, val):
+        self.currentData = None
         val.timestamp = time.time()
-        self.property_set(register_name, val)
-        self.get_signal()
+        count = 0
+        self.serial_send("p=SS,")
+        while self.currentData == None:
+            count += 1
+            time.sleep(1)
+            if count > 10:
+                break
+        if self.currentData != None:
+            val.value = "Connected"
+            self.get_signal()
+            sig = self.property_get("signal").value
+            self.addToRci2(sig)
+            self.property_set(register_name, val)
+        else:
+            self.addToRci2("0")
+            val.value = "Not Connected"
+            self.property_set(register_name, val)
+              
+        
     
     def get_signal(self, send=True):
         
@@ -1819,16 +1759,17 @@ class XBeeSerialTerminal(XBeeSerial):
     	
     	self.serial_send(data)
     
-    
+    # This is the section with all of the sets in it.
     
     def set_time(self, register_name, val):
     	
+        self.currentData = None
     	#self.list += 1
     	
     	#time.sleep(self.list)
         val.timestamp = time.time()
     	val.unit = "sec2time"
-    	self.property_set(register_name, val)
+    	#self.property_set(register_name, val)
     	value = val.value
     	
     	new_val = value.split(":")
@@ -1853,81 +1794,88 @@ class XBeeSerialTerminal(XBeeSerial):
          
         self.next_mist(total=False)
      	
+        self.getResponse(register_name, val)
      	
      	#self.list -= 1
     
     
-    def set_lvl(self, register_name, val, bot=None):
-        
-        if int(val.value) > 100:
-            val.value = "100"
-        
-        val.unit = "LVL"
-        val.timestamp = time.time()
-        
-        
-        old_lvl = self.property_get("LVL").value
-        
-        self.property_set(register_name, val)
-        
-        if float(val.value) > float(old_lvl):
-            print (str( "level increased"))
-            self.property_set("LF", Sample(time.time(), value=iso_date(self.current_time_get()), unit=""))
-            self.sendUpData()
-            
-        
-            
-        
-        
-        
-        status = self.property_get("SS").value
-        
-        if self.sys_type == 3:
-            if status == "Empty" or self.current["SS"] == "e":
-                self.serial_send("r=CE,")
-                time.sleep(3)
-                
-        if self.sys_type == 3: 
-            if bot == None:
-                CF = (int(self.property_get("BOT").value) * 295.735)
-            else:
-                CF = bot * 295.735
-            print ( "here is the CF value")
-            print (str( CF))
-        else:
-            CF = (float(self.property_get("TNK").value) * 3785.41)
-            print ( "here is the 1.3 CF")
-            print (str( CF))
-            if CF < 5:
-                return
-            
-        percent = float(val.value)
-        
-        mlValue = float((percent / 100) * CF)
-        print ( "here is the ml Value")
-        print (str( mlValue))
-        data = "s(" + register_name + "=" + str(int(mlValue)) + ")"
-        print (str( data))
-        self.serial_send(data)
-        time.sleep(2)
-        
+    def set_lvl(self, register_name, val):
+        self.currentData = None
         try:
-            if self.sys_type == 1:
-                if self.current != None:
-                    if status == "Empty" or self.current["SS"] == "e":
-                        self.serial_send("r=CE,")
-                        time.sleep(3)
+            bot = None
+            
+            if int(val.value) > 100:
+                val.value = "100"
+            
+            val.unit = "LVL"
+            val.timestamp = time.time()
+            
+            
+            old_lvl = self.property_get("LVL").value
+            
+            #self.property_set(register_name, val)
+            
+            if float(val.value) > float(old_lvl):
+                print (str( "level increased"))
+                self.property_set("LF", Sample(time.time(), value=iso_date(self.current_time_get()), unit=""))
+                self.sendUpData()
+                
+            
+                
+            
+            
+            
+            status = self.property_get("SS").value
+            
+            if self.sys_type == 3:
+                if status == "Empty" or self.current["SS"] == "e":
+                    self.serial_send("r=CE,")
+                    time.sleep(3)
+                    
+            if self.sys_type == 3: 
+                if bot == None:
+                    CF = (int(self.property_get("BOT").value) * 295.735)
+                else:
+                    CF = bot * 295.735
+                print ( "here is the CF value")
+                print (str( CF))
+            else:
+                CF = (float(self.property_get("TNK").value) * 3785.41)
+                print ( "here is the 1.3 CF")
+                print (str( CF))
+                if CF < 5:
+                    return
+                
+            percent = float(val.value)
+            
+            mlValue = float((percent / 100) * CF)
+            print ( "here is the ml Value")
+            print (str( mlValue))
+            data = "s(" + register_name + "=" + str(int(mlValue)) + ")"
+            print (str( data))
+            self.serial_send(data)
+            time.sleep(2)
+            
+            try:
+                if self.sys_type == 1:
+                    if self.current != None:
+                        if status == "Empty" or self.current["SS"] == "e":
+                            self.serial_send("r=CE,")
+                            time.sleep(3)
+            except:
+                print ( "self.current must not exist")
+            
+            self.sendUpData()
+            self.getResponse(register_name, val)
         except:
-            print ( "self.current must not exist")
-        
-        self.sendUpData()
+            self.property_set(register_name, val)
     
         
     
     
     def set_10ml2oz(self, register_name, val):
         
-
+        self.currentData = None
         
         LVL = self.property_get("LVL").value
         
@@ -1936,7 +1884,7 @@ class XBeeSerialTerminal(XBeeSerial):
         LVL = float(LVL)
         val.timestamp = time.time()
         val.unit = "10ml2oz"
-        self.property_set(register_name, val)
+        #self.property_set(register_name, val)
         
         
         
@@ -1963,14 +1911,15 @@ class XBeeSerialTerminal(XBeeSerial):
         self.serial_send(data)
         print ( "level data:" )
         print (str( data ))
+        self.getResponse(register_name, val)
     
     def set_cycle(self, register_name, val):
-        
+        self.currentData = None
         #self.list += 1
         
         #time.sleep(self.list)
         val.timestamp = time.time()
-        self.property_set(register_name, val)
+        #self.property_set(register_name, val)
         
         print (str( val.value ))
         data = "s(" + register_name + "=" + str(val.value) + ")"
@@ -1978,10 +1927,12 @@ class XBeeSerialTerminal(XBeeSerial):
         self.serial_send(data)
         
         self.next_mist(total=False)
-         
+        self.getResponse(register_name, val)
         #self.list -= 1
     
     def set_sec2min(self, register_name, val):
+        
+         self.currentData = None
         
          #self.list += 1
         
@@ -1990,23 +1941,25 @@ class XBeeSerialTerminal(XBeeSerial):
          val.unit = "sec2min"
          new_value = int(val.value) * 60
          
-         self.property_set(register_name, val)
+         #self.property_set(register_name, val)
          print (str( val.value ))
          data = "s(" + register_name + "=" + str(new_value) + ")"
          
          self.serial_send(data)
-         
+         self.getResponse(register_name, val)
          #self.list -= 1
         
     
     def set(self, register_name, val):
+        
+        self.currentData = None
     	
     	#self.list += 1
     	
     	#time.sleep(self.list)
         val.timestamp = time.time()
     	
-     	self.property_set(register_name, val)
+     	#self.property_set(register_name, val)
      	print (str( val.value ))
      	data = "s(" + register_name + "=" + str(val.value) + ")"
      	
@@ -2018,7 +1971,7 @@ class XBeeSerialTerminal(XBeeSerial):
                 self.full_update = True
      	
      	#self.list -= 1
-     	
+     	self.getResponse(register_name, val)
      	
      	
     def set_dst(self, register_name, val):
@@ -2038,13 +1991,39 @@ class XBeeSerialTerminal(XBeeSerial):
     
     
     
+    def getResponse(self, channel, value):
+        count = 0
+        while self.currentData == None:
+            count += 1
+            time.sleep(1)
+            if count > 7:
+                break
+        if self.currentData == None:
+            value.timestamp = 12
+            value.value = "error"
+            self.property_set(channel, value)
+            return
+        elif "command not found" in self.currentData or "error" in self.currentData:
+            value.value = "error" #"device did not recognize the request"
+            value.timestamp = 12
+            self.property_set(channel, value)
+        elif self.currentData != None:
+            if value.value == "M" or value.value == "I" or value.value == "IZ1" or value.value == "IZ2":
+                self.addToRci(1)
+            if value.value == "S":
+                self.addToRci(0)
+            self.property_set(channel, value)
+       
+            
     
     def new_update(self, register_name, val):
+        self.currentData = None
+        
         val.timestamp = time.time()
     	
-    	self.property_set(register_name, val)
     	
-    	r = self.property_get("r").value
+    	
+    	r = val.value
     	
     	
     	
@@ -2055,6 +2034,7 @@ class XBeeSerialTerminal(XBeeSerial):
     	if self.fwu == 0:
     		
             if r == "M":
+                
                 self.serial_send("r=M,")
                 #self.property_set("LM", Sample(0, value="Last_Mist", unit=""))
             elif r == "FSP":
@@ -2074,6 +2054,7 @@ class XBeeSerialTerminal(XBeeSerial):
                 time.sleep(.5)
                 #self.serial_send("r=1,")
             elif r == "I":
+                
                 self.serial_send("r=I,")
             elif r == "CE":
                 self.serial_send("r=CE,")
@@ -2093,6 +2074,7 @@ class XBeeSerialTerminal(XBeeSerial):
                 self.serial_send("r=FT,")
                 time.sleep(10)
                 self.sendUpData()
+            self.getResponse(register_name, val)
 				
     def _config_done_cb(self):
         """ Indicates config is done. """
@@ -2138,7 +2120,14 @@ class XBeeSerialTerminal(XBeeSerial):
         
         time.sleep(10)
         if self.sys_type == 1:
+            self.serial_send("p=TNK,")
+            time.sleep(3)
+            self.serial_send("p=TNK,")
+            time.sleep(3)
             self.serial_send("p=LVL,")
+            time.sleep(2)
+            self.serial_send("p=LVL,")
+            
         time.sleep(5)
         self.update()
         #thread.start_new_thread(self.update_loop, ())
@@ -2151,14 +2140,33 @@ class XBeeSerialTerminal(XBeeSerial):
         
         #self.check_up()
         
+    def addToRci2(self, sig):
+        rci = self.__core.get_service("presentation_manager")
+        rci1 = rci.driver_get("rci1")
+        timestamp = time.asctime(time.localtime(time.time()))
+        timestamp = str(timestamp)
+      
+        rci1.addedXML = ("""<channel_set name="%s.signal" value="%s" units="" timestamp="%s"></channel_set>""" % (self.__name, sig, timestamp))
+       
+        
+    def addToRci(self, status):
+        rci = self.__core.get_service("presentation_manager")
+        rci1 = rci.driver_get("rci1")
+        timestamp = time.asctime(time.localtime(time.time()))
+        timestamp = str(timestamp)
+        if status == 1:
+            rci1.addedXML = """<channel_set name="%s.SS" value="Misting" units="" timestamp="%s"></channel_set>""" % (self.__name, timestamp)
+        elif status == 0:
+            rci1.addedXML = """<channel_set name="%s.SS" value="OK" units="" timestamp="%s"></channel_set>""" % (self.__name, timestamp)
+        self.serial_send("p=SS,")
         
         
     def sendUpData(self):
         
-        print ( "sending data wink wink" )
-      #  upld = self.__core.get_service("presentation_manager")
-      #  upload = upld.driver_get("Uploader")
-      #  upload.upload_data()
+       # print ( "sending data wink wink" )
+        upld = self.__core.get_service("presentation_manager")
+        upload = upld.driver_get("Uploader")
+        upload.upload_data()
         
 
     def callUpload(self):
@@ -2227,13 +2235,16 @@ class XBeeSerialTerminal(XBeeSerial):
 
             if buf.endswith("$"):
                 
+                
+                
+                  
                 #on each com string update the timestamp of the last_com channel
                 
                 self.property_set("last_com", Sample(time.time(), value=iso_date(self.current_time_get()), unit=""))
                 
 
                 self.string = self.string + buf
-                
+                self.currentData = self.string
                 if self.string.startswith("crc="):
                     self.string = ""
                     #####self.lock.release()
@@ -2263,7 +2274,7 @@ class XBeeSerialTerminal(XBeeSerial):
                 
                 if self.push_all_settings == 1:
                     self.push_all_settings = 0
-                    self.current = None
+                    self.respTimes = 0
 
                 
                 #this next block is to make it only set data that has changed, this helps the uploader by keeping the timestaps the same and not clogging up the 
@@ -2275,8 +2286,7 @@ class XBeeSerialTerminal(XBeeSerial):
                 
                 
                 error = 0
-                if self.current == None:
-                    self.current = {}
+                if self.respTimes < 9:
                     try:
                         for i in d:
                             name = str(i)
@@ -2296,18 +2306,20 @@ class XBeeSerialTerminal(XBeeSerial):
                                     
                                     continue
                     except:
-                        self.current = None
+                        self.respTimes += 1
+                        self.current.update(d)
                         return
                     d["VL"] = "0"
                     d["command not foundcrc"] = "0"
                     d["VER"] = "0"
-                    self.current = d
+                    self.respTimes += 1
+                    self.current.update(d)
                 else:
                     #self.upload.sending = True
                     #self.upload.upload_lock.acquire(0)
         
                     for i in d:
-                        print (str( "looping through dictionary" ))
+                        #print (str( "looping through dictionary" ))
                         name = str(i)
                         name = name.strip()
                         value = d[i]
@@ -2324,8 +2336,8 @@ class XBeeSerialTerminal(XBeeSerial):
                         if name == "VER":
                             self.property_set("VER", Sample(time.time(), str(value), unit=""))
                             
-                        print ( "old value = " + str(old_value) )
-                        print ( "new value = " + str(value) )
+                        #print ( "old value = " + str(old_value) )
+                        #print ( "new value = " + str(value) )
                         if name == "LVL" and self.firstLVL:
                             try:
                                 old_value = str( (int(old_value) + 1))
@@ -2334,7 +2346,7 @@ class XBeeSerialTerminal(XBeeSerial):
                                 print ( "didn't work to raise old value by 1" )
                             
                         if value != old_value or name == "SS":
-                            print ( "found new value for: " + name )
+                            #print ( "found new value for: " + name )
                             try:
                                 self.set_loop(name, value, old_value)
                             except:
@@ -2350,7 +2362,19 @@ class XBeeSerialTerminal(XBeeSerial):
                     #self.upload.upload_lock.release()
                     if self.full_update != True:
                         if self.send_all_data_to_meshify == True:
+                            zone = bool(int(self.property_get("ZK").value))
                             self.serial_send("p=LVL,")
+                            time.sleep(2)
+                            if self.update_mode == True:
+                                self.update_mode = False
+                                self.serial_send("p=MD,")
+                                time.sleep(2)
+                            if zone:
+                                self.serial_send("p=AF1,")
+                                time.sleep(2)
+                                self.serial_send("p=AF2,")
+                            else:
+                                self.serial_send("p=AFR,")
                             time.sleep(2)
                             try:
                                 pass 
@@ -2358,10 +2382,10 @@ class XBeeSerialTerminal(XBeeSerial):
                             except:
                                 pass
                             self.next_mist(total=False)
-                            #self.update()
+                            self.update() #X2 single system only
                             ######self.lock.release() 
                             return
-                        if self.send_data_to_meshify == True:
+                        elif self.send_data_to_meshify == True:
                             self.sendUpData()
                         
                     if self.full_update == True:
@@ -2472,6 +2496,7 @@ class XBeeSerialTerminal(XBeeSerial):
             elif value == "e":
                 value1 = "Empty"
             elif value == "h":
+                self.property_set("MD", Sample(time.time(), str(0), unit=""))
                 value1 = "Off"
             elif value == "0":
                 value1 = "Error 0"
@@ -2538,7 +2563,12 @@ class XBeeSerialTerminal(XBeeSerial):
                         pass
                     
                 if value == "e":
-                    self.property_set("LVL", Sample(time.time(), "0", "LVL"))  
+                    self.property_set("LVL", Sample(time.time(), "0", "LVL"))
+                
+                if old_value == "h":
+                    if value != "h":
+                        self.send_all_data_to_meshify = True
+                        self.update_mode = True  
                 
                 self.send_data_to_meshify = True
                 
@@ -2547,6 +2577,12 @@ class XBeeSerialTerminal(XBeeSerial):
     
     
     def status_update(self):
+        
+        self.systemStatusCount += 1
+        
+        if self.systemStatusCount > 10:
+            self.systemStatusCount = 0
+            return
         
         self.status_checking = True
         
@@ -2896,52 +2932,57 @@ class XBeeSerialTerminal(XBeeSerial):
     
     
     def ml2percent(self, ml):
-        SS = self.property_get("SS").value
-        print ( "in ml2percent")
-        if SS == "Empty":
-            self.property_set("LVL", Sample(time.time(), "0", "LVL"))
-            return
-        
-        
-        LVL = ml
-        print ( "Level in ML: ")
-        print ( LVL)
-        
-        if self.sys_type == 3:
-            CF = self.property_get("CF").value
-        else:
-            CF = int((float(self.property_get("TNK").value) * 3785.41))
-            print ( "CF is :")
-            print (str( CF))
-        if CF < 5:
-            return
-        
-        print (str( LVL))
-        print (str( CF))
         try:
-            LVL = float(LVL)
-            CF = float(CF)
-        except:
-            print ( "didn't work this time, maybe next time?")
-            return
-        
-        if int(CF) > 1:
-            remaining = (LVL / CF)
-            print (str( remaining))
-            if self.sys_type == 3:
-                remaining = remaining * 10
-            else:
-                remaining = remaining * 100
-                
-            remaining = round(remaining, 2) 
+            SS = self.property_get("SS").value
+            print ( "in ml2percent")
+            if SS == "Empty":
+                self.property_set("LVL", Sample(time.time(), "0", "LVL"))
+                return
             
-            if remaining > 100:
-                remaining = "100"
-            #remaining = int(remaining)
-            self.property_set("LVL", Sample(time.time(), str(remaining), "LVL"))
-            print ( "precent remaining")
-            print (str( remaining))
-    
+            
+            LVL = ml
+            print ( "Level in ML: ")
+            print ( LVL)
+            
+            if self.sys_type == 3:
+                CF = self.property_get("CF").value
+            else:
+                CF = int((float(self.property_get("TNK").value) * 3785.41))
+                print ( "CF is :")
+                print (str( CF))
+            if CF < 5:
+                self.property_set("LVL", Sample(50, str(1), "LVL"))
+                return
+            
+            print (str( LVL))
+            print (str( CF))
+            try:
+                LVL = float(LVL)
+                CF = float(CF)
+            except:
+                print ( "didn't work this time, maybe next time?")
+                self.property_set("LVL", Sample(25, str(LVL), "LVL"))
+                return
+            
+            if int(CF) > 1:
+                remaining = (LVL / CF)
+                print (str( remaining))
+                if self.sys_type == 3:
+                    remaining = remaining * 10
+                else:
+                    remaining = remaining * 100
+                    
+                remaining = round(remaining, 2) 
+                
+                if remaining > 100:
+                    remaining = "100"
+                #remaining = int(remaining)
+                self.property_set("LVL", Sample(time.time(), str(remaining), "LVL"))
+                print ( "precent remaining")
+                print (str( remaining))
+        except:
+            pass
+        
     
     
     
@@ -2988,8 +3029,8 @@ class XBeeSerialTerminal(XBeeSerial):
         
         
     	#total means, I'm doing a total upload  of everything here, which means I need to 
-        if total:
-            self.set_labels()
+        #if total:
+         #   self.set_labels()
                
                
         try:
@@ -3033,7 +3074,7 @@ class XBeeSerialTerminal(XBeeSerial):
         
         
         # here I'm setting the veriables to the controller  
-        if total:
+        if total and t > 1315351499:
             self.serial_send("s(TOD=" + str(timeSec) + ")") 
             time.sleep(2)
             self.serial_send("s(DOW=" + str(day) + ")")
@@ -3209,9 +3250,9 @@ class XBeeSerialTerminal(XBeeSerial):
     
     
     def serial_send(self, data):
-        self.lock.acquire() 
+        #self.lock.acquire() 
         self.send_data(data)
-        self.lock.release() 
+        #self.lock.release() 
         print ( "sleeping 1 sec")
         time.sleep(1)
         #self.queue.append(data)

@@ -161,11 +161,14 @@ MISTAWAY_CONTROLLER_MC1         = 0X0403
 MISTAWAY_CONTROLLER_MC1Z        = 0X0404
 
 SMARTOES_24CT                   = 0x0601
+SMARTOES_SS                     = 0x0602
+APG                             = 0x0701
 
 PROD_NAME_MAP = {
 
     # Digi-Branded Products:
     #PROD_DIGI_UNSPECIFIED: "Unspecified",
+    APG: "apgus",
     LYNXEE: "Lynxee thermostst",
     PROD_DIGI_MOTION: "Houselynx Motion",
     MISTAWAY_CONTROLLER_MC3D: "Dummy Device",
@@ -178,6 +181,8 @@ PROD_NAME_MAP = {
     SERIAL_TEMP: "temp",
     DHW: "Domestic Hot Water Sensor",
     ARTS_GATE: "gate",
+    SMARTOES_24CT:"24ct",
+    SMARTOES_SS: "ss",
     PROD_DIGI_CPX8: "Digi ConnectPort X8",
     PROD_DIGI_CPX4: "Digi ConnectPort X4",
     PROD_DIGI_CPX2: "Digi ConnectPort X2",

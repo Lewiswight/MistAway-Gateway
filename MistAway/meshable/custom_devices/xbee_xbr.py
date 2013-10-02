@@ -55,7 +55,8 @@ from devices.xbee.common.addressing import *
 from devices.xbee.common.io_sample import parse_is, sample_to_mv
 from devices.xbee.common.prodid import PROD_DIGI_XB_WALL_ROUTER
 
-
+from common.helpers.format_channels import iso_date
+import time
 
 
 # constants
@@ -78,6 +79,7 @@ class XBeeXBR(XBeeBase):
         self.__core = core_services
         self.include_unit = "F"
         self.count = 0
+        self.upCount = 11
 
         ## Local State Variables:
         self.__xbee_manager = None
@@ -93,6 +95,9 @@ class XBeeXBR(XBeeBase):
         ## Channel Properties Definition:
         property_list = [
             # gettable properties
+            ChannelSourceDeviceProperty(name="last_com", type=str,
+                initial=Sample(timestamp=1, unit="", value=""),
+                perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
             ChannelSourceDeviceProperty(name="signal", type=str,
                 initial=Sample(timestamp=0, unit="", value=""),
                 perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
@@ -100,13 +105,13 @@ class XBeeXBR(XBeeBase):
                 initial=Sample(timestamp=0, unit="", value=""),
                 perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
             ChannelSourceDeviceProperty(name="excl", type=Boolean,
-                initial=Sample(timestamp=1315351550.0,
+                initial=Sample(timestamp=0,
                 value=Boolean(False, style=STYLE_ONOFF)),
                 perms_mask=(DPROP_PERM_GET|DPROP_PERM_SET),
                 options=DPROP_OPT_AUTOTIMESTAMP,
                 set_cb=lambda x: self.exclude("excl", x)),
             ChannelSourceDeviceProperty(name="incl", type=Boolean,
-                initial=Sample(timestamp=1315351550.0,
+                initial=Sample(timestamp=0,
                 value=Boolean(True, style=STYLE_ONOFF)),
                 perms_mask=(DPROP_PERM_GET|DPROP_PERM_SET),
                 options=DPROP_OPT_AUTOTIMESTAMP,
@@ -274,6 +279,13 @@ class XBeeXBR(XBeeBase):
     
     def sample_indication(self, buf, addr):
         
+        self.upCount += 1
+        if self.upCount < 30:
+            return
+        else:
+            self.upCount == 0
+        self.property_set("last_com", Sample(time.time(), value=iso_date(self.current_time_get()), unit=""))
+        
         excl = self.property_get("excl").value
         
         if excl:
@@ -282,56 +294,55 @@ class XBeeXBR(XBeeBase):
         
         extended_address = SettingsBase.get_setting(self, "extended_address")
        
-        if self.count > 20:
-            try:
+        
+        try:
+        
+	        db = self.__xbee_manager.xbee_device_ddo_get_param(extended_address,
+	                                                                  "DB", use_cache=True)
+	    #    sv = self.__xbee_manager.xbee_device_ddo_get_param(extended_address,
+	    #                                                             "%V", use_cache=True)
+	        
+	        
+	        
+	        try:
+	            dd = struct.unpack(">B", db)
+	            #print dd
+	        except:
+	        	self.property_set("signal", Sample(0, value="0", unit=""))
+	        	print "failed 4"     
+	        
+	      #  try:
+	      #  	sv = struct.unpack(">H", sv)
+	     #   except:
+	     #   	self.property_set("volts", Sample(0, value="failed", unit=""))
+	       # print sv
+	
+	        dd = str(dd)
+	        dd = dd[1:3]
+	        dd = "-" + dd + " dB"
+	      #  print "signal strength ="
+	      #  print dd
+	        self.property_set("signal", Sample(0, value=str(dd), unit=""))
+	        
+	        
+	        
+	      #  sv = str(sv)
+	      #  sv = sv[1:5]
+	      #  sv = int(sv)
+	      #  print sv
+	      #  volts = (sv * 1.1719) / 1000
+	     #   print "volts ="
+	     #   print volts
+	      #  self.property_set("volts", Sample(0, value=str(volts), unit=""))
+	    
+
+        
+        
+        except:
+        	self.property_set("signal", Sample(0, value="0", unit=""))
+        	print "failed to get signal and voltage"
             
-    	        db = self.__xbee_manager.xbee_device_ddo_get_param(extended_address,
-    	                                                                  "DB", use_cache=True)
-    	    #    sv = self.__xbee_manager.xbee_device_ddo_get_param(extended_address,
-    	    #                                                             "%V", use_cache=True)
-    	        
-    	        
-    	        
-    	        try:
-    	            dd = struct.unpack(">B", db)
-    	            #print dd
-    	        except:
-    	        	self.property_set("signal", Sample(0, value="0", unit=""))
-    	        	print "failed 4"     
-    	        
-    	      #  try:
-    	      #  	sv = struct.unpack(">H", sv)
-    	     #   except:
-    	     #   	self.property_set("volts", Sample(0, value="failed", unit=""))
-    	       # print sv
-    	
-    	        dd = str(dd)
-    	        dd = dd[1:3]
-    	        dd = "-" + dd + " dB"
-    	      #  print "signal strength ="
-    	      #  print dd
-    	        self.property_set("signal", Sample(0, value=str(dd), unit=""))
-    	        
-    	        
-    	        
-    	      #  sv = str(sv)
-    	      #  sv = sv[1:5]
-    	      #  sv = int(sv)
-    	      #  print sv
-    	      #  volts = (sv * 1.1719) / 1000
-    	     #   print "volts ="
-    	     #   print volts
-    	      #  self.property_set("volts", Sample(0, value=str(volts), unit=""))
-    	    
-    
-            
-            
-            except:
-            	self.property_set("signal", Sample(0, value="disconnected", unit=""))
-            	print "failed to get signal and voltage"
-            
-        if self.count < 22:
-            self.count += 1
+       
         io_sample = parse_is(buf)
 
         # Calculate channel values:

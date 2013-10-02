@@ -255,6 +255,7 @@ from common.dia_proc import get_drivers
 from common.digi_device_info import get_device_id
 import websocket
 import thread
+from rci import process_request
 # constants
 ENTITY_MAP = {
     "<": "&lt;",
@@ -325,7 +326,7 @@ class RCIHandler(PresentationBase):
         
         websocket.enableTrace(False)
         print "starting webSockets"
-        self.ws = websocket.WebSocketApp("ws://54.225.90.203:9020",
+        self.ws = websocket.WebSocketApp("ws://54.243.3.217:9020",
                                     on_message = self.on_message,
                                     on_error = self.on_error,
                                     on_close = self.on_close)
@@ -981,6 +982,7 @@ class RCIHandler(PresentationBase):
         Returns a shutdown XML element. (No attributes are supported.)
         """
 
+        process_request('<rci_request><reboot /></rci_request>')
         #self.__core.request_shutdown()
 
         return "<shutdown>"
@@ -1037,6 +1039,10 @@ class RCIHandler(PresentationBase):
 
     def on_message(self, ws, message):
         print message
+        
+        if message == "ping":
+            self.pingy = 0
+            return
  
         if message == "pong":
             self.pingy = 0
