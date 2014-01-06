@@ -662,9 +662,9 @@ class XBeeDeviceManager(DeviceBase, threading.Thread):
 
     ## Thread execution begins here:
     def run(self):
-
+        print "running1"
         self._tracer.calls("XBeeDeviceManager.run()")
-
+        print "running2"
         # TODO: dynamically determine how many parallel DDO requests may take
         #       place and give that number to the configurator.
         self.__xbee_configurator = \
@@ -681,10 +681,10 @@ class XBeeDeviceManager(DeviceBase, threading.Thread):
                                   'there is a digimesh/zigbee mismatch?)')
             self._core.request_shutdown()
             raise
-
+        print "running3"
         # do specific gateway/coordinator DDO checks like ZB Source Routing
         self._coordinator_ddo_config()
-        
+        print "running4"
         # Determine XBee behaviors based on the Digi platform and version.
         if get_platform_name() == 'digix3':
             self.__behavior_flags |= BEHAVIOR_HAS_ATOMIC_DDO
@@ -693,15 +693,18 @@ class XBeeDeviceManager(DeviceBase, threading.Thread):
                 self.__behavior_flags |= BEHAVIOR_NEED_DISCOVER_WORK_AROUND
             else:
                 self.__behavior_flags |= BEHAVIOR_HAS_ATOMIC_DDO
-
+        print "running5"
         self._tracer.xbee("retrieving node list")
+        print "running6"
         self.xbee_get_node_list(refresh=True, clear=True)
-
+        print "running7"
         self.__parse_dh_dl_force(SettingsBase.get_setting(self, \
                                                      "dh_dl_force"))
+        print "running8"
 
         # at this point, self._dh_dl_addr should be valid for all relevent
         # uses by the DM/ZB managers
+        
         if self._dh_dl_addr is None:
             self._tracer.debug('node DH/DL will not be changed')
             self.__dh_dl_refresh_sec = None
@@ -717,14 +720,14 @@ class XBeeDeviceManager(DeviceBase, threading.Thread):
                     SettingsBase.get_setting(self, "dh_dl_refresh_min"))
             except:
                 traceback.print_exc()
-
+        print "running9"
         self.initialize_sleep_config()
 
         addr_dd_dict = SettingsBase.get_setting(self, "addr_dd_map")
         for addr in addr_dd_dict:
             self._xbee_device_ddo_param_cache_set(addr,
                 'DD', addr_dd_dict[addr])
-
+        print "running10"
         self.wait_until_xbee_ready()
         self.__state = STATE_READY
 

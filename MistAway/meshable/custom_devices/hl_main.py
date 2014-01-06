@@ -46,7 +46,6 @@ MAC = tMAC[0] + "FF-FF" + tMAC[1]
 print "Here is the MAC"
 print MAC
 
-
 # constants
 
 # exception classes
@@ -87,7 +86,7 @@ class hl_main(DeviceBase, threading.Thread):
         settings_list = [
             
             Setting(
-                name='xbee_device_manager', type=str, required=False, default_value="xbee_device_manager"),
+                name='xbee_device_manager', type=str, required=False, default_value="xbee_device_manager"), # change asap to xbee_device_manager digimesh_device_manager
             Setting(
                 name='sample_rate_sec_w', type=int, required=False,
                 default_value=600,

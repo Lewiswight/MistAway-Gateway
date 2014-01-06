@@ -1037,6 +1037,7 @@ mimify|/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/mimify.py
 minimalmodbus|/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/minimalmodbus.py
 mmap|/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-dynload/mmap.so
 modulefinder|/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/modulefinder.py
+mosquitto|/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/mosquitto.py
 msvcrt
 multifile|/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/multifile.py
 multiprocessing.__init__|/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/multiprocessing/__init__.py
@@ -1637,6 +1638,13 @@ ttk|/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-tk/ttk.p
 tty|/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/tty.py
 turtle|/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-tk/turtle.py
 types|/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/types.py
+uncompyle2.Parser|/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/uncompyle2/Parser.py
+uncompyle2.Scanner|/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/uncompyle2/Scanner.py
+uncompyle2.Walker|/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/uncompyle2/Walker.py
+uncompyle2.__init__|/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/uncompyle2/__init__.py
+uncompyle2.magics|/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/uncompyle2/magics.py
+uncompyle2.spark|/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/uncompyle2/spark.py
+uncompyle2.verify|/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/uncompyle2/verify.py
 unicodedata|/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-dynload/unicodedata.so
 unittest.__init__|/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/unittest/__init__.py
 unittest.__main__|/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/unittest/__main__.py

@@ -187,39 +187,42 @@ class Main(DeviceBase):
      
             
     def register(self, register_name, val):
-        mc_list = []
-        mainM = None
-        
-        ddm = self.__core.get_service("device_driver_manager")
-        nodes = ddm.get_instance_list()
-        
-        for i in nodes:
-            print i
-            if i.startswith("mc") or i.startswith("Wall"):
-                if i not in mc_list:
-                    mc_list.append(i)
-        #for i in nodes:
-        #    if i.startswith("mainMistaway"):
-        #        mainM = ddm.get_driver_object(i)
-        
-        val.value = str(len(mc_list))
-        val.timestamp = 11
-        for i in mc_list:
-            node = ddm.get_driver_object(i)
-            node.property_set("last_com", Sample(time.time(), value=iso_date(self.current_time_get()), unit=""))
+        try:
+            mc_list = []
+            mainM = None
             
-        #if mainM != None:
-        #    mainM.property_set("hb", Sample(time.time(), "On", ""))
-        
-        main_addr = "mainMistaway_" + gw_extended_address()
-        main_addr = main_addr + ".hb"
-        self.property_set_globe(main_addr,  Sample(time.time(), "On", ""))
-        
-        upld = self.__core.get_service("presentation_manager")
-        upload = upld.driver_get("Uploader")
-        upload.upload_data()
+            ddm = self.__core.get_service("device_driver_manager")
+            nodes = ddm.get_instance_list()
             
-        self.property_set(register_name, val)
+            for i in nodes:
+                print i
+                if i.startswith("mc") or i.startswith("Wall") or i.startswith("apg") or i.startswith("fsa"):
+                    if i not in mc_list:
+                        mc_list.append(i)
+            #for i in nodes:
+            #    if i.startswith("mainMistaway"):
+            #        mainM = ddm.get_driver_object(i)
+            
+            val.value = str(len(mc_list))
+            val.timestamp = 11
+            for i in mc_list:
+                node = ddm.get_driver_object(i)
+                node.property_set("last_com", Sample(time.time(), value=iso_date(self.current_time_get()), unit=""))
+                
+            #if mainM != None:
+            #    mainM.property_set("hb", Sample(time.time(), "On", ""))
+            
+            main_addr = "mainMistaway_" + gw_extended_address()
+            main_addr = main_addr + ".hb"
+            self.property_set_globe(main_addr,  Sample(time.time(), "On", ""))
+            
+            upld = self.__core.get_service("presentation_manager")
+            upload = upld.driver_get("Uploader")
+            upload.upload_data()
+                
+            self.property_set(register_name, val)
+        except:
+            self.property_set(register_name, val)
 
     
     

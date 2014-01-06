@@ -163,11 +163,16 @@ MISTAWAY_CONTROLLER_MC1Z        = 0X0404
 SMARTOES_24CT                   = 0x0601
 SMARTOES_SS                     = 0x0602
 APG                             = 0x0701
+FSAPG                           = 0x711
+VALIDYNE                        = 0x0710
+
+MCOGEN                          = 0x0801
 
 PROD_NAME_MAP = {
 
     # Digi-Branded Products:
     #PROD_DIGI_UNSPECIFIED: "Unspecified",
+    FSAPG: "fsapgus",
     APG: "apgus",
     LYNXEE: "Lynxee thermostst",
     PROD_DIGI_MOTION: "Houselynx Motion",
@@ -183,6 +188,8 @@ PROD_NAME_MAP = {
     ARTS_GATE: "gate",
     SMARTOES_24CT:"24ct",
     SMARTOES_SS: "ss",
+    VALIDYNE: "p55",
+    MCOGEN: "generator",
     PROD_DIGI_CPX8: "Digi ConnectPort X8",
     PROD_DIGI_CPX4: "Digi ConnectPort X4",
     PROD_DIGI_CPX2: "Digi ConnectPort X2",

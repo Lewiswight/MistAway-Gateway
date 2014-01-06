@@ -158,7 +158,7 @@ class XBeeSerial(XBeeBase):
     ADDRESS_TABLE = [bindpoints.SERIAL, bindpoints.SAMPLE]
 
     # The list of supported products that this driver supports.
-    SUPPORTED_PRODUCTS = [ APG ]
+    SUPPORTED_PRODUCTS = [ APG, FSAPG ]
 
     BAUD_RATES = {
         1200:   0,
@@ -202,7 +202,7 @@ class XBeeSerial(XBeeBase):
     DEF_BAUDRATE = 9600
     DEF_PARITY = 'none'
     DEF_STOPBITS = 1
-    DEF_HWFLOW = 'false'
+    DEF_HWFLOW = '485'
     DEF_SLEEP = False
     DEF_SAMPLE_MS = 60000
     DEF_AWAKE_MS = 2000

@@ -33,7 +33,23 @@ import time
 from devices.xbee.common.addressing import *
 import traceback
 from samples.sample import Sample
+from common.digi_device_info import get_device_id
+
+
+
+
 # constants
+
+MAC = str(get_device_id())  #st
+MAC = MAC.replace("0x0000000000000000", "")
+MAC = MAC.replace("ffff", "")
+MAC = MAC.upper()
+print "Here is the MAC"
+print MAC
+SUB_TOPIC = "meshify/" + "channeldata/"  + MAC 
+
+
+
 
 # exception classes
 class DeviceBasePropertyNotFound(KeyError):
@@ -265,11 +281,25 @@ class DeviceBase(SettingsBase):
         return channel.producer_get()
 
     def property_set(self, name, sample):
+        
+        
+        #this for the MQTT updates 
+        try:
+            print "getting mqtt"
+            mqtt = self._core.get_service("mqtt")
+            print "getting topic"
+            topic = SUB_TOPIC + "/" + self._name + "/" + name
+            print "putting together msg"
+            msg = str(sample.value) + ";" + str(sample.timestamp)
+            print "Publishing, " + msg + " to the following topic: " + topic
+            mqtt.publish(topic, msg)
+        except:
+            print "didn't work on MQTT"
+        
         """
         Sets property specified by the string *name* to the
         :class:`~samples.sample.Sample` object *sample* and returns
         that value.
-
         """
 
         channel = self.__get_property_channel(name)

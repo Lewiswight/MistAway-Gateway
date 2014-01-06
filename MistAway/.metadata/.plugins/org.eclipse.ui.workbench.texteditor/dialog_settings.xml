@@ -22,8 +22,8 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="243" key="DIALOG_WIDTH"/>
-		<item value="400" key="DIALOG_Y_ORIGIN"/>
-		<item value="1143" key="DIALOG_X_ORIGIN"/>
+		<item value="453" key="DIALOG_Y_ORIGIN"/>
+		<item value="-657" key="DIALOG_X_ORIGIN"/>
 		<item value="379" key="DIALOG_HEIGHT"/>
 		<item value="1|Lucida Grande|11.0|0|COCOA|1|LucidaGrande" key="DIALOG_FONT_NAME"/>
 	</section>
@@ -33,16 +33,16 @@
 		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="last_com" key="selection"/>
+		<item value="core" key="selection"/>
 		<list key="findhistory">
-			<item value="last_com"/>
-			<item value="globe"/>
-			<item value="def sendup"/>
-			<item value="sendup"/>
-			<item value="property_set(&quot;last"/>
-			<item value="get_sig"/>
-			<item value="%"/>
-			<item value="property_get"/>
+			<item value="core"/>
+			<item value="__core"/>
+			<item value="_core"/>
+			<item value="p61_serial"/>
+			<item value="SMARTOES_24CT"/>
+			<item value="2_digit_address"/>
+			<item value="update_2digit"/>
+			<item value="pressure"/>
 		</list>
 		<list key="replacehistory">
 			<item value="#print"/>

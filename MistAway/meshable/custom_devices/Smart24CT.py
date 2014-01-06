@@ -436,7 +436,7 @@ class XBeeSerialTerminal(XBeeSerial):
         while True:
             try:
                 self.update("data")
-                time.sleep(120)
+                time.sleep(10)
             except:
                 pass
     def serial_read(self, buf):

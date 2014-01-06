@@ -108,6 +108,7 @@ from settings.settings_base import SettingsBase, Setting
 # we need this to add/manage channels in this device
 from channels.channel_source_device_property import *
 
+from common.helpers.format_channels import iso_date
 # constants
 
 # exception classes
@@ -277,6 +278,9 @@ class XBeeSerialTerminal(XBeeSerial):
         ## Channel Properties Definition:
         property_list = [
             # gettable properties
+            ChannelSourceDeviceProperty(name="last_com", type=str,
+                initial=Sample(timestamp=0, unit="", value=""),
+                perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
             ChannelSourceDeviceProperty(name="read", type=str,
                 initial=Sample(timestamp=0, unit="", value=""),
                 perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
@@ -508,20 +512,38 @@ class XBeeSerialTerminal(XBeeSerial):
 
     ## Locally defined functions:
     def loop(self):
+        try:
+            self.readAll("hi")
+        except Exception,e: self._tracer.info(str(e))
         count = 0
+        time.sleep(30)
+        self.readAll("hi")
         time.sleep(30)
         while True:
             try:
                 count += 1
                 self.readLevel()
-                time.sleep(60)
-                if count > 60:
+                try:
+                    self.sendUpData()
+                except Exception,e: self._tracer.info(str(e))
+                time.sleep(3600)
+                if count > 4:
                     count = 0
-                    self.readAll("hi")
-            except:
-                pass
+                    try:
+                        self.readAll("hi")
+                    except:
+                        pass
+            except Exception,e: self._tracer.info(str(e))
 
+    def sendUpData(self):
+        
+       # print ( "sending data wink wink" )
+        upld = self._core.get_service("presentation_manager")
+        upload = upld.driver_get("Uploader")
+        upload.upload_data()
+    
     def serial_read(self, buf):
+        self.property_set("last_com", Sample(time.time(), value=iso_date(self.current_time_get()), unit=""))
         if self.first_data == True:
             self.first_data = False
             buf = ""
@@ -615,7 +637,7 @@ class XBeeSerialTerminal(XBeeSerial):
             # then convert from binary to hexadecimal
 
         self.rec_data = data
-        data = ''.join(map(lambda c:'\\x%02x'%c, map(ord, data)))
+        #data = ''.join(map(lambda c:'\\x%02x'%c, map(ord, data)))
         
         self._tracer.info("Read Data: %s", data)
 
@@ -655,19 +677,22 @@ class XBeeSerialTerminal(XBeeSerial):
             self.property_set(ModList3[x], Sample(time.time(), str(resp[x]), ""))       
             
     def readAll(self, data):
-        resp = self.read_registers(399, 21, functioncode=3)
-        for x in range(0, 21):
-            if x == 18 or x == 19:
-                continue
-            self.property_set(ModList1[x], Sample(time.time(), str(resp[x]), ""))
-        resp = self.read_registers(435, 10, functioncode=3)
-        for x in range(0, 10):
-            self.property_set(ModList2[x], Sample(time.time(), str(resp[x]), ""))
-        resp = self.read_registers(299, 5, functioncode=4)
-        for x in range(0, 5):
-            if x == 1:
-                continue
-            self.property_set(ModList3[x], Sample(time.time(), str(resp[x]), ""))
+        try:
+            self.property_set("readALL", Sample(time.time(), "Ok", ""))
+            resp = self.read_registers(399, 21, functioncode=3)
+            for x in range(0, 21):
+                if x == 18 or x == 19:
+                    continue
+                self.property_set(ModList1[x], Sample(time.time(), str(resp[x]), ""))
+            resp = self.read_registers(435, 10, functioncode=3)
+            for x in range(0, 10):
+                self.property_set(ModList2[x], Sample(time.time(), str(resp[x]), ""))
+            resp = self.read_registers(299, 5, functioncode=4)
+            for x in range(0, 5):
+                if x == 1:
+                    continue
+                self.property_set(ModList3[x], Sample(time.time(), str(resp[x]), ""))
+        except Exception,e: self._tracer.info(str(e))
     
         
     
@@ -1406,7 +1431,7 @@ class XBeeSerialTerminal(XBeeSerial):
         if self.debug:
             _print_out( 'MinimalModbus debug mode. Writing to instrument: ' + repr(message) )
             print "here is the message"
-            print ''.join(map(lambda c:'\\x%02x'%c, map(ord, message)))
+            #print ''.join(map(lambda c:'\\x%02x'%c, map(ord, message)))
 
         
 
@@ -1434,7 +1459,7 @@ class XBeeSerialTerminal(XBeeSerial):
         if self.debug:
             _print_out( 'MinimalModbus debug mode. Response from instrument: ' + repr(answer) )
             print "here is the answer"
-            print ''.join(map(lambda c:'\\x%02x'%c, map(ord, answer)))
+            #print ''.join(map(lambda c:'\\x%02x'%c, map(ord, answer)))
 
         if len(answer) == 0:
             print ('No communication with the instrument (no answer)')

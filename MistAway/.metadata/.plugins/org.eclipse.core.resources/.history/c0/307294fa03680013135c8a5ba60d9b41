@@ -1,0 +1,21 @@
+devices: 
+  - name: xbee_device_manager
+    driver: devices.xbee.xbee_device_manager.xbee_device_manager:XBeeDeviceManager
+
+  - name: xbee_serial_terminal0
+    driver: devices.xbee.xbee_devices.xbee_serial_terminal:XBeeSerialTerminal
+    settings: 
+        xbee_device_manager: "xbee_device_manager"
+        extended_address: "00:00:00:00:00:00:00:00!"
+
+presentations: 
+  - name: rci0
+    driver: custom_presentations.presentations.rci.rci_handlerMQTT:RCIHandler
+    settings: 
+        target_name: "mqtt"
+
+  - name: Uploader
+    driver: custom_presentations.presentations.idigi_db.MistAwayUpload2:Uploader
+    settings: 
+        interval: 60
+        sample_threshold: 30

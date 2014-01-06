@@ -1,0 +1,9 @@
+devices: 
+  - name: xbee_device_manager
+    driver: devices.xbee.xbee_device_manager.xbee_device_manager:XBeeDeviceManager
+
+  - name: xbee_serial_terminal0
+    driver: devices.xbee.xbee_devices.xbee_serial_terminal:XBeeSerialTerminal
+    settings: 
+        xbee_device_manager: "xbee_device_manager"
+        extended_address: "11:11:11:11:11:11:11:11!"

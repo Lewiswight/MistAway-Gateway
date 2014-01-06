@@ -278,7 +278,7 @@ class XBeeSerialTerminal(XBeeSerial):
                          #mist away firmware version
              
              ChannelSourceDeviceProperty(name="GWF", type=str,
-                initial=Sample(timestamp=time.time() + 600, unit="", value="2013-09-25 Rel 1"),
+                initial=Sample(timestamp=time.time() + 600, unit="", value="2013-10-10 Rel 1"),
                 perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
                          
                          #gateway firmware
@@ -1591,7 +1591,7 @@ class XBeeSerialTerminal(XBeeSerial):
         """
             Request the latest data from the device.
         """   
-        #self.get_signal(send=False)
+        self.get_signal(send=False)
         try:   
             if self.fwu == 0:
                 try:
@@ -2058,8 +2058,10 @@ class XBeeSerialTerminal(XBeeSerial):
                 self.serial_send("r=I,")
             elif r == "CE":
                 self.serial_send("r=CE,")
-                time.sleep(.5)
+                time.sleep(2)
                 self.serial_send("r=S,")
+                time.sleep(2)
+                self.serial_send("p=SS,")
             elif r == "CH":
                 self.serial_send("r=CH,")
             elif r == "SM":
@@ -2563,7 +2565,9 @@ class XBeeSerialTerminal(XBeeSerial):
                         pass
                     
                 if value == "e":
-                    self.property_set("LVL", Sample(time.time(), "0", "LVL"))
+                    level = int(self.property_get("LVL").value)
+                    if level < 10:
+                        self.property_set("LVL", Sample(time.time(), "0", "LVL"))
                 
                 if old_value == "h":
                     if value != "h":
@@ -2977,6 +2981,8 @@ class XBeeSerialTerminal(XBeeSerial):
                 if remaining > 100:
                     remaining = "100"
                 #remaining = int(remaining)
+                if remaining < .5 or str(remaining) == "0":
+                    return
                 self.property_set("LVL", Sample(time.time(), str(remaining), "LVL"))
                 print ( "precent remaining")
                 print (str( remaining))

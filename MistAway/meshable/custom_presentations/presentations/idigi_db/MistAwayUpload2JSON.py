@@ -19,7 +19,7 @@ from presentations.presentation_base import PresentationBase
 from samples.sample import Sample
 from common.helpers.format_channels import iso_date
 from common.digi_device_info import get_platform_name
-from common.digi_device_info import get_device_id
+
 from devices.xbee.xbee_device_manager.xbee_device_manager_event_specs \
     import *
 
@@ -35,7 +35,7 @@ import digi_httplib as httplib
 
 import os
 
-
+from common.digi_device_info import get_device_id
 
 #import digicli
 
@@ -93,7 +93,7 @@ ADDRESS_B = """</gateway>"""
 #        if line.find('MAC Address') >= 0:
 #            l = line.split(':')
 #            st = "".join(l[1:]).strip()
-                    
+             
 MAC = str(get_device_id())  #st
 MAC = MAC.replace("0x0000000000000000", "")
 MAC = MAC.replace("ffff", "")
@@ -265,7 +265,7 @@ class Uploader(PresentationBase, threading.Thread):
         
        # xbee_manager_name = SettingsBase.get_setting(self, "xbee_device_manager")
         dm = self.__core.get_service("device_driver_manager")
-        self.__xbee_manager = dm.instance_get("xbee_device_manager")
+        self.__xbee_manager = dm.instance_get("xbee_device_manager") # change asap to xbee_device_manager digimesh_device_manager
         
         self.__last_upload_time = 0
         
