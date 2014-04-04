@@ -1,10 +1,10 @@
-#Wed Sep 18 18:27:48 CDT 2013
+#Fri Mar 28 15:50:18 CDT 2014
 Dia_path=/Users/lewiswight/MistAway-Gateway/Dia_2.1.0
 IP=172.16.1.252
 autocontained_project=false
 compile_sources=true
 configuration_file=HouseLynx1.yml
-device=ConnectPort X2e ZB
+device=ConnectPort X2e Wi-Fi ZB
 eclipse.preferences.version=1
 remote_config_name=X2 ZB
 remove_docstrings=true

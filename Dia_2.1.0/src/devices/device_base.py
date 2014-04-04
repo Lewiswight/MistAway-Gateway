@@ -33,20 +33,21 @@ import time
 from devices.xbee.common.addressing import *
 import traceback
 from samples.sample import Sample
-from common.digi_device_info import get_device_id
+#from common.digi_device_info import get_device_id
 
 
 
 
 # constants
-
+"""
 MAC = str(get_device_id())  #st
 MAC = MAC.replace("0x0000000000000000", "")
 MAC = MAC.replace("ffff", "")
 MAC = MAC.upper()
 print "Here is the MAC"
 print MAC
-SUB_TOPIC = "meshify/" + "channeldata/"  + MAC 
+"""
+SUB_TOPIC = "meshify/" + "channeldata/"  + "123456789" #MAC 
 
 
 

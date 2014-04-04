@@ -41,45 +41,45 @@ except:
 
 class Sample(object):
     """
-    Core object for the representation of data in Dia.  Typically
-    produced by :class:`device drivers
-    <devices.device_base.DeviceBase>`, stored in the :class:`channel
-    database <channels.channel_database.ChannelDatabase>`, logged by
-    :class:`loggers <channels.logging.logger_base.LoggerBase>` and
-    communicated outside the system by :class:`presentations
-    <presentations.presentation_base.PresentationBase>`
-
-    Contains the following public attributes:
-
-    .. py:attribute:: timestamp
-
-       Time value at which the sample was acquired
-
-    .. py:attribute:: value
-
-       Object representing the sampled data
-
-    .. py:attribute:: unit
-
-       A string that annotates any possible units that may apply to
-       the `value`
-       
-    """
-
+        Core object for the representation of data in Dia.  Typically
+        produced by :class:`device drivers
+        <devices.device_base.DeviceBase>`, stored in the :class:`channel
+        database <channels.channel_database.ChannelDatabase>`, logged by
+        :class:`loggers <channels.logging.logger_base.LoggerBase>` and
+        communicated outside the system by :class:`presentations
+        <presentations.presentation_base.PresentationBase>`
+        
+        Contains the following public attributes:
+        
+        .. py:attribute:: timestamp
+        
+        Time value at which the sample was acquired
+        
+        .. py:attribute:: value
+        
+        Object representing the sampled data
+        
+        .. py:attribute:: unit
+        
+        A string that annotates any possible units that may apply to
+        the `value`
+        
+        """
+    
     # Using slots saves memory by keeping __dict__ undefined.
     __slots__ = ["timestamp", "value", "unit"]
-
+    
     def __init__(self, timestamp=0, value=0, unit=""):
         self.timestamp = timestamp
         self.value = value
         self.unit = unit
-
+    
     def __repr__(self):
         try:
-            return '<Sample: "%s" "%s" at "%s">' % (self.value, self.unit, 
-                                              iso_date(self.timestamp))
+            return '<Sample: "%s" "%s" at "%s">' % (self.value, self.unit,
+                                                    iso_date(self.timestamp))
         except:
-            return '<Sample: "%s" "%s" at "%s">' % (self.value, self.unit, 
-                                                      self.timestamp)
+            return '<Sample: "%s" "%s" at "%s">' % (self.value, self.unit,
+                                                    self.timestamp)
 
 # internal functions & classes

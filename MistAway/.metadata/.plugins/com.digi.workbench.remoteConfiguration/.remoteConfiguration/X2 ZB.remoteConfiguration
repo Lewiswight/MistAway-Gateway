@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <remoteConfiguration type="com.digi.dpdev.remoteConfigurationType.DPDev">
-<intAttribute key="com.digi.workbench.remoteConfiguration.DPDev.SSH_PORT" value="22"/>
 <intAttribute key="com.digi.workbench.remoteConfiguration.DPDev.TCP_TIMEOUT" value="5"/>
+<intAttribute key="com.digi.workbench.remoteConfiguration.DPDev.SSH_PORT" value="22"/>
 <stringAttribute key="com.digi.workbench.remoteConfiguration.DPDev.X3_COM_PORT" value="None"/>
-<stringAttribute key="com.digi.workbench.remoteConfiguration.DPDev.DEVICE_TYPE" value="ConnectPort X2e ZB"/>
 <booleanAttribute key="com.digi.workbench.remoteConfiguration.DPDev.CW_IP_SELECTION" value="false"/>
+<stringAttribute key="com.digi.workbench.remoteConfiguration.DPDev.DEVICE_TYPE" value="ConnectPort X2"/>
 <booleanAttribute key="com.digi.workbench.remoteConfiguration.DPDev.IP_SELECTION" value="false"/>
-<booleanAttribute key="com.digi.workbench.remoteConfiguration.DPDev.FORCE_VALIDATION" value="false"/>
 <booleanAttribute key="com.digi.workbench.remoteConfiguration.DPDev.USE_CONNECTWARE" value="false"/>
+<booleanAttribute key="com.digi.workbench.remoteConfiguration.DPDev.FORCE_VALIDATION" value="false"/>
 <booleanAttribute key="com.digi.workbench.remoteConfiguration.CURRENT_CONFIGURATION" value="true"/>
 <intAttribute key="com.digi.workbench.remoteConfiguration.DPDev.TELNET_PORT" value="23"/>
 <stringAttribute key="com.digi.workbench.remoteConfiguration.DPDev.CW_IP_ADDRESS" value=""/>

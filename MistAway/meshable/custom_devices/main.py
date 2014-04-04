@@ -196,12 +196,24 @@ class Main(DeviceBase):
             
             for i in nodes:
                 print i
-                if i.startswith("mc") or i.startswith("Wall") or i.startswith("apg") or i.startswith("fsa"):
+                if i.startswith("mc") or i.startswith("Wall") or i.startswith("apg") or i.startswith("fs"):
                     if i not in mc_list:
                         mc_list.append(i)
+                if i.startswith("mainMistaway"):
+                    try:
+                        mainM = ddm.get_driver_object(i)
+                    except:
+                        pass
             #for i in nodes:
             #    if i.startswith("mainMistaway"):
             #        mainM = ddm.get_driver_object(i)
+            
+            
+            if mainM != None:
+                try:
+                    self.time_offest()
+                except:
+                    pass
             
             val.value = str(len(mc_list))
             val.timestamp = 11
@@ -218,6 +230,10 @@ class Main(DeviceBase):
             
             upld = self.__core.get_service("presentation_manager")
             upload = upld.driver_get("Uploader")
+            try:
+                upload.getOffest()
+            except:
+                pass
             upload.upload_data()
                 
             self.property_set(register_name, val)

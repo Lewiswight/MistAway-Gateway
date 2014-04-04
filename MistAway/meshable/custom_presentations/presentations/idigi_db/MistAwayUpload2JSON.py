@@ -127,7 +127,6 @@ class Uploader(PresentationBase, threading.Thread):
 
       
     def __init__(self, name, core_services):
-
        self.__name = name
        self.__core = core_services
        self.__event_timer = None
@@ -263,9 +262,9 @@ class Uploader(PresentationBase, threading.Thread):
 
         SettingsBase.commit_settings(self, accepted)
         
-       # xbee_manager_name = SettingsBase.get_setting(self, "xbee_device_manager")
+        xbee_manager_name = SettingsBase.get_setting(self, "xbee_device_manager")
         dm = self.__core.get_service("device_driver_manager")
-        self.__xbee_manager = dm.instance_get("xbee_device_manager") # change asap to xbee_device_manager digimesh_device_manager
+        self.__xbee_manager = dm.instance_get(xbee_manager_name) # change asap to xbee_device_manager digimesh_device_manager
         
         self.__last_upload_time = 0
         
@@ -334,7 +333,7 @@ class Uploader(PresentationBase, threading.Thread):
      
         while self.offset is None:
             try:
-                time.sleep(120)
+                time.sleep(60)
                 self.getOffest()
             except:
                 pass
@@ -343,7 +342,8 @@ class Uploader(PresentationBase, threading.Thread):
             count = 0
         
             #self.my_queue = Queue.Queue(maxsize=5)
-            
+            #this is the count used to know when to update the time for the uploader
+            time_count = 0
             
             while True:
             #    list = threading.enumerate()
@@ -355,7 +355,15 @@ class Uploader(PresentationBase, threading.Thread):
                 #print "#############"
                 
                 count += 1
-        
+                time_count += 1
+                
+                if time_count > 300:
+                    time_count = 0
+                    try:
+                        self.getOffest()
+                    except:
+                        pass
+                        
                 #msg = self.my_queue.get()
                 
                 if self.send == True:
@@ -376,6 +384,7 @@ class Uploader(PresentationBase, threading.Thread):
                         #self.upload_lock.release()
                         self.send = False
                     time.sleep(5)
+                    
                 else:
                     time.sleep(5)
                     
@@ -419,7 +428,8 @@ class Uploader(PresentationBase, threading.Thread):
        # self.lock.acquire()
         self.send = True
        # self.lock.release()
-        
+    def uploader(self):
+        self.__upload_data()
     
     def __upload_data(self):
         
@@ -541,7 +551,7 @@ class Uploader(PresentationBase, threading.Thread):
         
         if self.connected > 10:
             print "rebooting due to too many failed uploads"
-            process_request('<rci_request><reboot /></rci_request>')
+            #process_request('<rci_request><reboot /></rci_request>')
 
     def __make_xml(self, channel_name, sample):
         

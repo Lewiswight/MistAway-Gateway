@@ -10,17 +10,17 @@ devices:
         discover_rate: 60
         xbee_device_manager: "digimesh_device_manager"
         devices: 
-          - name: "gate"
-            driver: "custom_devices.gate:XBeeSensorA"
-            settings: 
-                xbee_device_manager: "digimesh_device_manager"
-                extended_address: ""
           - name: "WallRouter"
             driver: "custom_devices.xbee_xbr:XBeeXBR"
             settings: 
                 xbee_device_manager: "digimesh_device_manager"
                 extended_address: ""
                 sample_rate_ms: 60000
+          - name: "gate"
+            driver: "custom_devices.gate:XBeeSensorA"
+            settings: 
+                xbee_device_manager: "digimesh_device_manager"
+                extended_address: ""
           - name: "mc3"
             driver: "custom_devices.MistAway_Controller_updated_Dia2:XBeeSerialTerminal"
             settings: 
@@ -43,12 +43,7 @@ presentations:
   - name: Uploader
     driver: custom_presentations.presentations.idigi_db.MistAwayUpload2JSON:Uploader
     settings: 
+        xbee_device_manager: "digimesh_device_manager"
         interval: 60
         sample_threshold: 30
 
-services: 
-  - name: watchdog_service0
-    driver: services.watchdog_service:WatchdogService
-    settings: 
-        watchdog_interval: 120
-        low_memory_threshold: 40961

@@ -221,10 +221,11 @@ class hl_main(DeviceBase, threading.Thread):
 
     # Threading related functions:
     def run(self):
-        self.time_offest()
+        try:
+            self.time_offest()
+        except:
+            pass
         time.sleep(20)
-        self.time_offest()
-        time.sleep(10)
         print "#### first run ####"
         while True:
             try:
@@ -232,11 +233,19 @@ class hl_main(DeviceBase, threading.Thread):
                 print "##updating!##"
                 print "#############"
                 #self.weather()
-                self.time_offest()
+                try:
+                    self.time_offest()
+                except:
+                    pass
                 self.property_set("hb", Sample(time.time(), "On", ""))
                 time.sleep(1200)
+                try:
+                    self.time_offest()
+                except:
+                    pass
+                self.property_set("hb", Sample(time.time(), "On", ""))
                 self.updateMisting()
-                time.sleep(3000)
+                time.sleep(1200)
             except:
                 print "rebooting now from MA main, see ya"
                 process_request('<rci_request><reboot /></rci_request>')

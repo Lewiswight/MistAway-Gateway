@@ -1,8 +1,0 @@
-devices: 
-  - name: xbee_device_manager
-    driver: devices.xbee.xbee_device_manager.xbee_device_manager:XBeeDeviceManager
-
-  - name: tank_v0
-    driver: devices.tanks.virtual_tank:VirtualTank
-    settings: 
-        volume: 5000

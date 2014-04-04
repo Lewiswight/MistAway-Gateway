@@ -1,9 +1,9 @@
-#Wed Dec 11 12:06:05 CST 2013
+#Tue Mar 04 08:44:41 CST 2014
 Connectors.ConnectionType=org.eclipse.tm.internal.terminal.ssh.SshConnector
-Connectors.org.eclipse.tm.internal.terminal.ssh.SshConnector.Host=192.168.128.228
+Connectors.org.eclipse.tm.internal.terminal.ssh.SshConnector.Host=192.168.128.146
 Connectors.org.eclipse.tm.internal.terminal.telnet.TelnetConnector.Timeout=10
 Connectors.org.eclipse.tm.internal.terminal.ssh.SshConnector.Keepalive=300
-Connectors.org.eclipse.tm.internal.terminal.telnet.TelnetConnector.Host=172.16.3.238
+Connectors.org.eclipse.tm.internal.terminal.telnet.TelnetConnector.Host=192.168.128.28
 Connectors.org.eclipse.tm.internal.terminal.ssh.SshConnector.Port=22
 Connectors.org.eclipse.tm.internal.terminal.telnet.TelnetConnector.NetworkPort=23
 Connectors.org.eclipse.tm.internal.terminal.ssh.SshConnector.User=python

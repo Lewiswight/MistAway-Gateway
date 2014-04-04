@@ -22,8 +22,8 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="243" key="DIALOG_WIDTH"/>
-		<item value="453" key="DIALOG_Y_ORIGIN"/>
-		<item value="-657" key="DIALOG_X_ORIGIN"/>
+		<item value="284" key="DIALOG_Y_ORIGIN"/>
+		<item value="2916" key="DIALOG_X_ORIGIN"/>
 		<item value="379" key="DIALOG_HEIGHT"/>
 		<item value="1|Lucida Grande|11.0|0|COCOA|1|LucidaGrande" key="DIALOG_FONT_NAME"/>
 	</section>
@@ -33,18 +33,19 @@
 		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="core" key="selection"/>
+		<item value="next_mist" key="selection"/>
 		<list key="findhistory">
-			<item value="core"/>
-			<item value="__core"/>
-			<item value="_core"/>
-			<item value="p61_serial"/>
-			<item value="SMARTOES_24CT"/>
-			<item value="2_digit_address"/>
-			<item value="update_2digit"/>
-			<item value="pressure"/>
+			<item value="next_mist"/>
+			<item value="= &quot;7&quot;"/>
+			<item value="= 7"/>
+			<item value="r=7"/>
+			<item value="r = 7"/>
+			<item value="self.full_update = true"/>
+			<item value="self.full_update"/>
+			<item value="p="/>
 		</list>
 		<list key="replacehistory">
+			<item value="id"/>
 			<item value="#print"/>
 			<item value="cdb"/>
 			<item value="#self.lock.release()"/>
@@ -52,7 +53,6 @@
 			<item value="#self.lock.release() "/>
 			<item value="print "/>
 			<item value="self.__tracer.info(str("/>
-			<item value="self.__tracer.info("/>
 		</list>
 	</section>
 </section>

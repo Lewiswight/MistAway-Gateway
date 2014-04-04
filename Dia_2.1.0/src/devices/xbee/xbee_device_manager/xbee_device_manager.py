@@ -72,7 +72,10 @@ BINDPOINTS = {bindpoints.JOIN: {'endpoint': 0xe8,
                                   'cluster_id': 0x92}}
 
 
-
+try:
+    import xbee
+except:
+    import zigbee as xbee
 # imports
 import traceback
 
@@ -83,10 +86,7 @@ import threading
 import digitime
 import types
 
-try:
-    import xbee
-except:
-    import zigbee as xbee
+
 
 from devices.device_base import DeviceBase
 from settings.settings_base import SettingsBase, Setting

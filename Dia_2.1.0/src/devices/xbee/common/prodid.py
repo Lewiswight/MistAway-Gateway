@@ -168,10 +168,13 @@ VALIDYNE                        = 0x0710
 
 MCOGEN                          = 0x0801
 
+FTSPRFID                        = 0x0901
+
 PROD_NAME_MAP = {
 
     # Digi-Branded Products:
     #PROD_DIGI_UNSPECIFIED: "Unspecified",
+    FTSPRFID: "fsrfid",
     FSAPG: "fsapgus",
     APG: "apgus",
     LYNXEE: "Lynxee thermostst",

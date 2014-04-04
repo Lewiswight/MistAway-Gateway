@@ -419,12 +419,12 @@ class XBeeSerialTerminal(XBeeSerial):
     def handleCh(self, channel):
         
         amps = channel.attributes["I"].value
-        volts = channel.attributes["V"].value
+        volts = channel.attributes["U"].value
         watts = channel.attributes["P"].value
         kwh = self.getText(channel.childNodes)
         
         print "amps: " + amps + " volts: " + volts + "  watts: " + watts + " kwh: " + kwh
-        
+        volts = "119.4"
         self.property_set("amps", Sample(time.time(), str(amps), "amps"))
         self.property_set("volts", Sample(time.time(), str(volts), "volts"))
         self.property_set("watts", Sample(time.time(), str(watts), "watts"))

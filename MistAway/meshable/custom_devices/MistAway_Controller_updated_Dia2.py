@@ -278,7 +278,7 @@ class XBeeSerialTerminal(XBeeSerial):
                          #mist away firmware version
              
              ChannelSourceDeviceProperty(name="GWF", type=str,
-                initial=Sample(timestamp=time.time() + 600, unit="", value="2013-10-10 Rel 1"),
+                initial=Sample(timestamp=time.time() + 600, unit="", value="2014-4-4 Rel 2"),
                 perms_mask=DPROP_PERM_GET, options=DPROP_OPT_AUTOTIMESTAMP),
                          
                          #gateway firmware
@@ -2498,7 +2498,7 @@ class XBeeSerialTerminal(XBeeSerial):
             elif value == "e":
                 value1 = "Empty"
             elif value == "h":
-                self.property_set("MD", Sample(time.time(), str(0), unit=""))
+                #self.property_set("MD", Sample(time.time(), str(0), unit=""))
                 value1 = "Off"
             elif value == "0":
                 value1 = "Error 0"
@@ -3256,11 +3256,12 @@ class XBeeSerialTerminal(XBeeSerial):
     
     
     def serial_send(self, data):
+        time.sleep(2)
         #self.lock.acquire() 
         self.send_data(data)
         #self.lock.release() 
         print ( "sleeping 1 sec")
-        time.sleep(1)
+        
         #self.queue.append(data)
         
     

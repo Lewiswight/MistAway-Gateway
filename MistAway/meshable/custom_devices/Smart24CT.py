@@ -610,10 +610,10 @@ class XBeeSerialTerminal(XBeeSerial):
         meter_name = name + "_meter"
         
         meter = int(meter)
-        meter = meter * .0036
+        meter = meter * .24
         
         volts = int(volts)
-        volts = volts * 3.6
+        volts = volts * .24
         
         self.property_set(volts_name, Sample(time.time(), str(volts), "volts"))
         
